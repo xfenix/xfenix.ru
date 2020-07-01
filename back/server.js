@@ -1,6 +1,7 @@
 #!/usr/bin/env nodejs
 require('dotenv').config()
 const IS_DEBUG = process.env.DEBUG ? true : false
+// dont need to place it in env file - it will be bad decision for me
 const CACHE_TIME = 3600 * 24
 const HOW_MANY_REPOS = 20
 const PORT = 8080
@@ -27,23 +28,24 @@ fastify.get('/api/githubrepos/', async (_, serverReply) => {
             {per_page: HOW_MANY_REPOS, order: 'desc'},
             (error, status, payload, _) => {
                 if(!error && status == 200) {
-                    payload.sort(function(a, b) {
+                    let returnResult = payload
+                    returnResult.sort(function(a, b) {
                         return b.stargazers_count - a.stargazers_count
                     })
-                    payload = payload.filter((oneItem) => {
+                    returnResult = returnResult.filter((oneItem) => {
                         return !SKIP_REPOS.includes(oneItem.name)
                     })
-                    payload = payload.map((oldItem) => {
+                    returnResult = returnResult.map((oldItem) => {
                         let newItem = {};
                         for(let oneField of NECESSARY_FIELDS) {
                             newItem[oneField] = oldItem[oneField]
                         }
                         return newItem
                     })
-                    cache.set(PAYLOAD_CACHE_KEY, payload, {'life': CACHE_TIME})
-                    serverReply.code(200).send(payload)
+                    cache.set(PAYLOAD_CACHE_KEY, returnResult, {'life': CACHE_TIME})
+                    serverReply.code(200).send(returnResult)
                 } else {
-                    serverReply.code(200).send({'error': error})
+                    serverReply.code(500).send({'error': error})
                 }
             }
         )
