@@ -1,6 +1,6 @@
 xfenix.ru
 ==
-![CI](https://github.com/xfenix/xfenix.ru/workflows/CI/badge.svg?branch=master)  
+![CI](https://github.com/xfenix/xfenix.ru/workflows/CI/badge.svg)  
 
 My small site and some developers shitty things.  
 It consists of:
