@@ -1,0 +1,21 @@
+{
+    "short_name": "Xfenix",
+    "name": "Xfenix site",
+    "icons": [
+      {
+        "src": "/assets/newlogo--symmetric.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/assets/newlogo--symmetric.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#fff",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#fff"
+}

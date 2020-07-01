@@ -1,0 +1,385 @@
+$accent1: #00933b;
+$accent2: #b71cff;
+$light-accent1: #c4e9d2;
+$light-accent2: #d7b7e9;
+
+// Generic things
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    line-height: 140%;
+}
+
+@keyframes breathing {
+    0% {
+        transform: scale(0.9);
+    }
+
+    25% {
+        transform: scale(1);
+    }
+
+    60% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(0.9);
+    }
+}
+// animation: breathing 5s ease-out infinite normal;
+
+.typo {
+    a {
+        color: $accent1;
+        text-decoration: none;
+        border-bottom: 1px solid rgba($accent1, 0.2);
+    
+        &:hover {
+            color: $accent2;
+            border-bottom-color: $accent2;
+        }
+    }
+    
+    p + p {
+        margin-top: 15px;
+    }
+    
+    h1, h2, h3 {
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+    
+    h1 {
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+    
+    h3 {
+        font-size: 20px;
+        min-height: 24px;
+        margin-top: 30px;
+    }
+    
+    ul > li {
+        margin-left: 0;
+        padding-left: 25px;
+        list-style-type: none;
+        position: relative;
+    }
+
+    ul li:before {
+        left: 0;
+        top: 0;
+        position: absolute;
+        display: inline-block;
+    }
+
+    .hpquote {
+        /* во славу сатаны */
+        margin-left: -0.6em;
+    }
+
+    .irony {
+        /* красненькое с лепры */
+        color: #CC3333;
+        font-style: italic;
+    }
+}
+
+
+// ======== Global layout things
+.allcontent {
+    padding-bottom: 100px;
+}
+
+// ======== Hero unit
+.layout-wrap,
+.hero__inner {
+    padding: 0 20px;
+    margin: auto;
+    box-sizing: border-box;
+    max-width: 700px;
+    min-width: 320px;
+    width: 100%;
+}
+
+.layout-wrap + .layout-wrap {
+    padding-top: 20px;
+}
+
+.hero {
+    // background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+    // background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%);
+    // background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+    // background-image: linear-gradient(315deg, #d1edff 0%, white 50%, #d1edff 100%);
+    background-image: linear-gradient(130deg, $light-accent1 0, #fff 45%,  #fff 70%, $light-accent2 100%);
+    position: relative;
+    box-shadow: 0 8px 6px -6px #eee;
+    box-sizing: border-box;
+}
+
+    .hero__inner {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        padding: 40px 20px;
+    }
+
+    .hero__logo {
+        display: block;
+        width: 200px;
+        margin-right: 40px;
+    }
+
+    .hero__toprow {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+@media screen and (max-width: 640px) {
+    .hero__logo {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .hero__inner {
+        display: block;
+    }
+
+    .hero__logo { 
+        width: 100%;
+        max-width: 200px;
+        margin: auto;
+        margin-bottom: 40px;
+    }
+}
+
+// ======== Skill blocks
+.skills-list {
+    margin-top: 5px;
+}
+
+    .skills-list li {
+        padding-left: 20px !important;
+    }
+
+    .skills-list li:before {
+        content: '\2022';
+    }
+
+    .skills-list li ul {
+        margin-bottom: 10px;
+        margin-left: 20px;
+    }
+
+    .skills-list li {
+        margin-top: 5px;
+    }
+
+.skillblock {
+    & + & {
+        margin-top: 10px;
+    }
+
+    &[open] .skillblock__summary {
+        margin-bottom: 10px;
+    }
+
+    &[open] .skillblock__content {
+        animation-name: fadeIn;
+        animation-duration: 500ms, 200ms;
+        animation-delay: 0ms, 500ms;
+    }
+
+    &__summary {
+        outline: none;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    &__wrap {
+        color: $accent1;
+        border-bottom: 1px solid rgba($accent1, 0.2);
+    }
+
+    &__summary:hover > .skillblock__wrap,
+    &[open] .skillblock__wrap {
+        color: $accent2;
+        border-bottom-color: $accent2;
+    }
+}
+
+.skillbbefore {
+    margin-bottom: 10px;
+}
+
+// ======== Contacts
+.contacts-links {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+    .contacts-links__link {
+        color: #000 !important;
+        border-bottom: none !important;
+        font-weight: bold;
+        display: block;
+        background-image: linear-gradient(120deg, $light-accent1 0%, $light-accent2 100%);
+        border-radius: 4px;
+        padding: 10px 20px;
+        text-align: center;
+        box-shadow: 0 0 5px #ccc;
+    }
+
+    .contacts-links__link:hover {
+        border-bottom: none;
+        color: #fff !important;
+        background: #000;
+    }
+
+    .contacts-links__icon {
+        margin-right: 10px;
+    }
+
+@media screen and (max-width: 650px) {
+    .contacts-links {
+        grid-template-columns: repeat(2, minmax(auto, 230px));
+        row-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .contacts-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ======== Project list
+.projects-links {
+    margin-top: 20px;
+}
+
+    .projects-links li:before {
+        content: '🤖';
+    }
+
+    .projects-links > li + li {
+        margin-top: 15px;
+    }
+
+// ======== Github imitation
+.github-wannabe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 16px;
+    font-size: 85%;
+    min-height: 460px;
+}
+
+.github-wannabe svg {
+    align-self: center;
+}
+
+.github-wannabe__box {
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    padding: 16px;
+    box-sizing: border-box;
+    flex-direction: column;
+    display: flex;
+}
+
+.github-wannabe__title {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.github-wannabe__title > svg {
+    margin-right: 10px;
+}
+
+.github-wannabe__descr {
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.github-wannabe__meta,
+.github-wannabe__language {
+    display: flex;
+    justify-items: flex-start;
+}
+
+.github-wannabe__language,
+.github-wannabe__stars {
+    margin-right: 20px;
+}
+
+// github additional elements
+.github-repo-color {
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    margin-top: 4px;
+    align-self: top;
+}
+
+.github-repo-color_python {
+    background-color: #3572A5;
+}
+
+.github-repo-color_html {
+    background-color: #e34c26;
+}
+
+.github-repo-color_javascript {
+    background-color: #f1e05a;
+}
+
+.github-repo-color_rust {
+    background-color: #dea584;
+}
+
+.github-repo-color_actionscript {
+    background-color: #882B0F;
+}
+
+.github-repo-color_typescript {
+    background-color: #2b7489;
+}
+
+.github-link {
+    display: flex;
+    color: #000 !important;
+    border-bottom: none !important;
+}
+
+.github-link:hover  {
+    color: #0366d6 !important;
+}
+
+.github-link:hover > svg {
+    fill: #0366d6;
+}
+
+.github-link > svg {
+    margin-right: 2px;
+}
+
+@media screen and (max-width: 640px) {
+    .github-wannabe {
+        grid-template-columns: 1fr;
+    }
+}
