@@ -1,5 +1,5 @@
 'use strict';
- 
+
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const cssnano = require('gulp-cssnano');
@@ -43,9 +43,14 @@ gulp.task('htmlmin', () => {
         .pipe(minifyInline())
         .pipe(gulp.dest(`${DIR_PREFIX}/public/`));
 });
- 
+
 gulp.task('all:watch', () => {
     gulp.watch(PATTERNS.sass, gulp.series('sass'));
     gulp.watch(PATTERNS.html, gulp.series('htmlmin'));
     gulp.watch(PATTERNS.js, gulp.series('js'));
+});
+
+gulp.task('all', (cb) => {
+    gulp.series('sass', 'htmlmin', 'js')();
+    cb();
 });
