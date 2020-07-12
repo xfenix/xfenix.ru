@@ -11,7 +11,8 @@ SITECON: Connection = Connection(f'{os.getenv("XFENIXRU_USER")}@xfenix.ru', port
 
 
 def restart_back():
-    SITECON.run(f"npx pm2 restart server.js")
+    with SITECON.cd(BACK_DIR):
+        SITECON.run(f"npx pm2 restart server.js")
 
 
 @task
@@ -25,8 +26,7 @@ def deploy(context):
 def deployfull(context):
     print("Running full deploy...")
     SITECON.run(f"cd {PROJECT_DIR} && git pull")
-    with SITECON.cd(BACK_DIR):
-        restart_back()
+    restart_back()
     print("Done!")
 
 
@@ -42,6 +42,6 @@ def install(context):
 @task
 def clean_cache(context):
     print("Clean cache")
-    SITECON.run(f"cd {PROJECT_DIR}/back/ && rm store.json")
+    SITECON.run(f"cd {PROJECT_DIR}/back/ && rm store.json 2> /dev/null")
     restart_back()
     print("Done!")
