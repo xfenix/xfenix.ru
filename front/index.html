@@ -348,8 +348,8 @@
             forkNode.textContent = oneRepoPayload.forks_count;
             forkNode.parentNode.href = `${oneRepoPayload.html_url}/network/members`;
             languageNode.querySelector('.github-repo-color')
-                .classList.add('github-repo-color_' + oneRepoPayload.language.toLowerCase())
-            languageNode.appendChild(document.createTextNode(oneRepoPayload.language));
+                .classList.add('github-repo-color_' + (oneRepoPayload.language ? oneRepoPayload.language : 'nolanguage').toLowerCase());
+            languageNode.appendChild(document.createTextNode(oneRepoPayload.language ? oneRepoPayload.language : 'No language'));
             return newNode;
         };
         const renderMultipleRepo = (multiplePayload) => {
