@@ -62,7 +62,6 @@ body {
     h3 {
         font-size: 20px;
         min-height: 24px;
-        margin-top: 30px;
     }
     
     ul > li {
@@ -98,7 +97,7 @@ body {
 }
 
 // ======== Hero unit
-.layout-wrap,
+.info-section,
 .hero__inner {
     padding: 0 20px;
     margin: auto;
@@ -108,8 +107,8 @@ body {
     width: 100%;
 }
 
-.layout-wrap + .layout-wrap {
-    padding-top: 20px;
+.info-section + .info-section {
+    padding-top: 30px;
 }
 
 .hero {
@@ -121,6 +120,7 @@ body {
     position: relative;
     box-shadow: 0 8px 6px -6px #eee;
     box-sizing: border-box;
+    margin-bottom: 40px;
 }
 
     .hero__inner {
@@ -222,7 +222,6 @@ body {
 
 // ======== Contacts
 .contacts-links {
-    margin-bottom: 30px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 20px;

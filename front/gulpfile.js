@@ -44,13 +44,13 @@ gulp.task('htmlmin', () => {
         .pipe(gulp.dest(`${DIR_PREFIX}/public/`));
 });
 
-gulp.task('all:watch', () => {
+gulp.task('watch', () => {
     gulp.watch(PATTERNS.sass, gulp.series('sass'));
     gulp.watch(PATTERNS.html, gulp.series('htmlmin'));
     gulp.watch(PATTERNS.js, gulp.series('js'));
 });
 
-gulp.task('all', (cb) => {
+gulp.task('build', (cb) => {
     gulp.series('sass', 'htmlmin', 'js')();
     cb();
 });
