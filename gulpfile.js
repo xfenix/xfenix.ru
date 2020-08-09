@@ -6,7 +6,7 @@ const cssnano = require('gulp-cssnano');
 const htmlmin = require('gulp-htmlmin');
 const babelMinify = require('gulp-babel-minify');
 const minifyInline = require('gulp-minify-inline');
-const DIR_PREFIX = __dirname;
+const DIR_PREFIX = __dirname + '/front';
 const ASSETS_DIR = `${DIR_PREFIX}/assets/`;
 const PATTERNS = {
     html: `${DIR_PREFIX}/*.html`,

@@ -269,7 +269,7 @@ body {
 }
 
     .projects-links li:before {
-        content: '🤖';
+        content: '💈';
     }
 
     .projects-links > li + li {
@@ -387,4 +387,11 @@ body {
     .github-wannabe {
         grid-template-columns: 1fr;
     }
+}
+
+
+// ======== Various shit
+.codewars {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
