@@ -3,7 +3,8 @@ $accent2: #b71cff;
 $light-accent1: #c4e9d2;
 $light-accent2: #d7b7e9;
 
-// Generic things
+// ======== Generic things
+// global reset (because i can)
 * {
     padding: 0;
     margin: 0;
@@ -392,7 +393,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
 
 // ======== Various shit
 .codewars {

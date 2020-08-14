@@ -303,8 +303,7 @@
         const CACHE_KEY = 'xfenix-github-cache';
         const API_KEY = 'xfenix-apiaddr';
         const BYPASS_KEY = 'xfenix-bypasscache';
-        const CACHE_SECONDS = 3600;
-        const HEIGHT_SECONDS = 3600 * 24 * 7;
+        const GITHUB_CACHE_SECONDS = 3600;
         const SHOW_REPOS = 6;
         const API_DESTINATION = localStorage.getItem(API_KEY) ? localStorage.getItem(API_KEY) : '/api/githubrepos/';
         const templateElement = document.querySelector('#github-wannabe-tpl');
@@ -368,7 +367,7 @@
                 }
             }
             destinationNode.appendChild(tmpFragment);
-            localStorage.setItem(HEIGHT_KEY, destinationNode.offsetHeight, HEIGHT_SECONDS);
+            localStorage.setItem(HEIGHT_KEY, destinationNode.offsetHeight);
         };
 
         const cachedPayload = localStorageWithExpiration.get(CACHE_KEY);
@@ -377,7 +376,7 @@
                 .then(response => response.json())
                 .then(result => {
                     renderMultipleRepo(result);
-                    localStorageWithExpiration.set(CACHE_KEY, result, CACHE_SECONDS * 1000);
+                    localStorageWithExpiration.set(CACHE_KEY, result, GITHUB_CACHE_SECONDS * 1000);
                 });
         } else {
             renderMultipleRepo(cachedPayload);
