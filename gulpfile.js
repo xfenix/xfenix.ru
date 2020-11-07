@@ -2,7 +2,8 @@
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const cssnano = require('gulp-cssnano');
+const postcss = require("gulp-postcss");
+const cssMinify = require('cssnano');
 const htmlmin = require('gulp-htmlmin');
 const babelMinify = require('gulp-babel-minify');
 const minifyInline = require('gulp-minify-inline');
@@ -15,10 +16,19 @@ const PATTERNS = {
 };
 
 gulp.task('sass', () => {
-    return gulp.src(PATTERNS.sass)
-        .pipe(sass().on('error', sass.logError))
-        .pipe(cssnano())
-        .pipe(gulp.dest(ASSETS_DIR));
+    return gulp
+      .src(PATTERNS.sass)
+      .pipe(sass().on("error", sass.logError))
+      .pipe(
+        postcss([
+          cssMinify({
+            discardComments: {
+              removeAll: true,
+            },
+          }),
+        ])
+      )
+      .pipe(gulp.dest(ASSETS_DIR));
 });
 
 gulp.task('js', () => {
