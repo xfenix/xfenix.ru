@@ -10,7 +10,6 @@
     "gulp-minify-inline": "^1.1.0",
     "gulp-postcss": "^9.0.0",
     "gulp-sass": "^4.1.0",
-    "js-yaml": ">=3.13.1",
     "postcss": "^7.0.35",
     "postcss-preset-env": "^5.2.3",
     "sass": "^1.29.0"
