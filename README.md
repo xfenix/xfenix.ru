@@ -16,4 +16,4 @@ It consists of:
 1. Set:
     * `xfenix-apiaddr` with value `http://127.0.0.1:8080/api/githubrepos/`
     * `xfenix-bypasscache` with value `1`
-1. Run frontend watcher `cd front && npx gulp all:watch`
+1. Run frontend watcher `cd front && npx gulp watch`

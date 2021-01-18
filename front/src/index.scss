@@ -222,29 +222,32 @@ body {
 }
 
 // ======== Contacts
+$accent-color: #212529;
+$contact-buttons-gap: 20px;
 .contacts-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 20px;
-    row-gap: 20px;
+    display: flex;
+    margin: -#{$contact-buttons-gap} 0 0 -#{$contact-buttons-gap};
 }
 
     .contacts-links__link {
-        color: #000 !important;
+        color: $accent-color !important;
         font-weight: bold;
         display: block;
         // background-image: linear-gradient(120deg, $light-accent1 0%, $light-accent2 100%);
         border-radius: 50px;
-        border: 3px solid #000 !important;
+        border: 1px solid $accent-color !important;
         background: #fff;
         padding: 8px 20px;
         text-align: center;
+        box-sizing: border-box;
+        white-space: nowrap;
+        margin: $contact-buttons-gap 0 0 $contact-buttons-gap;
     }
 
     .contacts-links__link:hover {
         border-bottom: none;
         color: #fff !important;
-        background: #000;
+        background: $accent-color;
     }
 
     .contacts-links__icon {
@@ -253,16 +256,18 @@ body {
 
 @media screen and (max-width: 650px) {
     .contacts-links {
-        grid-template-columns: repeat(2, minmax(auto, 230px));
-        row-gap: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        // row-gap: 20px;
     }
 }
 
-@media screen and (max-width: 420px) {
-    .contacts-links {
-        grid-template-columns: 1fr;
-    }
-}
+// @media screen and (max-width: 420px) {
+//     .contacts-links {
+//         grid-template-columns: 1fr;
+//     }
+// }
 
 // ======== Project list
 .projects-links {
