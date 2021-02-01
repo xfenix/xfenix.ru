@@ -7,12 +7,12 @@ const cssMinify = require('cssnano');
 const htmlmin = require('gulp-htmlmin');
 const babelMinify = require('gulp-babel-minify');
 const minifyInline = require('gulp-minify-inline');
-const DIR_PREFIX = __dirname + '/front';
+const DIR_PREFIX = __dirname + '/src';
 const ASSETS_DIR = `${DIR_PREFIX}/assets/`;
 const PATTERNS = {
     html: `${DIR_PREFIX}/*.html`,
-    sass: `${DIR_PREFIX}/src/*.scss`,
-    js: `${DIR_PREFIX}/src/*.js`,
+    sass: `${DIR_PREFIX}/*.scss`,
+    js: `${DIR_PREFIX}/*.js`,
 };
 
 gulp.task('sass', () => {
