@@ -1,5 +1,4 @@
-"""Just deploy script
-"""
+"""Just deploy script."""
 import os
 
 from fabric import Connection, task
