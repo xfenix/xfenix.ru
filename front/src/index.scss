@@ -415,6 +415,7 @@ $contact-buttons-gap: 20px;
   position: relative;
   cursor: help;
   display: inline-block;
+  user-select: none;
 }
 
 .basic-tooltip:before {
