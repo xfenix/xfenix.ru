@@ -370,7 +370,7 @@
         const renderMultipleRepo = (multiplePayload) => {
             const tmpFragment = document.createDocumentFragment();
             let counter = 1;
-            for(let oneRepoPayload of multiplePayload) {
+            for(const oneRepoPayload of multiplePayload) {
                 tmpFragment.appendChild(renderOneRepo(oneRepoPayload));
                 counter++;
                 if(counter > SHOW_REPOS) {
