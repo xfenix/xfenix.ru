@@ -21,12 +21,12 @@
     (() => {
         'use strict';
 
-        const heightCache = localStorage.getItem(HEIGHT_KEY);
-        if(heightCache) {
-            let newFancyStyle = document.createElement('style');
+        const cachedHeight = localStorage.getItem(HEIGHT_KEY);
+        if(cachedHeight) {
+            const newFancyStyle = document.createElement('style');
             newFancyStyle.type='text/css';
             newFancyStyle.appendChild(
-                document.createTextNode(`.github-wannabe { min-height: ${heightCache}px !important; }`));
+                document.createTextNode(`.github-wannabe { min-height: ${cachedHeight}px !important; }`));
             document.head.appendChild(newFancyStyle);
         }
     })();
@@ -338,7 +338,7 @@
                 if(localStorage.getItem(BYPASS_KEY)) {
                     return null;
                 }
-                let storageData = JSON.parse(localStorage.getItem(cacheKey.toString()));
+                const storageData = JSON.parse(localStorage.getItem(cacheKey.toString()));
                 if (storageData !== null) {
                     if (storageData.expires_at !== null && storageData.expires_at < new Date().getTime()) {
                         localStorage.removeItem(cacheKey.toString());
@@ -350,11 +350,11 @@
             }
         };
         const renderOneRepo = (oneRepoPayload) => {
-            let newNode = templateElement.content.cloneNode(true);
-            let titleNode = newNode.querySelector('.github-wannabe__title > a');
-            let starsNode = newNode.querySelector('.github-wannabe__stars');
-            let forkNode = newNode.querySelector('.github-wannabe__fork');
-            let languageNode = newNode.querySelector('.github-wannabe__language');
+            const newNode = templateElement.content.cloneNode(true);
+            const titleNode = newNode.querySelector('.github-wannabe__title > a');
+            const starsNode = newNode.querySelector('.github-wannabe__stars');
+            const forkNode = newNode.querySelector('.github-wannabe__fork');
+            const languageNode = newNode.querySelector('.github-wannabe__language');
             titleNode.textContent = oneRepoPayload.name;
             titleNode.href = oneRepoPayload.html_url;
             newNode.querySelector('.github-wannabe__descr').textContent = oneRepoPayload.description;
@@ -368,8 +368,8 @@
             return newNode;
         };
         const renderMultipleRepo = (multiplePayload) => {
+            const tmpFragment = document.createDocumentFragment();
             let counter = 1;
-            let tmpFragment = document.createDocumentFragment();
             for(let oneRepoPayload of multiplePayload) {
                 tmpFragment.appendChild(renderOneRepo(oneRepoPayload));
                 counter++;
