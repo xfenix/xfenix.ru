@@ -325,9 +325,6 @@
                 "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"[
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".indexOf(char) ] );
         };
-        const exposeSpecialSource = () => {
-            return rot13New('nq') + rot13New('--ksravk-eh').replace('--', '@').replace('-', '.');
-        };
         const localStorageWithExpiration = {
             set: (cacheKey, inputValue, ttlMs) => {
                 localStorage.setItem(cacheKey.toString(), JSON.stringify({
@@ -393,14 +390,15 @@
             renderMultipleRepo(cachedPayload);
         }
 
-        specialLink.addEventListener('click', function(event) {
-            window.location.href = rot13New('znvygb:') + exposeSpecialSource();
-            event.preventDefault();
-        })
-        specialLink.addEventListener('mouseover', function(event) {
-            this.textContent = exposeSpecialSource();
-            event.preventDefault();
-        });
+        const unveilSpecialSource = (event) => {
+            specialLink.textContent = specialLink.href.split(':')[1];
+            specialLink.removeEventListener(event.type, unveilSpecialSource);
+        }
+        specialLink.addEventListener('mouseover', unveilSpecialSource);
+        specialLink.addEventListener('focus', unveilSpecialSource);
+        specialLink.addEventListener('click', unveilSpecialSource);
+        specialLink.href = 'm' + 'a' + 'ilto:' + rot13New('nq') +
+            rot13New('--ksravk-eh').replace('--', '@').replace('-', '.');
     })();
     </script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
