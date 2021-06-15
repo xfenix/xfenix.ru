@@ -7,6 +7,7 @@ const cssMinify = require('cssnano');
 const htmlmin = require('gulp-htmlmin');
 const babelMinify = require('gulp-babel-minify');
 const minifyInline = require('gulp-minify-inline');
+const uncache = require('gulp-uncache');
 const DIR_PREFIX = __dirname + '/src';
 const ASSETS_DIR = `${DIR_PREFIX}/assets/`;
 const PATTERNS = {
@@ -41,7 +42,7 @@ gulp.task('js', () => {
         .pipe(gulp.dest(ASSETS_DIR));
 });
 
-gulp.task('htmlmin', () => {
+gulp.task('html', () => {
     return gulp.src(PATTERNS.html)
         .pipe(htmlmin({
             collapseWhitespace: true,
@@ -50,17 +51,22 @@ gulp.task('htmlmin', () => {
             sortAttributes: true,
             sortClassName: true,
         }))
+        .pipe(uncache({
+            append: 'hash',
+            srcDir: DIR_PREFIX,
+            distDir: ASSETS_DIR
+        }))
         .pipe(minifyInline())
         .pipe(gulp.dest(`${DIR_PREFIX}/public/`));
 });
 
 gulp.task('watch', () => {
-    gulp.watch(PATTERNS.sass, gulp.series('sass'));
-    gulp.watch(PATTERNS.html, gulp.series('htmlmin'));
+    gulp.watch(PATTERNS.sass, gulp.series('sass', 'html'));
+    gulp.watch(PATTERNS.html, gulp.series('html'));
     gulp.watch(PATTERNS.js, gulp.series('js'));
 });
 
 gulp.task('build', (cb) => {
-    gulp.series('sass', 'htmlmin', 'js')();
+    gulp.series('sass', 'html', 'js')();
     cb();
 });
