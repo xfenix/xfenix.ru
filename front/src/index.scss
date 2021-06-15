@@ -444,4 +444,12 @@ $contact-buttons-gap: 20px;
 
 .github-button {
   padding: 2px 10px;
+  font-size: 90%;
+}
+
+.github-button__icon {
+  font-size: 20px;
+  margin-right: 6px;
+  margin-top: 1px;
+  vertical-align: top;
 }
