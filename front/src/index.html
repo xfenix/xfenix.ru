@@ -17,7 +17,7 @@
     <meta property="twitter:description" content="Привет! Я - Денис и я разработчик. На этом сайте ты сможешь узнать больше обо мне и моих навыках">
     <meta property="twitter:image" content="https://xfenix.ru/assets/newlogo--socialmedia.png">
     <script>
-    const HEIGHT_KEY='xfenix-github-height-v2';
+    const HEIGHT_KEY='xfenix-github-height-new';
     (() => {
         'use strict';
 
@@ -47,7 +47,7 @@
     <link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./assets/index.css?v1.5.0">
+    <link rel="stylesheet" type="text/css" href="./assets/index.css?v1.6.0">
 </head>
 <body>
     <main class="allcontent typo">
@@ -381,7 +381,9 @@
                 }
             }
             destinationNode.appendChild(tmpFragment);
-            localStorage.setItem(HEIGHT_KEY, destinationNode.offsetHeight);
+            setTimeout(() => {
+                localStorage.setItem(HEIGHT_KEY, destinationNode.offsetHeight);
+            }, 300);
         };
 
         const cachedPayload = localStorageWithExpiration.get(CACHE_KEY);
