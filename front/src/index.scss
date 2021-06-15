@@ -241,8 +241,9 @@ body {
 .contact-links {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 20px;
   width: 100%;
+  justify-content: start;
 }
 
 .contact-links__link {
