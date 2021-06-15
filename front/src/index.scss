@@ -90,6 +90,20 @@ body {
   padding-bottom: 100px;
 }
 
+.generic-button {
+  color: #000 !important;
+  display: block;
+  border-radius: $default-border-radius;
+  border: 1px solid $lightest-gray !important;
+}
+
+.generic-button:hover,
+.generic-button:active {
+  border-bottom: none;
+  background: $lightest-accent1 !important;
+  border-color: $lightest-accent1 !important;
+}
+
 // ======== Hero unit
 .info-section,
 .hero__inner {
@@ -139,7 +153,7 @@ body {
 .hero__toprow {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 640px) {
@@ -228,24 +242,12 @@ $contact-buttons-gap: 20px;
 }
 
 .contact-links__link {
-  color: #343a40 !important;
-  font-weight: bold;
-  display: block;
-  border-radius: $default-border-radius;
-  border: 1px solid $lightest-gray !important;
   // background: #fff;
   padding: 8px 20px;
   text-align: center;
   box-sizing: border-box;
   white-space: nowrap;
   margin: $contact-buttons-gap 0 0 $contact-buttons-gap;
-}
-
-.contact-links__link:hover,
-.contact-links__link:active {
-  border-bottom: none;
-  background: $lightest-accent1 !important;
-  border-color: $lightest-accent1 !important;
 }
 
 .contact-links__icon {
@@ -438,4 +440,8 @@ $contact-buttons-gap: 20px;
 .basic-tooltip:active:before,
 .basic-tooltip:focus:before {
   display: block;
+}
+
+.github-button {
+  padding: 2px 10px;
 }
