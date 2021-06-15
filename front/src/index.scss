@@ -6,6 +6,8 @@ $lightest-accent1: #ecf7f1;
 $lightest-gray: #e5e5e5;
 $default-border-radius: 6px;
 $tooltip-color: rgba(0, 0, 0, 0.8);
+$info-section-side-padding: 20px;
+$info-section-between-padding: 30px;
 
 // ======== Generic things
 // global reset (because i can)
@@ -107,7 +109,7 @@ body {
 // ======== Hero unit
 .info-section,
 .hero__inner {
-  padding: 0 20px;
+  padding: 0 $info-section-side-padding;
   margin: auto;
   box-sizing: border-box;
   max-width: 700px;
@@ -116,7 +118,7 @@ body {
 }
 
 .info-section + .info-section {
-  padding-top: 30px;
+  padding-top: $info-section-between-padding;
 }
 
 .hero {
@@ -134,7 +136,7 @@ body {
   position: relative;
   box-shadow: 0 8px 6px -6px #eee;
   box-sizing: border-box;
-  margin-bottom: 30px;
+  margin-bottom: $info-section-between-padding;
 }
 
 .hero__inner {
@@ -159,6 +161,7 @@ body {
 @media screen and (max-width: 640px) {
   .hero__logo {
     width: 100px;
+    height: auto;
   }
 }
 
@@ -235,19 +238,18 @@ body {
 }
 
 // ======== Contacts
-$contact-buttons-gap: 20px;
 .contact-links {
-  display: flex;
-  margin: -#{$contact-buttons-gap} 0 0 -#{$contact-buttons-gap};
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 100%;
 }
 
 .contact-links__link {
-  // background: #fff;
-  padding: 8px 20px;
+  padding: 8px 10px;
   text-align: center;
   box-sizing: border-box;
   white-space: nowrap;
-  margin: $contact-buttons-gap 0 0 $contact-buttons-gap;
 }
 
 .contact-links__icon {
@@ -255,24 +257,18 @@ $contact-buttons-gap: 20px;
   color: #343a40;
 }
 
-.contact-links__link_email {
-  min-width: 142px;
-}
-
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 600px) {
   .contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    // row-gap: 20px;
+    gap: 10px;
   }
 }
 
-// @media screen and (max-width: 420px) {
-//     .contact-links {
-//         grid-template-columns: 1fr;
-//     }
-// }
+@media screen and (max-width: 490px) {
+  .contact-links {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: start;
+  }
+}
 
 // ======== Project list
 .projects-links {
