@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "cssnano": "^4.1.11",
+    "cssnano": "^5.0.6",
     "gulp": "^4.0.2",
     "gulp-babel-minify": "^0.5.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-minify-inline": "^1.1.0",
     "gulp-postcss": "^9.0.0",
     "gulp-sass": "^4.1.0",
-    "postcss": "^7.0.36",
-    "postcss-preset-env": "^5.2.3",
-    "sass": "^1.34.1"
+    "postcss": "^8.3.4",
+    "postcss-preset-env": "^6.7.0",
+    "sass": "^1.35.1"
   },
   "devDependencies": {
     "gulp-uncache": "^0.4.0-beta1"
