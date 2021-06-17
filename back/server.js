@@ -26,22 +26,18 @@ fastify.get('/api/githubrepos/', async (_, serverReply) => {
         githubClient.get(
             '/users/xfenix/repos',
             {per_page: HOW_MANY_REPOS, order: 'desc'},
-            (error, status, payload, _) => {
+            (error, status, originalPayload, _) => {
                 if(!error && status == 200) {
-                    let returnResult = payload
-                    returnResult.sort(function(a, b) {
-                        return b.stargazers_count - a.stargazers_count
-                    })
-                    returnResult = returnResult.filter((oneItem) => {
-                        return !SKIP_REPOS.includes(oneItem.name)
-                    })
-                    returnResult = returnResult.map((oldItem) => {
-                        let newItem = {};
-                        for(let oneField of NECESSARY_FIELDS) {
-                            newItem[oneField] = oldItem[oneField]
-                        }
-                        return newItem
-                    })
+                    const returnResult = originalPayload
+                        .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                        .filter((oneItem) => !SKIP_REPOS.includes(oneItem.name))
+                        .map((oldItem) => {
+                            const newItem = {};
+                            for (let oneField of NECESSARY_FIELDS) {
+                                newItem[oneField] = oldItem[oneField];
+                            }
+                            return newItem;
+                        });
                     cache.set(PAYLOAD_CACHE_KEY, returnResult, {'life': CACHE_TIME})
                     serverReply.code(200).send(returnResult)
                 } else {
