@@ -10,26 +10,10 @@ SITECON: Connection = Connection(f'{os.getenv("XFENIXRU_USER")}@xfenix.ru', port
 
 
 @task
-def deploy(context):
-    print("Running deploy...")
-    SITECON.run(f"cd {PROJECT_DIR} && git pull")
-    print("Done!")
-
-
-@task
 def deployfull(context):
     print("Running full deploy...")
     SITECON.run(f"cd {PROJECT_DIR} && git pull")
     with SITECON.cd(BACK_DIR):
         SITECON.run(f"npm i")
         SITECON.run(f"npx pm2 restart server.js")
-    print("Done!")
-
-
-@task
-def install(context):
-    print("Installing packages")
-    SITECON.run(f"cd {PROJECT_DIR} && git pull")
-    with SITECON.cd(BACK_DIR):
-        SITECON.run(f"npm i")
     print("Done!")
