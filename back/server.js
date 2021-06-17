@@ -2,7 +2,7 @@
 require('dotenv').config()
 const IS_DEBUG = process.env.DEBUG ? true : false
 // dont need to place it in env file - it will be bad decision for me
-const CACHE_TIME = 3600 * 2
+const CACHE_TIME = 3600 * 12
 const HOW_MANY_REPOS = 20
 const PORT = 8080
 const PAYLOAD_CACHE_KEY = 'githubpayload'
