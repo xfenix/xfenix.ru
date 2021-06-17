@@ -15,5 +15,6 @@ def deployfull(context):
     SITECON.run(f"cd {PROJECT_DIR} && git pull")
     with SITECON.cd(BACK_DIR):
         SITECON.run(f"npm i")
+        SITECON.run(f"npx pm2 update")
         SITECON.run(f"npx pm2 restart server.js")
     print("Done!")
