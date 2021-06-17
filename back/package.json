@@ -10,12 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "fastify": "^2.15.3",
+    "dotenv": "^10.0.0",
+    "fastify": "^3.18.0",
     "js-yaml": "^4.0.0",
     "node-cache": "^5.1.2",
-    "node-file-cache": "^1.0.2",
-    "octonode": "^0.9.5",
+    "octonode": "^0.10.2",
     "pm2": "^5.1.0"
   }
 }

@@ -2,7 +2,7 @@
 require('dotenv').config()
 const IS_DEBUG = process.env.DEBUG ? true : false
 // dont need to place it in env file - it will be bad decision for me
-const CACHE_TIME = 3600 * 24
+const CACHE_TIME = 3600 * 2
 const HOW_MANY_REPOS = 20
 const PORT = 8080
 const PAYLOAD_CACHE_KEY = 'githubpayload'
@@ -11,16 +11,16 @@ const SKIP_REPOS = ['django-elfinderfs', 'django-haystack', 'django-media-manage
                     'django-search-hide', 'django-xflatpages', 'django-suit-sortable',
                     'ionic-conference-app', ]
 const githubClient = require('octonode').client(process.env.GITHUB_API_KEY)
-const cache = require('node-file-cache').create()
-const fastify = require('fastify')({logger: true})
+const memoryCache = new (require( "node-cache" ))({stdTTL: CACHE_TIME});
+const fastify = require('fastify')({ logger: true })
 
 fastify.get('/api/githubrepos/', async (_, serverReply) => {
-    const cachedResult = IS_DEBUG ? false : cache.get(PAYLOAD_CACHE_KEY)
+    const cachedResult = IS_DEBUG ? undefined : memoryCache.get(PAYLOAD_CACHE_KEY)
     serverReply.type('application/json')
     if(IS_DEBUG) {
         serverReply.header('Access-Control-Allow-Origin', '*')
     }
-    if(cachedResult) {
+    if (cachedResult !== undefined) {
         serverReply.code(200).send(cachedResult)
     } else {
         githubClient.get(
@@ -38,7 +38,7 @@ fastify.get('/api/githubrepos/', async (_, serverReply) => {
                             }
                             return newItem;
                         });
-                    cache.set(PAYLOAD_CACHE_KEY, returnResult, {'life': CACHE_TIME})
+                    memoryCache.set(PAYLOAD_CACHE_KEY, returnResult)
                     serverReply.code(200).send(returnResult)
                 } else {
                     serverReply.code(500).send({'error': error})
