@@ -21,6 +21,11 @@ body {
   line-height: 22px;
 }
 
+a,
+button {
+  touch-action: manipulation;
+}
+
 .typo {
   a {
     color: $accent1;
