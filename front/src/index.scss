@@ -4,10 +4,12 @@ $light-accent1: #c4e9d2;
 $light-accent2: #d7b7e9;
 $lightest-accent1: #ecf7f1;
 $lightest-gray: #e5e5e5;
-$default-border-radius: 6px;
+$default-border-radius: 3px;
 $tooltip-color: rgba(0, 0, 0, 0.8);
 $info-section-side-padding: 20px;
-$info-section-between-padding: 30px;
+$info-section-between-padding: 35px;
+$max-width: 700px;
+$min-width: 320px;
 
 // ======== Generic things
 // global reset (because i can)
@@ -16,9 +18,16 @@ $info-section-between-padding: 30px;
   margin: 0;
 }
 
+@media screen and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   font-family: "Nunito", sans-serif;
   line-height: 22px;
+  font-size: 16px;
 }
 
 a,
@@ -46,24 +55,27 @@ button {
 
   h1,
   h2,
-  h3 {
-    margin-bottom: 10px;
-    font-weight: bold;
+  h3,
+  h4 {
+    margin-bottom: 15px;
+    font-family: "Comfortaa", cursive;
+    font-weight: 700;
   }
 
   h1 {
     font-size: 32px;
+    line-height: 32px;
     margin-bottom: 25px;
   }
 
   h3 {
     font-size: 20px;
-    min-height: 24px;
+    line-height: 20px;
   }
 
   h4 {
     font-size: 16px;
-    min-height: 18px;
+    line-height: 16px;
   }
 
   ul > li {
@@ -95,20 +107,80 @@ button {
 // ======== Global layout things
 .allcontent {
   padding-bottom: 100px;
+  position: relative;
 }
 
-.generic-button {
-  color: #000 !important;
-  display: block;
+.back-to-top {
+  // uncomment to visualize "track"
+  // outline: 1px solid red;
+  position: absolute;
+  top: 100vh;
+  bottom: 0;
+  right: 10px;
+  width: 3em;
+  pointer-events: none;
+}
+
+.back-to-top__link {
+  position: fixed;
+  // preferred positioning, requires prefixing for most support, and not supported on Safari
+  // @link https://caniuse.com/#search=position%3A%20sticky
+  position: sticky;
+  // reinstate clicks
+  pointer-events: all;
+  // achieves desired positioning within the viewport
+  // relative to the top of the viewport once `sticky` takes over, or always if `fixed` fallback is used
+  top: calc(100vh - 60px);
+  display: inline-block;
+  text-decoration: none;
+  font-size: 35px;
+  line-height: 55px;
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  border-bottom: none !important;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: $default-border-radius;
-  border: 1px solid $lightest-gray !important;
+
+  &::before {
+    content: "🔝";
+    display: block;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
-.generic-button:hover,
-.generic-button:active {
-  border-bottom: none;
-  background: $lightest-accent1 !important;
-  border-color: $lightest-accent1 !important;
+@media screen and (max-width: 768px) {
+  .back-to-top {
+    display: none;
+  }
+}
+
+// ======== Main menu
+.main-menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  z-index: 10;
+  padding-top: 5px !important;
+  padding-bottom: 15px !important;
+  flex-wrap: wrap;
+}
+
+.main-menu__link {
+  border-bottom: 1px dashed rgba($accent1, 0.3) !important;
+
+  &:hover {
+    border-bottom-color: $accent2 !important;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .main-menu {
+    gap: 10px;
+  }
 }
 
 // ======== Hero unit
@@ -117,20 +189,16 @@ button {
   padding: 0 $info-section-side-padding;
   margin: auto;
   box-sizing: border-box;
-  max-width: 700px;
-  min-width: 320px;
+  max-width: $max-width;
+  min-width: $min-width;
   width: 100%;
 }
 
-.info-section + .info-section {
+.info-section {
   padding-top: $info-section-between-padding;
 }
 
 .hero {
-  // background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
-  // background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%);
-  // background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-  // background-image: linear-gradient(315deg, #d1edff 0%, white 50%, #d1edff 100%);
   background-image: linear-gradient(
     130deg,
     $light-accent1 0,
@@ -141,45 +209,87 @@ button {
   position: relative;
   box-shadow: 0 8px 6px -6px #eee;
   box-sizing: border-box;
-  margin-bottom: $info-section-between-padding;
 }
 
 .hero__inner {
-  display: flex;
   align-items: start;
   justify-content: space-between;
-  padding: 40px 20px;
+  padding: 30px 20px;
+}
+
+.hero__contacts {
+  margin-top: 20px;
+}
+
+.hero__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important;
 }
 
 .hero__logo {
   display: block;
-  width: 200px;
-  margin-right: 40px;
+  width: 35px;
+  margin-left: 10px;
 }
 
 .hero__toprow {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 25px;
 }
 
-@media screen and (max-width: 640px) {
-  .hero__logo {
-    width: 100px;
-    height: auto;
+.hero__github {
+  display: inline-block;
+}
+
+@media screen and (max-width: 600px) {
+  .hero__title {
+    margin-bottom: 10px !important;
   }
-}
 
-@media screen and (max-width: 460px) {
-  .hero__inner {
+  .hero__toprow {
     display: block;
   }
 
-  .hero__logo {
+  .hero__github > a,
+  .hero__github > a:hover {
+    background: linear-gradient(180deg, #fafbfc, #eff3f6 90%) !important;
+    border-color: rgba(27, 31, 35, 0.15) !important;
+  }
+}
+
+// ======== Contacts
+.contact-links {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-links__prefix {
+  margin-right: 10px;
+}
+
+.contact-links__link {
+  text-align: left;
+  box-sizing: border-box;
+  white-space: nowrap;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.contact-links__icon {
+  margin-right: 10px;
+  color: #343a40;
+}
+
+@media screen and (max-width: 620px) {
+  .contact-links__prefix {
     width: 100%;
-    max-width: 200px;
-    margin: auto;
-    margin-bottom: 40px;
+    gap: 0;
   }
 }
 
@@ -242,47 +352,13 @@ button {
   margin-bottom: 10px;
 }
 
-// ======== Contacts
-.contact-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  width: 100%;
-  justify-content: start;
-}
-
-.contact-links__link {
-  padding: 8px 10px;
-  text-align: center;
-  box-sizing: border-box;
-  white-space: nowrap;
-}
-
-.contact-links__icon {
-  margin-right: 10px;
-  color: #343a40;
-}
-
-@media screen and (max-width: 600px) {
-  .contact-links {
-    gap: 10px;
-  }
-}
-
-@media screen and (max-width: 490px) {
-  .contact-links {
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: start;
-  }
-}
-
 // ======== Project list
 .projects-links {
   margin-top: 20px;
 }
 
 .projects-links li:before {
-  content: "🪁";
+  content: "💎";
 }
 
 .projects-links > li + li {
@@ -447,6 +523,16 @@ button {
 .github-button {
   padding: 2px 10px;
   font-size: 90%;
+  color: #000 !important;
+  display: block;
+  border-radius: $default-border-radius !important;
+  border: 1px solid $lightest-gray !important;
+}
+
+.github-button:hover,
+.github-button:active {
+  background: $lightest-accent1;
+  border-color: $lightest-accent1 !important;
 }
 
 .github-button__icon {

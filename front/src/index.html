@@ -21,15 +21,18 @@
     const HEIGHT_KEY='xfenix-github-height-new';
     (() => {
         'use strict';
-
+        const possibleEmojis = ["💎", "✨", "💈", "🪄", "🧬", "⚙️", "🤖", "👾", "👽", "💫", "🌹", "🍓"];
         const cachedHeight = localStorage.getItem(HEIGHT_KEY);
+        const newFancyStyle = document.createElement('style');
+        const randomEmoji = possibleEmojis[Math.floor(possibleEmojis.length * Math.random())];
+        newFancyStyle.type = 'text/css';
         if(cachedHeight) {
-            const newFancyStyle = document.createElement('style');
-            newFancyStyle.type='text/css';
             newFancyStyle.appendChild(
                 document.createTextNode(`.github-wannabe { min-height: ${cachedHeight}px !important; }`));
-            document.head.appendChild(newFancyStyle);
         }
+        newFancyStyle.appendChild(
+            document.createTextNode(`.projects-links li:before { content: "${randomEmoji}" !important; }`));
+        document.head.appendChild(newFancyStyle);
     })();
     </script>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
@@ -39,14 +42,15 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ffffff">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://stackpath.bootstrapcdn.com">
     <link rel="preconnect" href="https://www.codewars.com">
     <link rel="preconnect" href="https://mc.yandex.ru">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://stackpath.bootstrapcdn.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@400&display=swap" as="style" crossorigin="anonymous">
     <link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@400&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- uncache -->
     <link rel="stylesheet" type="text/css" href="./assets/index.css">
@@ -54,14 +58,23 @@
 </head>
 <body>
     <main class="allcontent typo">
-        <!-- Это не я hero, это у элемента такое расхожее название, спасибо bootstrap. Ну камон, я ж не из Яндекса, нет у меня такого ЧСВ ;) -->
+        <nav class="info-section main-menu">
+            <a class="main-menu__link" href="#about">Обо мне</a>
+            <a class="main-menu__link" href="#skills">Мои навыки</a>
+            <a class="main-menu__link" href="#github">Github</a>
+            <a class="main-menu__link" href="#portfolio">Мои проекты</a>
+        </nav>
+
+        <!-- Это не я hero, это у элемента такое расхожее название, спасибо bootstrap. Примечание для рептилоидов из РенТВ -->
         <section class="hero">
             <div class="hero__inner">
-                <img width="200" height="138" src="./assets/logo.svg" class="hero__logo"
-                     alt="Да, у меня есть личный логотип" title="Да, у меня есть личный логотип">
                 <div class="hero__about">
                     <div class="hero__toprow">
-                        <h1 class="hero__title">Привет</h1>
+                        <h1 class="hero__title">
+                            Привет, я Денис
+                            <img src="./assets/logo.svg" class="hero__logo" alt="Да, у меня есть личный логотип"
+                            title="Да, у меня есть личный логотип">
+                        </h1>
                         <div class="hero__github">
                             <a class="generic-button github-button"
                                target="_blank"
@@ -73,43 +86,58 @@
                         </div>
                     </div>
                     <div class="hero__description">
-                        <p>Я&nbsp;&mdash; Денис.</p>
-                        <p>Работаю fullstack разработчиком в&nbsp;команде с&nbsp;крутыми специалистами и&nbsp;просто классными людьми в&nbsp;<a href="https://www.raiffeisen.ru/" target="_blank" rel="noopener">Райффайзенбанке</a>.</p>
-                        <p>Сейчас я в двух ролях: нечто среднее между techlead и teamlead, а так же <dfn class="basic-tooltip" data-title="Part&nbsp;time&nbsp;&laquo;servant&nbsp;leader&raquo; сообщества каких-либо специалистов в банке">community lead</dfn>.<br>Мои основные языки &mdash; python&nbsp;и typescript.</p>
+                        <p>Работаю в <a href="https://www.raiffeisen.ru/" target="_blank" rel="noopener">Райффайзенбанке</a>.</p>
+                        <p>Я team/techlead (существует множество трактовок этих ролей), принимаю активное участие в fullstack разработке и part-time исполняю роль  <dfn title="Ниже я постарался написать про эту роль">community lead</dfn>.</p>
+                        <p>Мои основные языки &mdash; python&nbsp;и typescript.</p>
+                        <p>А ещё на&nbsp;linkedin можно посмотреть весь мой трудовой путь.</p>
+                        
+                        <div class="hero__contacts contact-links">
+                            <span class="contact-links__prefix">Контакты:</span><a class="contact-links__link" href="https://www.linkedin.com/in/xfenix/" target="_blank" rel="noopener">
+                                <i class="fa fa-linkedin contact-links__icon"></i>Linkedin
+                            </a>
+                            <a class="contact-links__link" href="https://www.facebook.com/xfenixru/" target="_blank" rel="noopener">
+                                <i class="fa fa-facebook contact-links__icon"></i>Facebook
+                            </a>
+                            <a class="contact-links__link" href="https://t.me/xfenix" target="_blank" rel="noopener">
+                                <i class="fa fa-telegram contact-links__icon"></i>Telegram
+                            </a>
+                            <a class="contact-links__link contact-links__link_email" href="#" target="_blank" rel="noopener">
+                                <i class="fa fa-envelope contact-links__icon"></i>Email
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="info-section">
-            <div class="contact-links">
-                <a class="generic-button contact-links__link" href="https://www.linkedin.com/in/xfenix/" target="_blank"
-                    rel="noopener">
-                    <i class="fa fa-linkedin contact-links__icon"></i>Linkedin
-                </a>
-                <a class="generic-button contact-links__link" href="https://www.facebook.com/xfenixru/" target="_blank"
-                    rel="noopener">
-                    <i class="fa fa-facebook contact-links__icon"></i>Facebook
-                </a>
-                <a class="generic-button contact-links__link" href="https://t.me/xfenix" target="_blank" rel="noopener">
-                    <i class="fa fa-telegram contact-links__icon"></i>Telegram
-                </a>
-                <a class="generic-button contact-links__link contact-links__link_email" href="#" target="_blank" rel="noopener">
-                    <i class="fa fa-envelope contact-links__icon"></i>Email
-                </a>
-            </div>
-        </section>
-
-        <section class="info-section">
+        <section id="about" class="info-section">
             <h3>Обо мне</h3>
             <p>Обычный программист, ординарный человек.</p>
-            <p>Сейчас я&nbsp;работаю с&nbsp;несколькими большими продуктами: чат-ботом и&nbsp;омниканальной чат-системой с&nbsp;очень сложной админкой и&nbsp;непростой архитектурой. Мне интересна fullstack разработка под веб, поэтому я&nbsp;занимаюсь серьезно почти всем: пишу бекенд, фронтенд, верстаю, создаю сложные devops конвейеры, поддерживаю продакшн, фикшу ошибки из&nbsp;сентри, делаю командные автоматизации. Python&nbsp;&mdash; мой любимый язык. Мне нравится&nbsp;go (и&nbsp;у&nbsp;меня есть опыт вывода в&nbsp;продакшн сервисов на&nbsp;нём). Я&nbsp;положительно отношусь к&nbsp;rust, строгой типизации, теории типов вообще, элементам&nbsp;ФП и&nbsp;монадам в&nbsp;меру своего неглубокого понимания. Кроме этого, люблю ютуб, netflix, читаю мангу, смотрю аниме, люблю быстро ездить на&nbsp;машине (я&nbsp;езжу быстро, но&nbsp;не&nbsp;как придурок) и&nbsp;много работать. Плохо отношусь к&nbsp;авторитетам и&nbsp;апелляции к&nbsp;ним, считаю, что ошибаться&nbsp;&mdash; нужно. Ставлю лайки котам, смешным&nbsp;и, особенно, тупым шуткам.<br>В&nbsp;общем, я&nbsp;обычный low-key персонаж 👋</p>
+            <p>Я&nbsp;работаю в&nbsp;составе команды, которая владеет несколькими продуктами: чат-ботом собственной разработки 
+                и&nbsp;омниканальной чат-системой с&nbsp;очень сложной админкой и&nbsp;непростой архитектурой.</p>
+            <p>Мне интересна fullstack разработка полного цикла под веб, поэтому я&nbsp;занимаюсь серьезно многими вещами: выступаю техническим
+                лидером в&nbsp;команде, стараюсь соблюдать приореты и&nbsp;баланс техдолга и&nbsp;разработки, декомпозирую,
+                провожу&nbsp;CR, иногда фасилитирую встречи, пишу бекенд, фронтенд, верстаю, занимаюсь devops (day 1/day
+                2&nbsp;активности), делаю командные автоматизации.</p>
+            <p>Python&nbsp;&mdash; мой любимый язык. Мне нравится&nbsp;go (и&nbsp;у&nbsp;меня есть опыт вывода в&nbsp;продакшн
+                сервисов на&nbsp;нём). Я&nbsp;положительно отношусь к&nbsp;rust, строгой типизации, теории типов вообще,
+                элементам&nbsp;ФП и&nbsp;монадам в&nbsp;меру своего неглубокого понимания. Кроме этого, люблю ютуб, netflix, читаю
+                мангу, смотрю аниме, люблю быстро ездить на&nbsp;машине (я&nbsp;езжу быстро, но&nbsp;не&nbsp;как придурок)
+                и&nbsp;много работать. Плохо отношусь к&nbsp;авторитетам и&nbsp;апелляции к&nbsp;ним, считаю, что
+                ошибаться&nbsp;&mdash; нужно. Ставлю лайки котам, смешным&nbsp;и, особенно, тупым шуткам.<br>В&nbsp;общем,
+                я&nbsp;обычный low-key персонаж 👋</p>
         </section>
 
         <section class="info-section">
+            <h4>Про роль comunnity lead</h4>
+            <p>Я&nbsp;с&nbsp;коллегами стоял у&nbsp;истоков создания сообщества python разработчиков в&nbsp;банке, поэтому стараюсь нести ответственность за&nbsp;его успешную жизнь&nbsp;&mdash; принимаю участие в&nbsp;найме, провожу 121, иногда пишу индивидуальные планы развития, стараюсь часто выступать на&nbsp;внутренних митапах и&nbsp;занимаюсь множеством других активностей.</p>
+        </section>
+
+        <section id="skills" class="info-section">
             <h3>Мои навыки</h3>
             <div class="skillbbefore">
-                <p>Умею создавать стабильно работающий, предсказуемый, производительный бекенд. Умею создавать фронтенд почти любой сложности, очень люблю аккуратную вёрстку. Могу спроектировать понятное REST, RPC, WebSocket, GraphQL API. Умею создавать с&nbsp;нуля промышленного уровня CI/CD&nbsp;конвейер, где <abbr class="basic-tooltip" data-title="Infrastructure&nbsp;as&nbsp;code">IAC</abbr>&nbsp;&mdash; центральный принцип. Считаю, что everything as&nbsp;code&nbsp;&mdash; правильный путь. Докеризирую всё подряд. Могу развернуть микросервисы локально несколькими способами. Выступил на множестве внутренних митапов, собираюсь на&nbsp;конференции: <a href="https://pycon.ru/program" target="_blank" rel="noopener">pycon</a>, <a href="https://conf.python.ru/moscow/2021/abstracts/7746" target="_blank" rel="noopener">moscow python conf++</a>, code/r. Активно собеседую людей.</p>
+                <p>Умею выступать в роли teamlead и вести работу по scrum методологии.</p>
+                <p>Умею создавать стабильно работающий, предсказуемый, производительный бекенд, фронтенд почти любой сложности, очень люблю аккуратную вёрстку. Могу спроектировать понятное REST, RPC, WebSocket, GraphQL API. Умею создавать с&nbsp;нуля промышленного уровня CI/CD&nbsp;конвейер, где <abbr class="basic-tooltip" data-title="Infrastructure&nbsp;as&nbsp;code">IAC</abbr>&nbsp;&mdash; центральный принцип. Считаю, что everything as&nbsp;code&nbsp;&mdash; правильный путь. Докеризирую всё подряд. Могу развернуть микросервисы локально несколькими способами. Выступил на множестве внутренних митапов, собираюсь на&nbsp;конференции: <a href="https://pycon.ru/program" target="_blank" rel="noopener">pycon</a>, <a href="https://conf.python.ru/moscow/2021/abstracts/7746" target="_blank" rel="noopener">moscow python conf++</a>, code/r. Активно собеседую людей (не только в нашу  команду).</p>
                 <p>А&nbsp;в&nbsp;этом списке (актуален на&nbsp;<em>июнь 2021&nbsp;года</em>) вы&nbsp;можете найти все мои основные навыки:</p>
             </div>
             <details class="skillblock">
@@ -238,7 +266,7 @@
             </details>
         </section>
 
-        <section class="info-section">
+        <section id="github" class="info-section">
             <h3>Github</h3>
             <div class="typo">
                 <p>Мой гитхаб профиль можно <a href="https://github.com/xfenix" target="_blank" rel="noopener">посмотреть вот тут</a>. Ниже расположена некая автоматическая экстракция (кешируемая) отсортированных по&nbsp;звездам репозиториев, которые не&nbsp;совсем уж&nbsp;стыдно показать.</p>
@@ -269,7 +297,7 @@
             </div>
         </section>
 
-        <section class="info-section">
+        <section id="portfolio" class="info-section">
             <h3>Некоторые проекты, над которыми я работал</h3>
             <p>Здесь предоставлены некоторые проекты, с&nbsp;которыми я&nbsp;работал или которые я&nbsp;полностью разрабатывал, а&nbsp;так&nbsp;же которые я&nbsp;имею возможность продемонстрировать (так уж&nbsp;вышло, продемонстрировать можно в&nbsp;основном сайты). Некоторые работают на&nbsp;django, некоторые на&nbsp;современных асинхронных python фреймворках, некоторые и&nbsp;вовсе на&nbsp;php.</p>
             <p>Я&nbsp;не&nbsp;владелец этих ресурсов и&nbsp;не&nbsp;отвечаю за&nbsp;их&nbsp;работопособность. Просьба относиться с&nbsp;пониманием, если что-то не&nbsp;работает.</p>
@@ -315,7 +343,12 @@
                 CMS (как же без этого?).
             </ul>
         </section>
+
+        <div class="back-to-top">
+            <a href="#" class="back-to-top__link"></a>
+        </div>
     </main>
+
     <script>
     (() => {
         'use strict';
