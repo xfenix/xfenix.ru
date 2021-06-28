@@ -21,7 +21,9 @@
     const HEIGHT_KEY='xfenix-github-height-new';
     (() => {
         'use strict';
-        const possibleEmojis = ["💎", "✨", "💈", "🪄", "🧬", "⚙️", "🤖", "👾", "👽", "💫", "🌹", "🍓"];
+        const possibleEmojis = ["💎", "🛸", "🏆", "💈", "🪄", "🧬", "⚙️",
+                                "🤖", "👾", "👽", "💫", "🌹", "🍓", "🕶",
+                                "📼", "🧪", "🧯"];
         const cachedHeight = localStorage.getItem(HEIGHT_KEY);
         const newFancyStyle = document.createElement('style');
         const randomEmoji = possibleEmojis[Math.floor(possibleEmojis.length * Math.random())];
