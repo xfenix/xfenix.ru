@@ -58,6 +58,13 @@
 </head>
 <body>
     <main class="allcontent typo">
+        <div class="outdated-browser">
+            <div class="outdated-browser__inner">
+                Предупреждение: увы, под ваш браузер сайт не&nbsp;адаптирован и&nbsp;может работать некорректно. Вы&nbsp;можете
+                обновиться, взять другой браузер или просто использовать как есть. Решать вам
+            </div>
+        </div>
+
         <nav class="info-section main-menu">
             <a class="main-menu__link" href="#about">Обо мне</a>
             <a class="main-menu__link" href="#skills">Мои навыки</a>
@@ -359,6 +366,7 @@
         const GITHUB_CACHE_SECONDS = 3600;
         const SHOW_REPOS = 6;
         const API_DESTINATION = localStorage.getItem(API_KEY) ? localStorage.getItem(API_KEY) : '/api/githubrepos/';
+        const mainContentWrapper = document.querySelector('.allcontent');
         const templateElement = document.querySelector('#github-wannabe-tpl');
         const destinationNode = document.querySelector('.github-wannabe');
         const specialLink = document.querySelector('.contact-links__link_ema' + 'il');
@@ -454,9 +462,14 @@
             )
         );
         document.querySelector('.back-to-top__link').addEventListener('click', (event) => {
-            document.querySelector('.allcontent').scrollIntoView();
+            mainContentWrapper.scrollIntoView();
             event.preventDefault();
         });
+
+        // warn about old ie
+        if(/Trident\/|MSIE/.test(window.navigator.userAgent)) {
+            mainContentWrapper.classList.add('allcontent__outdated');
+        }
     })();
     </script>
     <!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter24364567 = new Ya.Metrika({id:24364567, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/24364567" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
