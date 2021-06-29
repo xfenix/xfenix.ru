@@ -368,10 +368,8 @@
         const GITHUB_CACHE_SECONDS = 3600;
         const SHOW_REPOS = 6;
         const API_DESTINATION = localStorage.getItem(API_KEY) ? localStorage.getItem(API_KEY) : '/api/githubrepos/';
-        const mainContentWrapper = document.querySelector('.allcontent');
         const templateElement = document.querySelector('#github-wannabe-tpl');
         const destinationNode = document.querySelector('.github-wannabe');
-        const specialLink = document.querySelector('.contact-links__link_ema' + 'il');
         const rot13New = (inputStr) => {
             return inputStr.replace(/[A-Z]/gi, char =>
                 "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"[
@@ -444,27 +442,31 @@
             renderMultipleRepo(cachedPayload);
         }
 
+        // email obfuscation
+        const emailLink = document.querySelector('.contact-links__link_ema' + 'il');
         const unveilSpecialSource = (event) => {
-            specialLink.textContent = specialLink.href.split(':')[1];
-            specialLink.removeEventListener(event.type, unveilSpecialSource);
+            emailLink.textContent = emailLink.href.split(':')[1];
+            emailLink.removeEventListener(event.type, unveilSpecialSource);
         }
-        specialLink.addEventListener('mouseover', unveilSpecialSource);
-        specialLink.addEventListener('focus', unveilSpecialSource);
-        specialLink.addEventListener('click', unveilSpecialSource);
-        specialLink.href = 'm' + 'a' + 'ilto:' + rot13New('nq') +
+        emailLink.addEventListener('mouseover', unveilSpecialSource);
+        emailLink.addEventListener('focus', unveilSpecialSource);
+        emailLink.addEventListener('click', unveilSpecialSource);
+        emailLink.href = rot13New('znvygb:') + rot13New('nq') +
             rot13New('--ksravk-eh').replace('--', '@').replace('-', '.');
 
+        const mainContentWrapper = document.querySelector('.allcontent');
         // proper scroll handlers (without hashes, hashes behaviour is shitty)
         document.querySelectorAll('.main-menu__link').forEach(
             (oneElement) => oneElement.addEventListener(
                 'click', (event) => {
-                    document.getElementById(oneElement.href.split('#')[1]).scrollIntoView();
+                    document.getElementById(oneElement.href.split('#')[1])
+                        .scrollIntoView({ behavior: "smooth"});
                     event.preventDefault();
                 }
             )
         );
         document.querySelector('.back-to-top__link').addEventListener('click', (event) => {
-            mainContentWrapper.scrollIntoView();
+            mainContentWrapper.scrollIntoView({ behavior: "smooth" });
             event.preventDefault();
         });
 
