@@ -186,14 +186,19 @@ button {
 .main-menu {
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
+  // safari :/
+  // gap: 20px;
   z-index: 10;
   padding-top: 5px !important;
   padding-bottom: 15px !important;
   flex-wrap: wrap;
+  margin-top: -15px !important;
 }
 
 .main-menu__link {
+  display: block;
+  margin-left: 20px;
+  margin-top: 15px;
   border-bottom: 1px dashed rgba($accent1, 0.3) !important;
 
   &:hover {
@@ -290,11 +295,13 @@ button {
   justify-content: start;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 10px;
+  margin-top: -15px;
+  padding-top: 20px;
 }
 
 .contact-links__prefix {
-  margin-right: 10px;
+  margin-top: 15px;
+  margin-right: 20px;
 }
 
 .contact-links__link {
@@ -302,7 +309,12 @@ button {
   box-sizing: border-box;
   white-space: nowrap;
   padding: 0;
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+
+.contact-links__link:last-child {
+  margin-right: 0;
 }
 
 .contact-links__icon {
