@@ -295,14 +295,20 @@ button {
   display: flex;
   justify-content: start;
   align-items: flex-start;
-  flex-wrap: wrap;
-  margin-top: -15px;
-  padding-top: 20px;
+  // margin-top: 15px;
+  // margin-right: 20px;
 }
 
 .contact-links__prefix {
-  margin-top: 15px;
-  margin-right: 20px;
+  margin-right: 15px;
+}
+
+.contact-links__list {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: -15px;
 }
 
 .contact-links__link {
@@ -324,9 +330,17 @@ button {
 }
 
 @media screen and (max-width: 620px) {
+  .contact-links {
+    display: block;
+  }
+
+  .contact-links__list {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .contact-links__prefix {
-    width: 100%;
-    gap: 0;
+    margin-bottom: 15px;
   }
 }
 
