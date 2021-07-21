@@ -100,12 +100,26 @@ button {
 
 // ======== Global layout things
 .allcontent {
-  padding-bottom: 100px;
+  padding-bottom: 30px;
   position: relative;
 }
 
 .allcontent__outdated > .outdated-browser {
   display: block;
+}
+
+.allfooter {
+  margin-top: 60px !important;
+  color: $lightest-gray;
+  text-align: left;
+  font-size: 80%;
+  line-height: 18px;
+}
+
+.allfooter a {
+  color: $lightest-gray;
+  border-bottom-color: currentColor;
+  white-space: nowrap;
 }
 
 .outdated-browser {
@@ -214,7 +228,8 @@ button {
 
 // ======== Hero unit
 .info-section,
-.hero__inner {
+.hero__inner,
+.allfooter {
   padding: 0 $info-section-side-padding;
   margin: auto;
   box-sizing: border-box;
