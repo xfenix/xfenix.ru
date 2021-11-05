@@ -17,3 +17,7 @@ It consists of:
     * `xfenix-apiaddr` with value `http://127.0.0.1:8080/api/githubrepos/`
     * `xfenix-bypasscache` with value `1`
 1. Run frontend watcher `cd front && npx gulp watch`
+
+
+## Developer fixes
+For `node-sass` trouble this helps: `CXXFLAGS="--std=c++14" npm i`
