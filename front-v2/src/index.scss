@@ -1,0 +1,118 @@
+$color-acc1: #ac23f3;
+$color-acc2: #02923d;
+$color-bg-light: #eaeef3;
+$color-bg-heavy: #1d3d5e;
+
+/*
+    Generic visual things
+*/
+// global reset (because i can)
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  line-height: 22px;
+  font-size: 16px;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+.typo {
+  a {
+    @extend .link;
+  }
+
+  p + p,
+  p + iframe,
+  p + table {
+    margin-top: 10px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 15px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 38px;
+    margin-bottom: 25px;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  h4 {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  ul > li {
+    margin-left: 0;
+    padding-left: 25px;
+    list-style-type: none;
+    position: relative;
+  }
+
+  ul li:before {
+    left: 0;
+    top: 0;
+    position: absolute;
+    display: inline-block;
+  }
+}
+
+.link {
+  color: $color-acc1;
+  text-decoration: none;
+  border-bottom: 1px solid rgba($color-acc1, 0.2);
+
+  &:hover {
+    color: $color-acc2;
+    border-bottom-color: $color-acc2;
+  }
+}
+
+.youtube-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.youtube-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+    Generic layout things
+*/
+.narrow-wrap {
+  width: 750px;
+  margin: 0 auto;
+}
+
+/*
+    Layout
+*/
+.top-head {
+  backdrop-filter: blur(20px);
+  position: sticky;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Xfenix :: сайт разработчика Дениса Аникина</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Xfenix :: сайт разработчика Дениса Аникина">
+    <meta name="description" content="Я Денис Аникин. На этом сайте ты можешь узнать обо мне и моих навыках">
+    <meta name="author" content="Денис Аникин">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xfenix.ru/">
+    <meta property="og:title" content="Xfenix :: сайт разработчика">
+    <meta property="og:description" content="Я Денис Аникин. На этом сайте ты можешь узнать обо мне и моих навыках">
+    <meta name="image" property="og:image" content="https://xfenix.ru/assets/newlogo--socialmedia.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://xfenix.ru/">
+    <meta name="twitter:title" content="Xfenix :: сайт разработчика">
+    <meta name="twitter:description" content="Я Денис Аникин. На этом сайте ты можешь узнать обо мне и моих навыках">
+    <meta name="twitter:image" content="https://xfenix.ru/assets/newlogo--socialmedia.png">
+    <script>
+        const HEIGHT_KEY = 'xfenix-github-height-new-v2';
+        (() => {
+            'use strict';
+            const possibleEmojis = ["💎", "🛸", "🏆", "💈", "🪄", "🧬", "⚙️",
+                "🤖", "👾", "👽", "💫", "🌹", "🍓", "🕶",
+                "📼", "🧪", "🧯"];
+            const cachedHeight = localStorage.getItem(HEIGHT_KEY);
+            const newFancyStyle = document.createElement('style');
+            const randomEmoji = possibleEmojis[Math.floor(possibleEmojis.length * Math.random())];
+            newFancyStyle.type = 'text/css';
+            if (cachedHeight) {
+                newFancyStyle.appendChild(
+                    document.createTextNode(`.github-wannabe { min-height: ${cachedHeight}px !important; }`));
+            }
+            newFancyStyle.appendChild(
+                document.createTextNode(`.projects-links li:before { content: "${randomEmoji}" !important; }`));
+            document.head.appendChild(newFancyStyle);
+        })();
+    </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.codewars.com">
+    <link rel="preconnect" href="https://mc.yandex.ru">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Nunito&display=swap" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" as="style" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Nunito&display=swap" crossorigin="anonymous" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- uncache -->
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <!-- enduncache -->
+</head>
+
+<body>
+    <header class="top-head"></header>
+    <main class="main-body"></main>
+    <footer class="bottom-foot"></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.0/cash.min.js"></script>
+    <!-- uncache -->
+    <script src="./whole-app.js" async></script>
+    <!-- enduncache -->
+</body>
+</html>

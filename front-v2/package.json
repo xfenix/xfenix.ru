@@ -1,0 +1,25 @@
+{
+  "name": "xfenix.ru",
+  "version": "2.0.0",
+  "description": "Version 2.0.0 of xfenix.ru",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.7",
+    "cssnano": "^5.0.10",
+    "gulp": "^4.0.2",
+    "gulp-babel-minify": "^0.5.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-minify-inline": "^1.1.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uncache": "^0.4.0-beta1",
+    "sass": "^1.43.4",
+    "typescript": "^4.4.4"
+  }
+}
