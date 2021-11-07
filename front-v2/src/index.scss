@@ -2,6 +2,10 @@ $color-acc1: #ac23f3;
 $color-acc2: #02923d;
 $color-bg-light: #eaeef3;
 $color-bg-heavy: #1d3d5e;
+$color-basic: #000;
+$font-main: "Nunito", sans-serif;
+$font-secondary: "Inter", sans-serif;
+$border-radius: 10px;
 
 /*
     Generic visual things
@@ -13,7 +17,8 @@ $color-bg-heavy: #1d3d5e;
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  color: $color-basic;
+  font-family: $font-main;
   line-height: 22px;
   font-size: 16px;
 }
@@ -28,25 +33,19 @@ button {
     @extend .link;
   }
 
-  p + p,
-  p + iframe,
-  p + table {
-    margin-top: 10px;
-  }
-
   h1,
   h2,
   h3,
   h4 {
     margin-bottom: 15px;
-    font-family: "Inter", sans-serif;
-    font-weight: 700;
+    font-family: $font-secondary;
+    font-weight: bold;
   }
 
   h1 {
-    font-size: 32px;
-    line-height: 38px;
-    margin-bottom: 25px;
+    font-size: 48px;
+    line-height: 52px;
+    margin-bottom: 20px;
   }
 
   h3 {
@@ -57,6 +56,12 @@ button {
   h4 {
     font-size: 16px;
     line-height: 16px;
+  }
+
+  p + p,
+  p + iframe,
+  p + table {
+    margin-top: 10px;
   }
 
   ul > li {
@@ -75,13 +80,13 @@ button {
 }
 
 .link {
-  color: $color-acc1;
+  color: $color-acc2;
   text-decoration: none;
-  border-bottom: 1px solid rgba($color-acc1, 0.2);
+  border-bottom: 1px solid rgba($color-acc2, 0.2);
 
   &:hover {
-    color: $color-acc2;
-    border-bottom-color: $color-acc2;
+    color: $color-acc1;
+    border-bottom-color: $color-acc1;
   }
 }
 
@@ -109,15 +114,43 @@ button {
   margin: 0 auto;
 }
 
+.basic-section {
+  padding: 40px 0;
+}
+
 /*
-    Layout
+    Header
 */
+body::before {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 30px;
+  background-image: linear-gradient(
+    130deg,
+    rgba($color-acc1, 0.2) 0,
+    #fff 45%,
+    #fff 70%,
+    rgba($color-acc2, 0.2) 100%
+  );
+}
+
 .top-head {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   position: sticky;
-  display: flex;
   border-bottom: 1px solid $color-bg-light;
+  font-size: 14px;
+  font-family: $font-secondary;
+}
+
+.top-head__wrapper {
+  display: flex;
   padding: 10px 0;
+  justify-content: space-between;
 }
 
 .top-head__logo {
@@ -128,4 +161,56 @@ button {
 .top-head__logolink {
   display: block;
   width: 45px;
+}
+
+.top-head__aside {
+  display: flex;
+  margin-right: -15px;
+}
+
+.top-head__menulink {
+  color: $color-basic;
+  text-decoration: none;
+  font-weight: normal;
+  display: block;
+  padding: 5px 15px;
+
+  &:hover {
+    background-color: $color-bg-light;
+    border-radius: $border-radius;
+  }
+}
+
+/*
+    Hero unit
+*/
+.hero-unit {
+  @extend .basic-section;
+  padding-top: 20px;
+}
+
+.hero-unit__name {
+  background: linear-gradient(to right, $color-acc1, $color-acc2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/*
+    Footer
+*/
+.bottom-foot {
+  background-color: $color-bg-light;
+  padding: 20px 0;
+  font-size: 14px;
+  font-family: $font-secondary;
+}
+
+.bottom-foot__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-foot__feedback > a {
+  @extend .link;
 }

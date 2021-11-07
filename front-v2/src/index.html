@@ -50,9 +50,9 @@
     <link rel="preconnect" href="https://mc.yandex.ru">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Nunito&display=swap" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Nunito&display=swap" as="style" crossorigin="anonymous">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" as="style" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Nunito&display=swap" crossorigin="anonymous" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Nunito&display=swap" crossorigin="anonymous" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- uncache -->
     <link rel="stylesheet" type="text/css" href="./index.css">
@@ -61,7 +61,7 @@
 
 <body>
     <header class="top-head">
-        <div class="narrow-wrapper">
+        <div class="narrow-wrapper top-head__wrapper">
             <a href="#" class="top-head__logolink">
                 <img src="./logo.svg" class="top-head__logo" alt="Xfenix.ru logotype">
             </a>
@@ -74,8 +74,27 @@
             </nav>
         </div>
     </header>
-    <main class="main-body"></main>
-    <footer class="bottom-foot"></footer>
+    <main class="main-body">
+        <div class="narrow-wrapper hero-unit typo">
+            <h1>Привет!<br>Я&nbsp;&mdash; <span class="hero-unit__name">Денис&nbsp;Аникин</span></h1>
+            <div class="hero-unit__about">
+                <p>Работаю в&nbsp;<a href="https://www.raiffeisen.ru/" target="_blank" rel="noopener">Райффайзенбанке</a>.</p>
+                <p>Я&nbsp;teamlead или techlead. Эти роли часто пересекаются или эквивалентны. Я&nbsp;fullstack программист
+                и&nbsp;part-time исполняю роль community lead, а&nbsp;так&nbsp;же специлиализируюсь на&nbsp;python и&nbsp;typescript.</p>
+                <p>А&nbsp;ещё на&nbsp;linkedin размещён мой карьерный путь.</p>
+            </div>
+        </div>
+    </main>
+    <footer class="bottom-foot">
+        <div class="narrow-wrapper bottom-foot__wrapper">
+            <div class="bottom-foot__copy">&copy; Денис Аникин</div>
+            <div class="bottom-foot__feedback">
+                <a href="https://form.jotform.com/xxxfenixru/hate-love-or-fix-me" target="_blank" rel="noopener">
+                    Форма анонимной обратной связи
+                </a>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.0/cash.min.js"></script>
     <!-- uncache -->
     <script src="./whole-app.js" async></script>
