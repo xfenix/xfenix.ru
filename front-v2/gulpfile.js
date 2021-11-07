@@ -17,7 +17,7 @@ const PATTERNS = {
     sass: `${DIR_PREFIX}/*.scss`,
     js: `${DIR_PREFIX}/*.js`,
     ts: `${DIR_PREFIX}/*.ts`,
-    assets: DIR_PREFIX + '/assets/**/*',
+    assets: DIR_PREFIX + '/assets/**',
 };
 
 gulp.task('sass', () => {

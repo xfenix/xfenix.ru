@@ -104,7 +104,7 @@ button {
 /*
     Generic layout things
 */
-.narrow-wrap {
+.narrow-wrapper {
   width: 750px;
   margin: 0 auto;
 }
@@ -115,4 +115,17 @@ button {
 .top-head {
   backdrop-filter: blur(20px);
   position: sticky;
+  display: flex;
+  border-bottom: 1px solid $color-bg-light;
+  padding: 10px 0;
+}
+
+.top-head__logo {
+  display: block;
+  width: 100%;
+}
+
+.top-head__logolink {
+  display: block;
+  width: 45px;
 }
