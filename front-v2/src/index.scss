@@ -3,10 +3,14 @@ $color-acc2: #02923d;
 $color-bg-light: #eaeef3;
 $color-bg-heavy: #1d3d5e;
 $color-basic: #000;
+$color-inverted: #fff;
+$color-inverted-link: #0366d6;
 $font-main: "Nunito", sans-serif;
 $font-secondary: "Inter", sans-serif;
 $border-radius: 10px;
 $standart-duration: 100ms;
+$narrow-width: 750px;
+$wide-width: 1000px;
 
 /*
     Generic visual things
@@ -123,7 +127,7 @@ button {
     Generic layout things
 */
 .narrow-wrapper {
-  width: 750px;
+  width: $narrow-width;
   margin: 0 auto;
 }
 
@@ -135,10 +139,14 @@ button {
   font-size: 32px;
   margin-bottom: 20px;
   font-family: $font-secondary;
+}
 
-  &__accent {
-    color: $color-acc1;
-  }
+.spec-title__accent {
+  color: $color-acc1;
+}
+
+.spec-title__inverted {
+  color: $color-inverted;
 }
 
 /*
@@ -260,10 +268,157 @@ body::before {
 }
 
 /*
-  About me
+    About me
 */
 .about-me {
   background-color: $color-bg-light;
+}
+
+/*
+    My skills. Or should i say skills box?
+*/
+.skills-pack {
+  width: $wide-width;
+  margin: 0 auto;
+}
+
+/*
+    Github section
+*/
+.github-section {
+  background: #1d3d5e;
+  color: $color-inverted;
+}
+
+.github-section__wrapper {
+  width: $wide-width;
+  margin: 0 auto;
+}
+
+.github-section a {
+  color: $color-inverted;
+  font-weight: bold;
+  border-bottom: 1px solid $color-inverted;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-inverted-link;
+    border-bottom-color: $color-inverted-link;
+  }
+}
+
+/*
+    Github imitation
+*/
+.github-wannabe {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
+  font-size: 85%;
+  margin-top: 15px;
+}
+
+.github-wannabe svg {
+  align-self: center;
+  fill: $color-inverted;
+
+  &:hover {
+    fill: $color-inverted-link;
+  }
+}
+
+.github-wannabe__box {
+  border: 1px solid $color-inverted;
+  border-radius: 6px;
+  padding: 16px;
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+}
+
+.github-wannabe__title {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.github-wannabe__title > svg {
+  margin-right: 10px;
+}
+
+.github-wannabe__descr {
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.github-wannabe__meta,
+.github-wannabe__language {
+  display: flex;
+  justify-items: flex-start;
+}
+
+.github-wannabe__language,
+.github-wannabe__stars {
+  margin-right: 20px;
+}
+
+// github additional elements
+.github-repo-color {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  margin-top: 4px;
+  align-self: top;
+}
+
+.github-repo-color_python {
+  background-color: #3572a5;
+}
+
+.github-repo-color_html {
+  background-color: #e34c26;
+}
+
+.github-repo-color_javascript {
+  background-color: #f1e05a;
+}
+
+.github-repo-color_rust {
+  background-color: #dea584;
+}
+
+.github-repo-color_actionscript {
+  background-color: #882b0f;
+}
+
+.github-repo-color_nolanguage {
+  background-color: #ccc;
+  opacity: 0.2;
+}
+
+.github-repo-color_typescript {
+  background-color: #2b7489;
+}
+
+.github-repo-color_go {
+  background-color: #00add8;
+}
+
+.github-link {
+  display: flex;
+  border-bottom: none !important;
+}
+
+.github-link > svg {
+  margin-right: 2px;
+}
+
+@media screen and (max-width: 640px) {
+  .github-wannabe {
+    grid-template-columns: 1fr;
+  }
 }
 
 /*
