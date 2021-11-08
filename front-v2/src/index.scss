@@ -6,6 +6,7 @@ $color-basic: #000;
 $font-main: "Nunito", sans-serif;
 $font-secondary: "Inter", sans-serif;
 $border-radius: 10px;
+$standart-duration: 100ms;
 
 /*
     Generic visual things
@@ -44,7 +45,7 @@ button {
 
   h1 {
     font-size: 48px;
-    line-height: 52px;
+    line-height: 54px;
     margin-bottom: 20px;
   }
 
@@ -61,7 +62,7 @@ button {
   p + p,
   p + iframe,
   p + table {
-    margin-top: 10px;
+    margin-top: 15px;
   }
 
   ul > li {
@@ -82,11 +83,23 @@ button {
 .link {
   color: $color-acc2;
   text-decoration: none;
+  padding-bottom: 1px;
   border-bottom: 1px solid rgba($color-acc2, 0.2);
+  transition: color $standart-duration linear,
+    border-bottom $standart-duration linear;
 
   &:hover {
     color: $color-acc1;
     border-bottom-color: $color-acc1;
+  }
+}
+
+.button {
+  border-radius: $border-radius;
+  transition: background-color $standart-duration linear;
+
+  &:hover {
+    background-color: $color-bg-light;
   }
 }
 
@@ -118,6 +131,16 @@ button {
   padding: 40px 0;
 }
 
+.spec-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-family: $font-secondary;
+
+  &__accent {
+    color: $color-acc1;
+  }
+}
+
 /*
     Header
 */
@@ -140,7 +163,7 @@ body::before {
 }
 
 .top-head {
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   position: sticky;
   border-bottom: 1px solid $color-bg-light;
   font-size: 14px;
@@ -156,6 +179,11 @@ body::before {
 .top-head__logo {
   display: block;
   width: 100%;
+  transition: transform $standart-duration;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 }
 
 .top-head__logolink {
@@ -169,16 +197,12 @@ body::before {
 }
 
 .top-head__menulink {
+  @extend .button;
   color: $color-basic;
   text-decoration: none;
   font-weight: normal;
   display: block;
   padding: 5px 15px;
-
-  &:hover {
-    background-color: $color-bg-light;
-    border-radius: $border-radius;
-  }
 }
 
 /*
@@ -194,6 +218,52 @@ body::before {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+}
+
+.hero-unit__contacts {
+  margin-top: 15px;
+}
+
+.contacts {
+  display: flex;
+  margin-left: -14px;
+}
+
+.contacts__link {
+  text-decoration: none;
+  color: $color-basic;
+  border-bottom: none;
+  border-radius: $border-radius;
+  font-size: 34px;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color $standart-duration linear,
+    color $standart-duration linear;
+  margin-right: 10px;
+
+  &_telegram {
+    font-size: 29px;
+  }
+
+  &:hover {
+    background-color: $color-bg-light;
+    color: $color-acc1;
+  }
+
+  & > i {
+    margin: 0 auto;
+  }
+}
+
+/*
+  About me
+*/
+.about-me {
+  background-color: $color-bg-light;
 }
 
 /*

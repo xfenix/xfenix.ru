@@ -51,9 +51,9 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Nunito&display=swap" as="style" crossorigin="anonymous">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" as="style" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" as="style" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Nunito&display=swap" crossorigin="anonymous" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- uncache -->
     <link rel="stylesheet" type="text/css" href="./index.css">
     <!-- enduncache -->
@@ -75,15 +75,68 @@
         </div>
     </header>
     <main class="main-body">
-        <div class="narrow-wrapper hero-unit typo">
-            <h1>Привет!<br>Я&nbsp;&mdash; <span class="hero-unit__name">Денис&nbsp;Аникин</span></h1>
-            <div class="hero-unit__about">
-                <p>Работаю в&nbsp;<a href="https://www.raiffeisen.ru/" target="_blank" rel="noopener">Райффайзенбанке</a>.</p>
-                <p>Я&nbsp;teamlead или techlead. Эти роли часто пересекаются или эквивалентны. Я&nbsp;fullstack программист
-                и&nbsp;part-time исполняю роль community lead, а&nbsp;так&nbsp;же специлиализируюсь на&nbsp;python и&nbsp;typescript.</p>
-                <p>А&nbsp;ещё на&nbsp;linkedin размещён мой карьерный путь.</p>
+        <section class="narrow-wrapper hero-unit">
+            <div class="typo">
+                <h1>Привет!<br>Я&nbsp;&mdash; <span class="hero-unit__name">Денис&nbsp;Аникин</span></h1>
+                <div class="hero-unit__about">
+                    <p>Работаю в&nbsp;<a href="https://www.raiffeisen.ru/" target="_blank" rel="noopener">Райффайзенбанке</a>.</p>
+                    <p>Я&nbsp;teamlead или techlead. Эти роли часто пересекаются или эквивалентны. Так&nbsp;же я&nbsp;fullstack программист
+                        и&nbsp;part-time исполняю роль python community community lead.</p>
+                    <p>Пишу на&nbsp;python и&nbsp;typescript.</p>
+                    <p>А&nbsp;ещё на&nbsp;linkedin размещён мой карьерный путь.</p>
+                </div>
             </div>
-        </div>
+            <menu class="hero-unit__contacts contacts">
+                <a href="https://t.me/xfenix"
+                   target="_blank" rel="noopener"
+                   class="contacts__link contacts__link_telegram">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </a>
+                <a href="https://github.com/xfenix"
+                   target="_blank" rel="noopener"
+                   class="contacts__link contacts__link_github">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/xfenix/"
+                   target="_blank" rel="noopener"
+                   class="contacts__link contacts__link_linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.facebook.com/xfenixru/"
+                   target="_blank" rel="noopener"
+                   class="contacts__link contacts__link_facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="contacts__link contacts__link_email">
+                    <i class="fa fa-at"></i>
+                </a>
+            </menu>
+        </section>
+
+        <section class="basic-section about-me">
+            <div class="narrow-wrapper">
+                <h2 class="spec-title">Обо&nbsp;<span class="spec-title__accent">мне</span></h2>
+                <div class="typo">
+                    <p>Обычный программист, ординарный человек.</p>
+                    <p>Я&nbsp;работаю в&nbsp;составе команды, которая владеет несколькими продуктами: чат-ботом собственной разработки
+                        и&nbsp;омниканальной чат-системой с&nbsp;очень сложной админкой и&nbsp;непростой архитектурой.</p>
+                    <p>Я&nbsp;люблю fullstack разработку, а&nbsp;так&nbsp;же выступаю техническим лидером в&nbsp;команде, стараюсь соблюдать
+                        приореты и&nbsp;баланс техдолга и&nbsp;разработки, декомпозирую, провожу&nbsp;CR, иногда фасилитирую встречи, пишу
+                        бекенд, фронтенд, верстаю, занимаюсь devops (day 1/day 2&nbsp;активности), делаю командные автоматизации.</p>
+                    <p>Python&nbsp;&mdash; мой любимый язык. Мне нравится&nbsp;go (и&nbsp;у&nbsp;меня есть опыт вывода в&nbsp;продакшн
+                        сервисов на&nbsp;нём). Я&nbsp;положительно отношусь к&nbsp;rust, строгой типизации, теории типов вообще,
+                        элементам&nbsp;ФП и&nbsp;монадам в&nbsp;меру своего неглубокого понимания. Кроме этого, люблю ютуб, netflix, читаю
+                        мангу, смотрю аниме, люблю быстро ездить на&nbsp;машине (я&nbsp;езжу быстро, но&nbsp;не&nbsp;как придурок)
+                        и&nbsp;много работать. Плохо отношусь к&nbsp;авторитетам и&nbsp;апелляции к&nbsp;ним, считаю, что
+                        ошибаться&nbsp;&mdash; нужно. Ставлю лайки котам, смешным&nbsp;и, особенно, тупым шуткам. В&nbsp;общем,
+                        я&nbsp;обычный low-key персонаж 👋</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            Kek
+        </section>
     </main>
     <footer class="bottom-foot">
         <div class="narrow-wrapper bottom-foot__wrapper">
