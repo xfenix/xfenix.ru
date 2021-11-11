@@ -1,6 +1,7 @@
 $color-acc1: #ac23f3;
 $color-acc2: #02923d;
-$color-bg-light: #eaeef3;
+$color-bg-light: #f3f6f9;
+$color-bg-medium: #eaeef3;
 $color-bg-heavy: #1d3d5e;
 $color-basic: #000;
 $color-inverted: #fff;
@@ -121,7 +122,8 @@ button {
 
 .spec-title {
   font-size: 32px;
-  margin-bottom: 20px;
+  line-height: 32px;
+  margin-bottom: 15px;
   font-family: $font-secondary;
 }
 
@@ -137,7 +139,7 @@ button {
     Header
 */
 body::before {
-  position: absolute;
+  position: fixed;
   z-index: 0;
   display: block;
   content: "";
@@ -147,17 +149,19 @@ body::before {
   height: 30px;
   background-image: linear-gradient(
     130deg,
-    rgba($color-acc1, 0.2) 0,
-    #fff 45%,
+    rgba($color-acc1, 0.3) 0,
+    #fff 35%,
     #fff 70%,
-    rgba($color-acc2, 0.2) 100%
+    rgba($color-acc2, 0.3) 100%
   );
 }
 
 .top-head {
+  z-index: 100;
   backdrop-filter: blur(20px);
+  top: 0;
   position: sticky;
-  border-bottom: 1px solid $color-bg-light;
+  border-bottom: 1px solid $color-bg-medium;
   font-size: 14px;
   font-family: $font-secondary;
 }
@@ -195,6 +199,11 @@ body::before {
   font-weight: normal;
   display: block;
   padding: 5px 15px;
+
+  &:hover {
+    color: $color-inverted;
+    background-color: $color-bg-heavy;
+  }
 }
 
 /*
@@ -264,6 +273,39 @@ body::before {
 .skills-pack {
   width: $wide-width;
   margin: 0 auto;
+}
+
+.skills-switch {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+.skills-switch__menu {
+  margin-right: 40px;
+}
+
+.skills-switch__tab {
+  display: block;
+  border: 1px solid $color-bg-light;
+  border-radius: $border-radius;
+  padding: 20px 10px 20px 20px;
+  color: $color-basic;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-start;
+
+  &:hover {
+    background-color: $color-bg-light;
+  }
+
+  & + & {
+    margin-top: 10px;
+  }
+}
+
+.skills-switch__tab > i {
+  font-size: 26px;
+  margin-right: 20px;
 }
 
 /*
@@ -411,16 +453,16 @@ body::before {
 .youtube-pane {
   width: $wide-width;
   margin: 15px auto;
-  height: 300px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
+  gap: 30px;
 }
 
 .youtube-video {
   position: relative;
   overflow: hidden;
-  height: 100%;
-  width: 480px;
+  height: 300px;
 }
 
 .youtube-video iframe {
@@ -429,6 +471,22 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.youtube-video_soon {
+  color: $color-basic;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 30px;
+  transition: background-color $standart-duration linear;
+
+  &:hover {
+    background-color: $color-bg-light;
+  }
 }
 
 /*

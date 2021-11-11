@@ -130,6 +130,32 @@
 
         <section class="basic-section skills-pack">
             <h2 class="spec-title">Мои&nbsp;<span class="spec-title__accent">навыки</span></h2>
+            <div class="skills-switch">
+                <menu class="skills-switch__menu">
+                    <a href="#" class="skills-switch__tab">
+                        <i class="fa-solid fa-database"></i>
+                        Backend, БД, стандарты, архитектуры
+                    </a>
+                    <a href="#" class="skills-switch__tab">
+                        <i class="fa-brands fa-html5"></i>
+                        Frontend: верстка, js разработка
+                    </a>
+                    <a href="#" class="skills-switch__tab">
+                        <i class="fa-solid fa-dharmachakra"></i>
+                        Devops, администрирование, сети, протоколы, разное
+                    </a>
+                    <a href="#" class="skills-switch__tab">
+                        <i class="fa-solid fa-ellipsis"></i>
+                        Разное
+                    </a>
+                </menu>
+
+                <div class="skills-switch__content">
+                    <div class="skills-switch__one-block">1</div>
+                    <div class="skills-switch__one-block">2</div>
+                    <div class="skills-switch__one-block">3</div>
+                </div>
+            </div>
         </section>
 
         <section class="basic-section github-section">
@@ -194,33 +220,43 @@
                 </h2>
 
                 <div class="typo">
-                    <p>Коллеги из&nbsp;it&nbsp;people написали статью-интервью со&nbsp;мной, которую можно почитать на&nbsp;хабре.</p>
-                    <p>Как это не&nbsp;смешно, я&nbsp;и&nbsp;сам &laquo;автор&raquo; статей на&nbsp;хабре, можно почитать мою статью
-                        из&nbsp;чулана аж&nbsp;от&nbsp;2009&nbsp;года. Хоть это и&nbsp;уже выглядит как мусор, я&nbsp;решил её&nbsp;оставить
-                        на&nbsp;память.</p>
+                    <p>Коллеги из&nbsp;it&nbsp;people написали статью-интервью со&nbsp;мной, <a
+                            href="https://habr.com/ru/company/it_people/blog/571332/" rel="noopener" target="_blank">которую
+                            можно почитать на&nbsp;хабре</a>.</p>
+                    <p>Как это не&nbsp;смешно, я&nbsp;и&nbsp;сам &laquo;автор&raquo; статей на&nbsp;хабре, можно почитать <a
+                            href="https://habr.com/ru/post/52494/" rel="noopener" target="_blank">мою статью из&nbsp;чулана</a> аж&nbsp;от
+                            2009&nbsp;года. Хоть это и&nbsp;уже выглядит как мусор, я&nbsp;решил её&nbsp;оставить на&nbsp;память.</p>
                     <p>Я&nbsp;часто выступаю с&nbsp;митапами внутри банка (за&nbsp;прошедшие полтора года я&nbsp;выступил не&nbsp;менее чем
-                        на&nbsp;14&nbsp;мероприятиях, не&nbsp;считая конференций).</p>
-                    <p>Так&nbsp;же смотрите некоторые мои выступления прямо на&nbsp;youtube:</p>
+                        на&nbsp;14
+                        мероприятиях, не&nbsp;считая конференций).</p>
+                    <p>Так&nbsp;же можно оценить некоторые мои выступления:</p>
                 </div>
             </div>
             
             <div class="youtube-pane">
                 <div class="youtube-video youtube-pane__item">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/tccLTa0mWaM"
-                        title="Выступление Аникина Дениса на code/r" frameborder="0"
+                        title="Выступление Аникина Дениса на code/r с темой «Почему в 2021 году на python можно писать хорошие backend'ы»" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
                 <div class="youtube-video youtube-pane__item">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/qfMWyStoyS4"
-                        title="Выступление Аникина Дениса на открытом митапе Python Community Райффайзенбанка" frameborder="0"
+                        title="Выступление Аникина Дениса на открытом митапе Python Community Райффайзенбанка c темой «Python ускоряется? Новости с полей и Python Language Summit 2021»" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-            </div>
-
-            <div class="narrow-wrapper typo">
-                Так&nbsp;же можно почитать (пока не&nbsp;вышли записи) некоторые артефакты моих выступлений на&nbsp;крупных промышленных конференциях: <a href="https://pycon.ru/program" target="_blank" rel="noopener">pycon</a>, <a href="https://conf.python.ru/moscow/2021/abstracts/7746" target="_blank" rel="noopener">moscow python conf++</a>.
+                <div class="youtube-video youtube-pane__item">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/4zjj1aHJoko"
+                        title="Выступление Аникина Дениса на Pycon 2021 с темой «FastAPI как основной framework для python бекендов»" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <a href="https://conf.python.ru/moscow/2021/abstracts/7746" rel="noopener" target="_blank" class="youtube-video youtube-video_soon">
+                    Здесь скоро появится видео<br><br>
+                    Moscow&nbsp;Python&nbsp;Conf++&nbsp;2021<br>
+                    &laquo;Двусторонний websocket-роутинг&raquo;
+                </a>
             </div>
         </section>
     </main>
@@ -234,7 +270,7 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.0/cash.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.0/cash.min.js"></script> -->
     <!-- uncache -->
     <script src="./whole-app.js" async></script>
     <!-- enduncache -->

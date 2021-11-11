@@ -1,15 +1,23 @@
 'use strict';
 
 const gulp = require('gulp');
+// some css & html things
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require("gulp-postcss");
 const cssMinify = require('cssnano');
 const htmlmin = require('gulp-htmlmin');
-const babelMinify = require('gulp-babel-minify');
 const minifyInline = require('gulp-minify-inline');
 const uncache = require('gulp-uncache');
+// typescript things
 const typescriptProc = require('gulp-typescript');
-const browserSync = require('browser-sync').create();
+const browserify = require("browserify");
+const babelMinify = require('gulp-babel-minify');
+const tsify = require("tsify");
+const vinylSource = require("vinyl-source-stream");
+const buffer = require("vinyl-buffer");
+const uglify = require("gulp-uglify");
+const sourcemaps = require("gulp-sourcemaps");
+// configs
 const DIR_PREFIX = __dirname + '/src';
 const DEST_DIR = DIR_PREFIX + "/build";
 const PATTERNS = {
@@ -36,16 +44,42 @@ gulp.task('sass', () => {
       .pipe(gulp.dest(DEST_DIR));
 });
 
+// gulp.task('ts', function () {
+//     return gulp.src(PATTERNS.ts)
+//         .pipe(typescriptProc({
+//             noImplicitAny: true,
+//             module: "umd",
+//             target: "es6",
+//             moduleResolution: "node"
+//         }))
+//         .pipe(babelMinify({
+//             mangle: {
+//                 keepClassName: true
+//             }
+//         }))
+//         .pipe(gulp.dest(DEST_DIR));
+// });
 gulp.task('ts', function () {
-    return gulp.src(PATTERNS.ts)
-        .pipe(typescriptProc({
-            noImplicitAny: true
-        }))
-        .pipe(babelMinify({
-            mangle: {
-                keepClassName: true
-            }
-        }))
+    return browserify({
+            basedir: ".",
+            debug: true,
+            entries: ["src/whole-app.ts"],
+            cache: {},
+            packageCache: {},
+        })
+        .plugin(tsify, {
+            esModuleInterop: true
+        })
+        .transform("babelify", {
+            presets: ["@babel/preset-env"],
+            extensions: [".ts"],
+        })
+        .bundle()
+        .pipe(vinylSource("whole-app.js"))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(sourcemaps.write("./"))
+        // .pipe(uglify())
         .pipe(gulp.dest(DEST_DIR));
 });
 
@@ -76,11 +110,6 @@ gulp.task('watch', () => {
     gulp.watch(PATTERNS.html, gulp.series('html'));
     gulp.watch(PATTERNS.ts, gulp.series('ts'));
     gulp.watch(PATTERNS.assets, gulp.series('assets'));
-});
-
-gulp.task('serve', function () {
-    browserSync.init({DEST_DIR});
-    gulp.watch("*.html").on("change", browserSync.reload);
 });
 
 gulp.task('build', (cb) => {
