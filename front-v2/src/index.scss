@@ -1,8 +1,8 @@
 $color-acc1: #ac23f3;
 $color-acc2: #02923d;
-$color-bg-light: #f3f6f9;
-$color-bg-medium: #eaeef3;
-$color-bg-heavy: #1d3d5e;
+$color-light: #f3f6f9;
+$color-medium: #acb8ca;
+$color-heavy: #1d3d5e;
 $color-basic: #000;
 $color-inverted: #fff;
 $color-inverted-link: #0366d6;
@@ -70,18 +70,13 @@ button {
     margin-top: 15px;
   }
 
-  ul > li {
-    margin-left: 0;
-    padding-left: 25px;
-    list-style-type: none;
-    position: relative;
-  }
-
-  ul li:before {
-    left: 0;
-    top: 0;
-    position: absolute;
+  ul li::before {
+    content: "\25FC";
+    margin-right: 5px;
+    font-size: 50%;
     display: inline-block;
+    vertical-align: top;
+    margin-top: 1px;
   }
 }
 
@@ -104,7 +99,7 @@ button {
   transition: background-color $standart-duration linear;
 
   &:hover {
-    background-color: $color-bg-light;
+    background-color: $color-light;
   }
 }
 
@@ -123,7 +118,7 @@ button {
 .spec-title {
   font-size: 32px;
   line-height: 32px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-family: $font-secondary;
 }
 
@@ -161,7 +156,7 @@ body::before {
   backdrop-filter: blur(20px);
   top: 0;
   position: sticky;
-  border-bottom: 1px solid $color-bg-medium;
+  border-bottom: 1px solid #eaeef3;
   font-size: 14px;
   font-family: $font-secondary;
 }
@@ -202,7 +197,7 @@ body::before {
 
   &:hover {
     color: $color-inverted;
-    background-color: $color-bg-heavy;
+    background-color: $color-heavy;
   }
 }
 
@@ -251,7 +246,7 @@ body::before {
   }
 
   &:hover {
-    background-color: $color-bg-light;
+    background-color: $color-light;
     color: $color-acc1;
   }
 
@@ -264,7 +259,7 @@ body::before {
     About me
 */
 .about-me {
-  background-color: $color-bg-light;
+  background-color: $color-light;
 }
 
 /*
@@ -286,16 +281,29 @@ body::before {
 
 .skills-switch__tab {
   display: block;
-  border: 1px solid $color-bg-light;
+  border: 1px solid $color-light;
   border-radius: $border-radius;
   padding: 20px 10px 20px 20px;
   color: $color-basic;
   text-decoration: none;
   display: flex;
   align-items: flex-start;
+  transition: background-color $standart-duration;
 
-  &:hover {
-    background-color: $color-bg-light;
+  & > i {
+    font-size: 24px;
+    margin-right: 20px;
+    color: $color-medium;
+    transition: color $standart-duration;
+  }
+
+  &:hover,
+  &.active {
+    background-color: $color-light;
+
+    & > i {
+      color: $color-heavy;
+    }
   }
 
   & + & {
@@ -303,9 +311,37 @@ body::before {
   }
 }
 
-.skills-switch__tab > i {
-  font-size: 26px;
-  margin-right: 20px;
+.skills-group {
+  @extend .typo;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+
+  &.active {
+    display: grid;
+  }
+
+  & ul {
+    list-style-type: none;
+
+    & ul li {
+      margin-left: 20px;
+
+      & + & {
+        margin-top: 3px;
+      }
+    }
+  }
+
+  & > ul > li {
+    &:before {
+      display: none;
+    }
+
+    & + li {
+      margin-top: 20px;
+    }
+  }
 }
 
 /*
@@ -452,7 +488,7 @@ body::before {
 */
 .youtube-pane {
   width: $wide-width;
-  margin: 15px auto;
+  margin: 15px auto 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
@@ -482,18 +518,27 @@ body::before {
   align-items: center;
   box-sizing: border-box;
   padding: 30px;
-  transition: background-color $standart-duration linear;
+  transition: background-color $standart-duration linear,
+    border $standart-duration linear;
+  border: 4px dashed $color-light;
 
   &:hover {
-    background-color: $color-bg-light;
+    background-color: $color-light;
   }
+}
+
+/*
+    Projects list
+*/
+.projects-list {
+  padding-top: 0;
 }
 
 /*
     Footer
 */
 .bottom-foot {
-  background-color: $color-bg-light;
+  background-color: $color-light;
   padding: 20px 0;
   font-size: 14px;
   font-family: $font-secondary;
