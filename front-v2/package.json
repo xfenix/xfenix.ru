@@ -30,6 +30,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "cash-dom": "^8.1.0"
+    "cash-dom": "^8.1.0",
+    "gulp-typograf": "^4.0.3"
   }
 }

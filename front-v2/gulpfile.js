@@ -8,10 +8,9 @@ const cssMinify = require('cssnano');
 const htmlmin = require('gulp-htmlmin');
 const minifyInline = require('gulp-minify-inline');
 const uncache = require('gulp-uncache');
+const typograf = require('gulp-typograf');
 // typescript things
-const typescriptProc = require('gulp-typescript');
 const browserify = require("browserify");
-const babelMinify = require('gulp-babel-minify');
 const tsify = require("tsify");
 const vinylSource = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
@@ -76,6 +75,10 @@ gulp.task('html', () => {
             removeRedundantAttributes: true,
             sortAttributes: true,
             sortClassName: true,
+        }))
+        .pipe(typograf({
+            locale: ['ru', 'en-US'],
+            htmlEntity: { type: 'name' }
         }))
         .pipe(uncache({
             append: 'hash',
