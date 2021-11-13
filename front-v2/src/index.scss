@@ -1,7 +1,6 @@
 $color-acc1: #ac23f3;
 $color-acc2: #02923d;
 $color-light: #f3f6f9;
-$color-medium: #acb8ca;
 $color-heavy: #1d3d5e;
 $color-basic: #000;
 $color-inverted: #fff;
@@ -141,10 +140,10 @@ body::before {
   height: 30px;
   background-image: linear-gradient(
     130deg,
-    rgba($color-acc1, 0.5) 0,
+    rgba($color-acc1, 0.4) 0,
     #fff 35%,
     #fff 70%,
-    rgba($color-acc2, 0.5) 100%
+    rgba($color-acc2, 0.4) 100%
   );
 }
 
@@ -289,7 +288,7 @@ body::before {
   & > i {
     font-size: 24px;
     margin-right: 20px;
-    color: $color-medium;
+    color: #acb8ca;
     transition: color $standart-duration;
   }
 

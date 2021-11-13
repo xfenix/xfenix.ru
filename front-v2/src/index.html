@@ -47,10 +47,10 @@
             </a>
             <nav class="top-head__aside">
                 <a class="top-head__menulink" href="#about">Обо мне</a>
-                <a class="top-head__menulink" href="#skills">Мои&nbsp;навыки</a>
+                <a class="top-head__menulink" href="#skills">Навыки</a>
                 <a class="top-head__menulink" href="#github">GitHub</a>
                 <a class="top-head__menulink" href="#public-activity">Публичная&nbsp;активность</a>
-                <a class="top-head__menulink" href="#portfolio">Мои проекты</a>
+                <a class="top-head__menulink" href="#portfolio">Проекты</a>
             </nav>
         </div>
     </header>
@@ -59,10 +59,9 @@
             <div class="typo">
                 <h1>Привет!<br>Я&nbsp;&mdash; <span class="hero-unit__name">Денис&nbsp;Аникин</span></h1>
                 <div class="hero-unit__about">
-                    <p>Работаю в&nbsp;<a href="https://www.raiffeisen.ru/" target="_blank" rel="noopener">Райффайзенбанке</a>.</p>
+                    <p>Работаю в&nbsp;<a href="https://www.raiffeisen.ru/" target="_blank" rel="noopener">Райффайзенбанке</a>. Пишу на&nbsp;python и&nbsp;typescript.</p>
                     <p>Я&nbsp;teamlead или techlead. Эти роли часто пересекаются или эквивалентны. Так&nbsp;же я&nbsp;fullstack программист
-                        и&nbsp;part-time исполняю роль python community community lead.</p>
-                    <p>Пишу на&nbsp;python и&nbsp;typescript.</p>
+                        и&nbsp;part-time исполняю роль python community lead.</p>
                     <p>А&nbsp;ещё на&nbsp;linkedin размещён мой карьерный путь.</p>
                 </div>
             </div>
@@ -103,7 +102,7 @@
                     <p>Обычный программист, ординарный человек.</p>
                     <p>Я&nbsp;работаю в&nbsp;составе команды, которая владеет несколькими продуктами: чат-ботом собственной разработки
                         и&nbsp;омниканальной чат-системой с&nbsp;очень сложной админкой и&nbsp;непростой архитектурой.</p>
-                    <p>Я&nbsp;люблю fullstack разработку, а&nbsp;так&nbsp;же выступаю техническим лидером в&nbsp;команде, стараюсь соблюдать
+                    <p>Люблю fullstack разработку, а&nbsp;так&nbsp;же выступаю техническим лидером в&nbsp;команде, стараюсь соблюдать
                         приореты и&nbsp;баланс техдолга и&nbsp;разработки, декомпозирую, провожу&nbsp;CR, иногда фасилитирую встречи, пишу
                         бекенд, фронтенд, верстаю, занимаюсь devops (day 1/day 2&nbsp;активности), делаю командные автоматизации.</p>
                     <p>Python&nbsp;&mdash; мой любимый язык. Мне нравится&nbsp;go (и&nbsp;у&nbsp;меня есть опыт вывода в&nbsp;продакшн
@@ -131,7 +130,7 @@
                     </a>
                     <a href="#" class="skills-switch__tab">
                         <i class="fa-solid fa-dharmachakra"></i>
-                        DevOps, администрирование, сети, протоколы
+                        DevOps (+ разное)
                     </a>
                     <a href="#" class="skills-switch__tab">
                         <i class="fa-solid fa-ellipsis"></i>
@@ -173,9 +172,8 @@
                                     <li>Транзакции
                                     <li>Сложные запросы
                                     <li>Профилирование
-                                    <li>Репликация (row, statement, mixed, master-slave, master-master &mdash; с galera знаком
-                                        поверхностно)
-                                    <li>Индексы
+                                    <li>Репликация (row, statement, mixed, master-slave, master-master, sync, async)
+                                    <li>Индексы (Btree, Hash, Gin, Gist, Brin)
                                     <li>Триггеры
                                     <li>Переход на 4x байтовый юникод и прочие нюансы жизни с mysql
                                 </ul>
@@ -207,6 +205,7 @@
                                     <li>БЭМ
                                     <li>Семантичность, Валидность, Кроссбраузерность (caniuse, browser market share etc.)
                                     <li>Профилирование, Отладка скорости рендеринга (Reflow/Repaint)
+                                    <li>SVG, WEBP
                                 </ul>
                             <li>TypeScript
                             <li>PWA
@@ -219,7 +218,8 @@
                                     <li>Styled components/аналоги
                                     <li>Vue &mdash; поверхностно
                                     <li>SSR (react, django + node + react)
-                                    <li>Gulp, Webpack, Npm
+                                    <li>Gulp, Webpack
+                                    <li>NPM
                                     <li>Websocket
                                     <li>Service Workers (пуши, оффлайн версии)
                                     <li>Разное всякое из прошлого: Backbone, Underscore
@@ -234,60 +234,97 @@
                             <li>REST, RPC, SOAP, Websocket
                             <li>Docker
                                 <ul>
-                                    <li>Оптимизация образов
+                                    <li>Очень много опыта
+                                    <li>Оптимизация образов: builder pattern, one layer, multistage, squash
                                     <li>Безопасность образов
                                     <li>Версионирование
-                                    <li>Hadolint, сканирование образов
+                                    <li>Hadolint, ИБ статический анализ
                                     <li>Разработка в docker
                                     <li>Docker Compose
                                     <li><a href="https://hub.docker.com/u/xfenix/" target="_blank" rel="noopener">DockerHub</a>
+                                    <li>Buildah, Kaniko
+                                    <li>Podman
                                 </ul>
                             <li>Kubernetes
                                 <ul>
                                     <li>Ванильный k8s
                                     <li>Защита кластера, вопросы ИБ
                                     <li>Helm
-                                    <li>Skaffold
+                                    <li>Разработка в k8s &mdash; skaffold, tilt
+                                    <li>Ambassador/Emissary
                                 </ul>
+                            <li>Day 2
+                                <ul>
+                                    <li>Логгирование: структурные логи, stdout
+                                    <li>ELK стек
+                                    <li>Opentracing, APM, Jaeger
+                                    <li>Exception tracking: sentry
+                                </ul>
+                        </ul>
+                        <ul>
                             <li>CI/CD
                                 <ul>
-                                    <li>Gitlab CI. Могу построить с ним SDLC любой сложности
-                                    <li>GitHub CI
+                                    <li>Gitlab CI
+                                    <li>GitHub Actions
                                     <li>Bamboo
                                     <li>Jenkins
                                     <li>TeamCity
                                     <li>TravisCI
                                 </ul>
-                        </ul>
-                        <ul>
+                            <li>Построение SDLC любой сложности
                             <li>Nginx
                             <li>TCP/IP, UDP, HTTP, HTTPS, HTTP/2
                             <li>LetsEncrypt
                             <li>Bash, Zsh, Coreutils
-                            <li>Экспериментирую: всякие новые рантаймы для докера
+                            <li>Экспериментирую: kata, cri-o
+                            <li>CNCF (landscape)
+                            <li>Так же выступаю лидом DevOps инженеров
                         </ul>
                     </div>
                     <div class="skills-group">
                         <ul>
                             <li>
-                                <p>Алгоритмы, Структуры данных (<a href="https://www.codewars.com/users/xfenix" target="_blank"
-                                        rel="noopener">вот тут</a> я качаюсь на CodeWars, <a href="https://www.hackerrank.com/xfenix/"
-                                        target="_blank" rel="noopener">а тут</a> ещё
-                                    медленнее на HackerRank)</p>
-                                <div class="codewars">
-                                    <img width="280" height="20" src="https://www.codewars.com/users/xfenix/badges/small" alt="Codewars badge">
-                                </div>
-                            <li>Микросервисная архитектура
+                                Computer science
+                                <ul>
+                                    <li>Алгоритмы, Структуры данных
+                                    <li>Решаю задачи: <a href="https://www.codewars.com/users/xfenix" target="_blank" rel="noopener">вот тут</a> я качаюсь на CodeWars, <a
+                                        href="https://www.hackerrank.com/xfenix/" target="_blank" rel="noopener">а тут</a> ещё
+                                    медленнее на HackerRank
+                                    <div class="codewars">
+                                        <img width="280" height="20" src="https://www.codewars.com/users/xfenix/badges/small" alt="Codewars badge">
+                                </ul>
+                            <li>Архитектура
+                                <ul>
+                                    <li>Микросервисная
+                                    <li>Монолитная
+                                    <li>DB per service
+                                    <li>Service discovery
+                                    <li>Sidecar
+                                    <li>Circuit breaker
+                                    <li>CQRS
+                                    <li>API gateway
+                                    <li>Exception tracking
+                                    <li>Healt check API
+                                    <li>Service per container
+                                    <li>JWT, access, refresh
+                                </ul>
                             <li>GIT, SVN
-                            <li>Bitbucket (тут можно бесплатно хранить кучу приватных репозиториев, что я и делаю), <a
-                                    href="https://github.com/xfenix" target="_blank" rel="noopener">GitHub</a> (изредка
-                                контрибьючу в опенсорс, когда хватает времени)
+                            <li>Изредка
+                            контрибьючу в опенсорс, когда хватает времени &mdash; <a href="https://github.com/xfenix" target="_blank" rel="noopener">GitHub</a>
                             <li>Юнит, интеграционное, регрессионное тестирование, e2e тестирование &mdash; cypress
                             <li>A/B тестирование
                         </ul>
                         <ul>
-                            <li>Знаком с Drupal (средне), Joomla (плохо), Wordpress (средне), Bitrix (средне), Sbuilder
-                                (средне), PhpShop (средне), Modx (хорошо) (<span class="italics">и стыжусь этого</span>)
+                            <li>CMS
+                                <ul>
+                                    <li>Drupal
+                                    <li>Joomla
+                                    <li>Wordpress
+                                    <li>Bitrix (средне)
+                                    <li>Sbuilder
+                                    <li>PhpShop (средне)
+                                    <li>Modx (хорошо) (<span class="italics">и стыжусь этого</span>)
+                                </ul>
                             <li>MacOS (рабочая система) / Debian (сервера) / Ubuntu (рабочая система, сервера) / Centos
                                 (сервера)
                             <li>GRASP, SOLID, KISS, YAGNI, DRY
