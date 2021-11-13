@@ -322,19 +322,21 @@ body::before {
 
     & ul li {
       margin-left: 20px;
+      padding-left: 15px;
+      position: relative;
       list-style-type: none;
 
       &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
         content: "\25FC";
-        margin-right: 5px;
         font-size: 50%;
-        display: inline-block;
-        vertical-align: top;
-        margin-top: 1px;
+        display: block;
       }
 
-      & + & {
-        margin-top: 3px;
+      & + li {
+        margin-top: 5px;
       }
     }
   }

@@ -44,25 +44,10 @@ gulp.task('sass', () => {
       .pipe(gulp.dest(DEST_DIR));
 });
 
-// gulp.task('ts', function () {
-//     return gulp.src(PATTERNS.ts)
-//         .pipe(typescriptProc({
-//             noImplicitAny: true,
-//             module: "umd",
-//             target: "es6",
-//             moduleResolution: "node"
-//         }))
-//         .pipe(babelMinify({
-//             mangle: {
-//                 keepClassName: true
-//             }
-//         }))
-//         .pipe(gulp.dest(DEST_DIR));
-// });
 gulp.task('ts', function () {
     return browserify({
             basedir: ".",
-            debug: true,
+            debug: false,
             entries: ["src/whole-app.ts"],
             cache: {},
             packageCache: {},
@@ -79,7 +64,7 @@ gulp.task('ts', function () {
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write("./"))
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest(DEST_DIR));
 });
 
