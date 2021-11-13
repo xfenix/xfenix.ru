@@ -35,6 +35,8 @@ button {
 }
 
 .typo {
+  line-height: 23px;
+
   a {
     @extend .link;
   }
@@ -68,15 +70,6 @@ button {
   p + iframe,
   p + table {
     margin-top: 15px;
-  }
-
-  ul li::before {
-    content: "\25FC";
-    margin-right: 5px;
-    font-size: 50%;
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 1px;
   }
 }
 
@@ -133,6 +126,10 @@ button {
 /*
     Header
 */
+body {
+  padding-top: 55px;
+}
+
 body::before {
   position: fixed;
   z-index: 0;
@@ -144,18 +141,21 @@ body::before {
   height: 30px;
   background-image: linear-gradient(
     130deg,
-    rgba($color-acc1, 0.3) 0,
+    rgba($color-acc1, 0.5) 0,
     #fff 35%,
     #fff 70%,
-    rgba($color-acc2, 0.3) 100%
+    rgba($color-acc2, 0.5) 100%
   );
 }
 
 .top-head {
   z-index: 100;
-  backdrop-filter: blur(20px);
+  background-color: rgba(#fff, 0.2);
+  backdrop-filter: blur(15px);
   top: 0;
-  position: sticky;
+  right: 0;
+  left: 0;
+  position: fixed;
   border-bottom: 1px solid #eaeef3;
   font-size: 14px;
   font-family: $font-secondary;
@@ -222,7 +222,7 @@ body::before {
 
 .contacts {
   display: flex;
-  margin-left: -14px;
+  margin-left: -12px;
 }
 
 .contacts__link {
@@ -230,7 +230,7 @@ body::before {
   color: $color-basic;
   border-bottom: none;
   border-radius: $border-radius;
-  font-size: 34px;
+  font-size: 35px;
   text-align: center;
   width: 60px;
   height: 60px;
@@ -240,10 +240,6 @@ body::before {
   transition: background-color $standart-duration linear,
     color $standart-duration linear;
   margin-right: 10px;
-
-  &_telegram {
-    font-size: 29px;
-  }
 
   &:hover {
     background-color: $color-light;
@@ -326,6 +322,16 @@ body::before {
 
     & ul li {
       margin-left: 20px;
+      list-style-type: none;
+
+      &::before {
+        content: "\25FC";
+        margin-right: 5px;
+        font-size: 50%;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 1px;
+      }
 
       & + & {
         margin-top: 3px;
@@ -531,7 +537,29 @@ body::before {
     Projects list
 */
 .projects-list {
-  padding-top: 0;
+  padding-top: 20px;
+}
+
+.projects-links {
+  margin-top: 10px;
+}
+
+.projects-links li {
+  list-style-type: none;
+  position: relative;
+  padding-left: 25px;
+}
+
+.projects-links li:before {
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  content: "💈";
+}
+
+.projects-links > li + li {
+  margin-top: 15px;
 }
 
 /*

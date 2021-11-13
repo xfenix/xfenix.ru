@@ -17,20 +17,6 @@
     <meta name="twitter:title" content="Xfenix :: сайт разработчика">
     <meta name="twitter:description" content="Я Денис Аникин. На этом сайте ты можешь узнать обо мне и моих навыках">
     <meta name="twitter:image" content="https://xfenix.ru/assets/newlogo--socialmedia.png">
-    <script>
-        const HEIGHT_KEY = 'xfenix-github-height-new-v2';
-        (() => {
-            'use strict';
-            const possibleEmojis = ["💎", "🛸", "🏆", "💈", "🪄", "🧬", "⚙️",
-                "🤖", "👾", "💫", "🍓", "🕶", "🧪", "🧯"];
-            const newFancyStyle = document.createElement('style');
-            const randomEmoji = possibleEmojis[Math.floor(possibleEmojis.length * Math.random())];
-            newFancyStyle.type = 'text/css';
-            newFancyStyle.appendChild(
-                document.createTextNode(`.projects-links li:before { content: "${randomEmoji}" !important; }`));
-            document.head.appendChild(newFancyStyle);
-        })();
-    </script>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
@@ -83,31 +69,34 @@
             <menu class="hero-unit__contacts contacts">
                 <a href="https://t.me/xfenix"
                    target="_blank" rel="noopener"
-                   class="contacts__link contacts__link_telegram">
-                    <i class="fa-solid fa-paper-plane"></i>
+                   class="contacts__link">
+                    <i class="fa-brands fa-telegram"></i>
                 </a>
                 <a href="https://github.com/xfenix"
                    target="_blank" rel="noopener"
-                   class="contacts__link contacts__link_github">
-                    <i class="fab fa-github"></i>
+                   class="contacts__link">
+                    <i class="fa-brands fa-github"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/xfenix/"
                    target="_blank" rel="noopener"
-                   class="contacts__link contacts__link_linkedin">
-                    <i class="fab fa-linkedin-in"></i>
+                   class="contacts__link">
+                    <i class="fa-brands fa-linkedin-in"></i>
                 </a>
-                <a href="https://www.facebook.com/xfenixru/"
-                   target="_blank" rel="noopener"
-                   class="contacts__link contacts__link_facebook">
+                <a href="https://www.facebook.com/xfenixru/" target="_blank" rel="noopener" class="contacts__link">
                     <i class="fab fa-facebook-f"></i>
                 </a>
+                <a href="https://www.instagram.com/xfenixru/"
+                   target="_blank" rel="noopener"
+                   class="contacts__link">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
                 <a href="#" class="contacts__link contacts__link_email">
-                    <i class="fa fa-at"></i>
+                    <i class="fa-solid fa-at"></i>
                 </a>
             </menu>
         </section>
 
-        <section class="basic-section about-me">
+        <section class="basic-section about-me" id="about">
             <div class="narrow-wrapper">
                 <h2 class="spec-title">Обо&nbsp;<span class="spec-title__accent">мне</span></h2>
                 <div class="typo">
@@ -128,7 +117,7 @@
             </div>
         </section>
 
-        <section class="basic-section skills-pack">
+        <section class="basic-section skills-pack" id="skills">
             <h2 class="spec-title">Мои&nbsp;<span class="spec-title__accent">навыки</span></h2>
             <div class="skills-switch">
                 <menu class="skills-switch__menu">
@@ -312,7 +301,7 @@
             </div>
         </section>
 
-        <section class="basic-section github-section">
+        <section class="basic-section github-section" id="github">
             <div class="github-section__wrapper">
                 <h2 class="spec-title spec-title__inverted">GitHub</span></h2>
 
@@ -367,7 +356,7 @@
             </div>
         </section>
 
-        <section class="basic-section skills-pack">
+        <section class="basic-section skills-pack" id="public-activity">
             <div class="narrow-wrapper">
                 <h2 class="spec-title">
                     <span class="spec-title__accent">Публичная</span>&nbsp;активность
@@ -376,10 +365,10 @@
                 <div class="typo">
                     <p>Коллеги из&nbsp;it&nbsp;people написали статью-интервью со&nbsp;мной, <a
                             href="https://habr.com/ru/company/it_people/blog/571332/" rel="noopener" target="_blank">которую
-                            можно почитать на&nbsp;хабре</a>.</p>
-                    <p>Как это не&nbsp;смешно, я&nbsp;и&nbsp;сам &laquo;автор&raquo; статей на&nbsp;хабре, можно почитать <a
+                            можно почитать на&nbsp;хабре</a>.
+                            Как&nbsp;это не&nbsp;смешно, я&nbsp;и&nbsp;сам &laquo;автор&raquo; статей на&nbsp;хабре, можно почитать <a
                             href="https://habr.com/ru/post/52494/" rel="noopener" target="_blank">мою статью из&nbsp;чулана</a> аж&nbsp;от
-                            2009&nbsp;года. Хоть это и&nbsp;уже выглядит как мусор, я&nbsp;решил её&nbsp;оставить на&nbsp;память.</p>
+                            2009&nbsp;года. Хоть она и&nbsp;уже выглядит совсем слабо, я&nbsp;решил её&nbsp;оставить на&nbsp;память.</p>
                     <p>Я&nbsp;часто выступаю с&nbsp;митапами внутри банка (за&nbsp;прошедшие полтора года я&nbsp;выступил не&nbsp;менее чем
                         на&nbsp;14
                         мероприятиях, не&nbsp;считая конференций).</p>
@@ -414,7 +403,7 @@
             </div>
         </section>
 
-        <section class="basic-section narrow-wrapper projects-list">
+        <section class="basic-section narrow-wrapper projects-list" id="portfolio">
             <h2 class="spec-title">
                 Некоторые <span class="spec-title__accent">проекты</span>, над которыми я работал
             </h2>
@@ -426,7 +415,7 @@
                 <p>Я&nbsp;не&nbsp;владелец этих ресурсов и&nbsp;не&nbsp;отвечаю за&nbsp;их&nbsp;работопособность. Просьба
                     относиться с&nbsp;пониманием, если что-то не&nbsp;работает.</p>
                 <p>Список составлен в&nbsp;случайном порядке. Все ссылки открываются в&nbsp;новом окне.</p>
-                <ul>
+                <ul class="projects-links">
                     <li><a href="http://www.avtovzglyad.ru/" target="_blank" rel="noopener">http://www.avtovzglyad.ru/</a>
                         &mdash; автожурнал. Сделан целиком, включая верстку и настройку сервера.
                     <li><a href="https://whyfly.ru/" target="_blank" rel="noopener">https://whyfly.ru/</a> &mdash;
