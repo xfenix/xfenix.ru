@@ -21,7 +21,6 @@
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "gulp-uglify": "^3.0.2",
     "gulp-uncache": "^0.4.0-beta1",
     "sass": "^1.43.4",
     "tsify": "^5.0.4",
@@ -31,6 +30,7 @@
   },
   "dependencies": {
     "cash-dom": "^8.1.0",
-    "gulp-typograf": "^4.0.3"
+    "gulp-typograf": "^4.0.3",
+    "gulp-uglify-es": "^3.0.0"
   }
 }

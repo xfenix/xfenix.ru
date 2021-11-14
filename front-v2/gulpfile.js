@@ -14,7 +14,7 @@ const browserify = require("browserify");
 const tsify = require("tsify");
 const vinylSource = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
-const uglify = require("gulp-uglify");
+const uglify = require("gulp-uglify-es").default;
 const sourcemaps = require("gulp-sourcemaps");
 // configs
 const DIR_PREFIX = __dirname + '/src';
@@ -61,9 +61,9 @@ gulp.task('ts', function () {
         .bundle()
         .pipe(vinylSource("whole-app.js"))
         .pipe(buffer())
+        .pipe(uglify())
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write("./"))
-        .pipe(uglify())
         .pipe(gulp.dest(DEST_DIR));
 });
 
@@ -93,11 +93,12 @@ gulp.task('assets', () => {
     return gulp.src(PATTERNS.assets).pipe(gulp.dest(DEST_DIR));
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', (cb) => {
     gulp.watch(PATTERNS.sass, gulp.series('sass', 'html'));
     gulp.watch(PATTERNS.html, gulp.series('html'));
     gulp.watch(PATTERNS.ts, gulp.series('ts'));
     gulp.watch(PATTERNS.assets, gulp.series('assets'));
+    cb();
 });
 
 gulp.task('build', (cb) => {

@@ -356,8 +356,8 @@ body::before {
     Github section
 */
 .github-section {
+  @extend .typo;
   background: #1d3d5e;
-  color: $color-inverted;
 }
 
 .github-section__wrapper {
@@ -365,7 +365,11 @@ body::before {
   margin: 0 auto;
 }
 
-.github-section a {
+.github-section__intro {
+  color: $color-inverted;
+}
+
+.github-section__intro a {
   color: $color-inverted;
   font-weight: bold;
   border-bottom: 1px solid $color-inverted;
@@ -391,15 +395,10 @@ body::before {
 
 .github-wannabe svg {
   align-self: center;
-  fill: $color-inverted;
-
-  &:hover {
-    fill: $color-inverted-link;
-  }
 }
 
 .github-wannabe__box {
-  border: 1px solid $color-inverted;
+  background-color: $color-inverted;
   border-radius: 6px;
   padding: 16px;
   box-sizing: border-box;
@@ -433,7 +432,6 @@ body::before {
   margin-right: 20px;
 }
 
-// github additional elements
 .github-repo-color {
   border-radius: 50%;
   width: 12px;
@@ -478,7 +476,16 @@ body::before {
 
 .github-link {
   display: flex;
+  color: #000 !important;
   border-bottom: none !important;
+}
+
+.github-link:hover {
+  color: #0366d6 !important;
+}
+
+.github-link:hover > svg {
+  fill: #0366d6;
 }
 
 .github-link > svg {
