@@ -12,8 +12,10 @@
     "@babel/preset-env": "^7.16.0",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
+    "cash-dom": "^8.1.0",
     "cssnano": "^5.0.10",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-babel-minify": "^0.5.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-minify-inline": "^1.1.0",
@@ -21,16 +23,15 @@
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-typograf": "^4.0.3",
+    "gulp-uglify-es": "^3.0.0",
     "gulp-uncache": "^0.4.0-beta1",
+    "postcss-preset-env": "^6.7.0",
     "sass": "^1.43.4",
     "tsify": "^5.0.4",
     "typescript": "^4.4.4",
+    "vanilla-lazyload": "^17.5.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
-  },
-  "dependencies": {
-    "cash-dom": "^8.1.0",
-    "gulp-typograf": "^4.0.3",
-    "gulp-uglify-es": "^3.0.0"
   }
 }

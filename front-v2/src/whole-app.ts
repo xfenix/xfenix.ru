@@ -1,4 +1,5 @@
 import $ from "cash-dom";
+import LazyLoad from "vanilla-lazyload";
 
 // some generic things
 const CACHE_KEY = 'xfenix-github-cache';
@@ -69,6 +70,10 @@ $('.contacts__link_email').one('click', function () {
 if (/Trident\/|MSIE/.test(window.navigator.userAgent)) {
     $('body').addClass('outdated');
 }
+
+// lazy load implementation
+const lazyloadInstance = new LazyLoad();
+lazyloadInstance.update();
 
 // github repos rendering with cache
 const cachedPayload = localStorageWithExpiration.get(CACHE_KEY);

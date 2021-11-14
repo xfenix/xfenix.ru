@@ -99,7 +99,8 @@ button {
     Generic layout things
 */
 .narrow-wrapper {
-  width: $narrow-width;
+  width: 100%;
+  max-width: $narrow-width;
   margin: 0 auto;
 }
 
@@ -179,6 +180,7 @@ body::before {
 .top-head__logolink {
   display: block;
   width: 45px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .top-head__aside {
@@ -193,6 +195,7 @@ body::before {
   font-weight: normal;
   display: block;
   padding: 5px 15px;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     color: $color-inverted;
@@ -266,7 +269,7 @@ body::before {
 }
 
 .skills-switch {
-  margin-top: 30px;
+  margin-top: 20px;
   display: grid;
   grid-template-columns: 300px 1fr;
 }

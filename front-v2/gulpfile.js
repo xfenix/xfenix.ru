@@ -9,6 +9,8 @@ const htmlmin = require('gulp-htmlmin');
 const minifyInline = require('gulp-minify-inline');
 const uncache = require('gulp-uncache');
 const typograf = require('gulp-typograf');
+const autoprefixer = require('gulp-autoprefixer');
+const postcssPresetEnv = require('postcss-preset-env');
 // typescript things
 const browserify = require("browserify");
 const tsify = require("tsify");
@@ -29,18 +31,20 @@ const PATTERNS = {
 
 gulp.task('sass', () => {
     return gulp
-      .src(PATTERNS.sass)
-      .pipe(sass().on("error", sass.logError))
-      .pipe(
-        postcss([
-          cssMinify({
-            discardComments: {
-              removeAll: true,
-            },
-          }),
-        ])
-      )
-      .pipe(gulp.dest(DEST_DIR));
+        .src(PATTERNS.sass)
+        .pipe(sass().on("error", sass.logError))
+        .pipe(autoprefixer())
+        .pipe(
+            postcss([
+                postcssPresetEnv(),
+                cssMinify({
+                    discardComments: {
+                        removeAll: true,
+                    },
+                }),
+            ])
+        )
+        .pipe(gulp.dest(DEST_DIR));
 });
 
 gulp.task('ts', function () {
