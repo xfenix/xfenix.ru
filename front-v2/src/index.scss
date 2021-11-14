@@ -159,12 +159,14 @@ body::before {
   border-bottom: 1px solid #eaeef3;
   font-size: 14px;
   font-family: $font-secondary;
+  height: 55px;
 }
 
 .top-head__wrapper {
   display: flex;
   padding: 10px 0;
   justify-content: space-between;
+  align-items: center;
 }
 
 .top-head__logo {
@@ -195,6 +197,8 @@ body::before {
   font-weight: normal;
   display: block;
   padding: 5px 15px;
+  height: 25px;
+  line-height: 25px;
   -webkit-tap-highlight-color: transparent;
 
   &:hover {
@@ -204,11 +208,82 @@ body::before {
 }
 
 /*
+    Burger
+*/
+$burger-one-height: 3px;
+$burger-width: 27px;
+$burger-koef: 7;
+$burger-height: $burger-one-height * $burger-koef;
+.burger {
+  width: $burger-width;
+  height: $burger-height;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  display: none;
+}
+
+.burger::before,
+.burger::after {
+  content: "";
+  display: block;
+}
+
+.burger span,
+.burger::before,
+.burger::after {
+  display: block;
+  position: absolute;
+  height: $burger-one-height;
+  border-radius: 9px;
+  width: 100%;
+  background: $color-basic;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.burger::before {
+  top: 0px;
+}
+
+.burger span {
+  top: $burger-one-height * ($burger-koef - 1)/2;
+}
+
+.burger::after {
+  top: $burger-one-height * ($burger-koef - 1);
+}
+
+.burger.active::before {
+  top: $burger-one-height * ($burger-koef - 1)/2;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.burger.active span {
+  opacity: 0;
+  left: -$burger-width;
+}
+
+.burger.active::after {
+  top: $burger-one-height * ($burger-koef - 1)/2;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+/*
     Hero unit
 */
 .hero-unit {
-  @extend .basic-section;
-  padding-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .hero-unit__name {
@@ -485,18 +560,18 @@ body::before {
 }
 
 .github-link:hover {
-  color: #0366d6 !important;
+  color: $color-inverted-link !important;
 }
 
 .github-link:hover > svg {
-  fill: #0366d6;
+  fill: $color-inverted-link;
 }
 
 .github-link > svg {
   margin-right: 2px;
 }
 
-@media screen and (max-width: 640px) {
+@media (max-width: 640px) {
   .github-wannabe {
     grid-template-columns: 1fr;
   }
@@ -584,6 +659,7 @@ body::before {
   padding: 20px 0;
   font-size: 14px;
   font-family: $font-secondary;
+  font-weight: 400;
 }
 
 .bottom-foot__wrapper {
@@ -634,7 +710,9 @@ body::before {
 @media (max-width: 1000px) {
   .skills-pack,
   .basic-section,
-  .bottom-foot {
+  .bottom-foot,
+  .hero-unit,
+  .top-head {
     box-sizing: border-box;
     padding-right: 20px;
     padding-left: 20px;
@@ -655,11 +733,6 @@ body::before {
   .github-wannabe {
     grid-template-columns: 1fr 1fr;
   }
-
-  .hero-unit {
-    padding-right: 0;
-    padding-left: 0;
-  }
 }
 
 @media (max-width: 900px) {
@@ -669,11 +742,6 @@ body::before {
 }
 
 @media (max-width: 750px) {
-  .hero-unit {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-
   .skills-switch {
     display: block;
   }
@@ -703,6 +771,29 @@ body::before {
   .skills-group > ul + ul {
     margin-top: 20px;
   }
+
+  .burger {
+    display: block;
+  }
+
+  .top-head__aside {
+    display: none;
+    width: 100%;
+    margin-left: -20px;
+    transition: all 0.25s ease-in-out;
+    flex-wrap: wrap;
+    column-gap: 5px;
+    row-gap: 10px;
+  }
+
+  .top-head__aside.active {
+    display: flex;
+    position: absolute;
+    top: 55px;
+    background: $color-inverted;
+    padding: 10px 20px 10px 7px;
+    box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+  }
 }
 
 @media (max-width: 700px) {
@@ -715,13 +806,13 @@ body::before {
   }
 }
 
-@media screen and (max-width: 540px) {
+@media (max-width: 540px) {
   .github-wannabe {
     grid-template-columns: 1fr;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 500px) {
   .bottom-foot__wrapper {
     display: block;
   }
@@ -732,5 +823,15 @@ body::before {
 
   .contacts {
     flex-wrap: wrap;
+  }
+
+  .youtube-video {
+    height: 200px;
+  }
+}
+
+@media (max-width: 400px) {
+  .typo h1 {
+    font-size: 38px;
   }
 }

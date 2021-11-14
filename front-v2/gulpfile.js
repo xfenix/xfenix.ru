@@ -30,8 +30,7 @@ const PATTERNS = {
 };
 
 gulp.task('sass', () => {
-    return gulp
-        .src(PATTERNS.sass)
+    return gulp.src(PATTERNS.sass)
         .pipe(sass().on("error", sass.logError))
         .pipe(autoprefixer())
         .pipe(

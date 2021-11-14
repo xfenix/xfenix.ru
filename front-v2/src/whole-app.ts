@@ -5,16 +5,16 @@ import LazyLoad from "vanilla-lazyload";
 const CACHE_KEY = 'xfenix-github-cache';
 const API_KEY = 'xfenix-apiaddr';
 const BYPASS_KEY = 'xfenix-bypasscache';
-const GITHUB_CACHE_SECONDS = 3600;
+const GITHUB_CACHE_SECONDS = 12 * 3600;
 const SHOW_REPOS = 6;
 const API_DESTINATION = localStorage.getItem(API_KEY) ? localStorage.getItem(API_KEY) : '/api/githubrepos/';
 const localStorageWithExpiration = {
-    set: (cacheKey, inputValue, ttlMs) => {
+    set: (cacheKey, inputValue, ttlSeconds): void => {
         localStorage.setItem(cacheKey.toString(), JSON.stringify({
-            value: inputValue, expires_at: new Date().getTime() + ttlMs / 1
+            value: inputValue, expires_at: new Date().getTime() + (ttlSeconds * 1000) / 1
         }));
     },
-    get: (cacheKey) => {
+    get: (cacheKey): Object | null => {
         if (localStorage.getItem(BYPASS_KEY)) {
             return null;
         }
@@ -29,6 +29,23 @@ const localStorageWithExpiration = {
         return null;
     }
 };
+
+// burger animation + on click improvements
+const $burger = $('.burger');
+const $topHeadMenu = $('.top-head__aside');
+
+$burger.on('click', function (eventObj: Event) {
+    eventObj.preventDefault();
+    $(this).toggleClass('active');
+    $topHeadMenu.toggleClass('active');
+});
+
+$('.top-head__menulink').on('click', function () {
+    if ($burger.hasClass('active')) {
+        $burger.removeClass('active');
+        $topHeadMenu.removeClass('active');
+    }
+});
 
 // skills tabs
 for (const oneGroup of ['.skills-switch__tab', '.skills-group']) {
@@ -72,13 +89,12 @@ if (/Trident\/|MSIE/.test(window.navigator.userAgent)) {
 }
 
 // lazy load implementation
-const lazyloadInstance = new LazyLoad();
-lazyloadInstance.update();
+(new LazyLoad()).update();
 
 // github repos rendering with cache
 const cachedPayload = localStorageWithExpiration.get(CACHE_KEY);
-const templateElement: HTMLTemplateElement = document.querySelector('#github-wannabe-tpl');
 const destinationNode = document.querySelector('.github-wannabe');
+const templateElement: HTMLTemplateElement = document.querySelector('#github-wannabe-tpl');
 const renderOneRepo = (oneRepoPayload) => {
     const newNode: HTMLElement = templateElement.content.cloneNode(true) as HTMLElement;
     const titleNode: HTMLAnchorElement = newNode.querySelector('.github-wannabe__title > a');
@@ -114,7 +130,7 @@ if (!cachedPayload) {
         .then(response => response.json())
         .then(result => {
             renderMultipleRepo(result);
-            localStorageWithExpiration.set(CACHE_KEY, result, GITHUB_CACHE_SECONDS * 1000);
+            localStorageWithExpiration.set(CACHE_KEY, result, GITHUB_CACHE_SECONDS);
         });
 } else {
     renderMultipleRepo(cachedPayload);
