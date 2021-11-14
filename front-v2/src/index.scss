@@ -264,14 +264,15 @@ body::before {
     My skills. Or should i say skills box?
 */
 .skills-pack {
-  width: $wide-width;
+  width: 100%;
+  max-width: $wide-width;
   margin: 0 auto;
 }
 
 .skills-switch {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 270px 1fr;
 }
 
 .skills-switch__menu {
@@ -505,7 +506,8 @@ body::before {
     Public activity
 */
 .youtube-pane {
-  width: $wide-width;
+  width: 100%;
+  max-width: $wide-width;
   margin: 15px auto 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -623,5 +625,112 @@ body::before {
     content: "⚠️";
     display: block;
     margin-right: 10px;
+  }
+}
+
+/*
+    Mobile adaptation
+*/
+@media (max-width: 1000px) {
+  .skills-pack,
+  .basic-section,
+  .bottom-foot {
+    box-sizing: border-box;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .github-section__wrapper {
+    width: 100%;
+  }
+
+  .skills-switch {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .skills-switch__menu {
+    margin-right: 20px;
+  }
+
+  .github-wannabe {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-unit {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .skills-group.active {
+    display: block;
+  }
+}
+
+@media (max-width: 750px) {
+  .hero-unit {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .skills-switch {
+    display: block;
+  }
+
+  .skills-switch__menu {
+    margin-right: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: top;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .skills-switch__tab {
+    padding: 10px;
+
+    & + & {
+      margin-top: 0;
+    }
+
+    & > i {
+      display: none;
+    }
+  }
+
+  .skills-group > ul + ul {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .youtube-pane {
+    display: block;
+  }
+
+  .youtube-video + .youtube-video {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .github-wannabe {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bottom-foot__wrapper {
+    display: block;
+  }
+
+  .bottom-foot__feedback {
+    margin-top: 10px;
+  }
+
+  .contacts {
+    flex-wrap: wrap;
   }
 }
