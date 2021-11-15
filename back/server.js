@@ -10,7 +10,7 @@ const NECESSARY_FIELDS = ['name', 'html_url', 'description', 'language', 'forks_
 const SKIP_REPOS = ['django-elfinderfs', 'django-haystack', 'django-media-manager',
     'django-search-hide', 'django-xflatpages', 'django-suit-sortable',
     'ionic-conference-app',];
-const githubClient = require('octonode').client(process.env.GITHUB_API_KEY);
+const githubClient = require('octonode').client(process.env.GIT_API_KEY);
 const memoryCacheClient = new (require( "node-cache" ))({stdTTL: CACHE_TIME});
 const fastify = require('fastify')({ logger: true });
 const closeGracefully = async (signal) => {
