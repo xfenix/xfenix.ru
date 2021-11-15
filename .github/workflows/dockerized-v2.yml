@@ -25,15 +25,13 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./front-v2
-          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/front-v2:latest
 
       - name: Build and push back
         uses: docker/build-push-action@v2
         with:
-          context: ./front-v2
-          file: ./Dockerfile
+          context: ./back
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/back:latest
 
