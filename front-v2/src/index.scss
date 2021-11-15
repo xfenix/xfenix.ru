@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $color-acc1: #ac23f3;
 $color-acc2: #02923d;
 $color-light: #f3f6f9;
@@ -34,7 +36,7 @@ button {
 }
 
 .typo {
-  line-height: 23px;
+  line-height: 22px;
 
   a {
     @extend .link;
@@ -75,7 +77,6 @@ button {
 .link {
   color: $color-acc2;
   text-decoration: none;
-  padding-bottom: 1px;
   border-bottom: 1px solid rgba($color-acc2, 0.2);
   transition: color $standart-duration linear,
     border-bottom $standart-duration linear;
@@ -110,7 +111,7 @@ button {
 
 .spec-title {
   font-size: 32px;
-  line-height: 32px;
+  line-height: 36px;
   margin-bottom: 20px;
   font-family: $font-secondary;
 }
@@ -250,7 +251,7 @@ $burger-height: $burger-one-height * $burger-koef;
 }
 
 .burger span {
-  top: $burger-one-height * ($burger-koef - 1)/2;
+  top: $burger-one-height * math.div($burger-koef - 1, 2);
 }
 
 .burger::after {
@@ -258,7 +259,7 @@ $burger-height: $burger-one-height * $burger-koef;
 }
 
 .burger.active::before {
-  top: $burger-one-height * ($burger-koef - 1)/2;
+  top: $burger-one-height * math.div($burger-koef - 1, 2);
   -webkit-transform: rotate(135deg);
   -moz-transform: rotate(135deg);
   -o-transform: rotate(135deg);
@@ -271,10 +272,7 @@ $burger-height: $burger-one-height * $burger-koef;
 }
 
 .burger.active::after {
-  top: $burger-one-height * ($burger-koef - 1)/2;
-  -webkit-transform: rotate(-135deg);
-  -moz-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
+  top: $burger-one-height * math.div($burger-koef - 1, 2);
   transform: rotate(-135deg);
 }
 
@@ -782,8 +780,7 @@ $burger-height: $burger-one-height * $burger-koef;
     margin-left: -20px;
     transition: all 0.25s ease-in-out;
     flex-wrap: wrap;
-    column-gap: 5px;
-    row-gap: 10px;
+    gap: 7px;
   }
 
   .top-head__aside.active {
@@ -833,5 +830,6 @@ $burger-height: $burger-one-height * $burger-koef;
 @media (max-width: 400px) {
   .typo h1 {
     font-size: 38px;
+    line-height: 42px;
   }
 }

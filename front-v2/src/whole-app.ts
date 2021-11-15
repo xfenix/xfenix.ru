@@ -1,35 +1,6 @@
 import $ from "cash-dom";
 import LazyLoad from "vanilla-lazyload";
 
-// some generic things
-const CACHE_KEY = 'xfenix-github-cache';
-const API_KEY = 'xfenix-apiaddr';
-const BYPASS_KEY = 'xfenix-bypasscache';
-const GITHUB_CACHE_SECONDS = 12 * 3600;
-const SHOW_REPOS = 6;
-const API_DESTINATION = localStorage.getItem(API_KEY) ? localStorage.getItem(API_KEY) : '/api/githubrepos/';
-const localStorageWithExpiration = {
-    set: (cacheKey, inputValue, ttlSeconds): void => {
-        localStorage.setItem(cacheKey.toString(), JSON.stringify({
-            value: inputValue, expires_at: new Date().getTime() + (ttlSeconds * 1000) / 1
-        }));
-    },
-    get: (cacheKey): Object | null => {
-        if (localStorage.getItem(BYPASS_KEY)) {
-            return null;
-        }
-        const storageData = JSON.parse(localStorage.getItem(cacheKey.toString()));
-        if (storageData !== null) {
-            if (storageData.expires_at !== null && storageData.expires_at < new Date().getTime()) {
-                localStorage.removeItem(cacheKey.toString());
-            } else {
-                return storageData.value;
-            }
-        }
-        return null;
-    }
-};
-
 // burger animation + on click improvements
 const $burger = $('.burger');
 const $topHeadMenu = $('.top-head__aside');
@@ -92,6 +63,33 @@ if (/Trident\/|MSIE/.test(window.navigator.userAgent)) {
 (new LazyLoad()).update();
 
 // github repos rendering with cache
+const CACHE_KEY = 'xfenix-github-cache';
+const API_KEY = 'xfenix-apiaddr';
+const BYPASS_KEY = 'xfenix-bypasscache';
+const GITHUB_CACHE_SECONDS = 12 * 3600;
+const SHOW_REPOS = 6;
+const API_DESTINATION = localStorage.getItem(API_KEY) ? localStorage.getItem(API_KEY) : '/api/githubrepos/';
+const localStorageWithExpiration = {
+    set: (cacheKey, inputValue, ttlSeconds): void => {
+        localStorage.setItem(cacheKey.toString(), JSON.stringify({
+            value: inputValue, expires_at: new Date().getTime() + (ttlSeconds * 1000) / 1
+        }));
+    },
+    get: (cacheKey): Object | null => {
+        if (localStorage.getItem(BYPASS_KEY)) {
+            return null;
+        }
+        const storageData = JSON.parse(localStorage.getItem(cacheKey.toString()));
+        if (storageData !== null) {
+            if (storageData.expires_at !== null && storageData.expires_at < new Date().getTime()) {
+                localStorage.removeItem(cacheKey.toString());
+            } else {
+                return storageData.value;
+            }
+        }
+        return null;
+    }
+};
 const cachedPayload = localStorageWithExpiration.get(CACHE_KEY);
 const destinationNode = document.querySelector('.github-wannabe');
 const templateElement: HTMLTemplateElement = document.querySelector('#github-wannabe-tpl');
