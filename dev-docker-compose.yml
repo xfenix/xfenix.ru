@@ -1,0 +1,21 @@
+version: "3"
+services:
+  front-v2:
+    build:
+      context: ./front-v2
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+  back:
+    build:
+      context: ./back

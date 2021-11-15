@@ -1,10 +1,10 @@
 #!/usr/bin/env nodejs
 require('dotenv').config();
-const IS_DEBUG = process.env.DEBUG ? true : false;
 // dont need to place it in env file - it will be bad decision for me
+const IS_DEBUG = process.env.DEBUG ? true : false;
 const CACHE_TIME = 3600 * 12;
 const HOW_MANY_REPOS = 20;
-const PORT = 8080;
+const APP_PORT = process.env.APP_PORT ? process.env.APP_PORT : 8080;
 const PAYLOAD_CACHE_KEY = 'githubpayload';
 const NECESSARY_FIELDS = ['name', 'html_url', 'description', 'language', 'forks_count', 'stargazers_count']
 const SKIP_REPOS = ['django-elfinderfs', 'django-haystack', 'django-media-manager',
@@ -49,7 +49,7 @@ fastify.get('/api/githubrepos/', async (_, serverReply) => {
     await serverReply;
 })
 
-fastify.listen(PORT, (err, address) => {
+fastify.listen(APP_PORT, (err, address) => {
     if (err) throw err;
     fastify.log.info(`server listening on ${address}`);
 })
