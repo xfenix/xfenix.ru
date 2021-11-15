@@ -13,6 +13,11 @@ const SKIP_REPOS = ['django-elfinderfs', 'django-haystack', 'django-media-manage
 const githubClient = require('octonode').client(process.env.GITHUB_API_KEY);
 const memoryCacheClient = new (require( "node-cache" ))({stdTTL: CACHE_TIME});
 const fastify = require('fastify')({ logger: true });
+const closeGracefully = async (signal) => {
+    console.log(`Received signal to terminate: ${signal}`)
+    await fastify.close();
+    process.exit();
+};
 
 fastify.get('/api/githubrepos/', async (_, serverReply) => {
     const cachedResult = IS_DEBUG ? undefined : memoryCacheClient.get(PAYLOAD_CACHE_KEY);
@@ -53,3 +58,6 @@ fastify.listen(APP_PORT, (err, address) => {
     if (err) throw err;
     fastify.log.info(`server listening on ${address}`);
 })
+
+process.on('SIGINT', closeGracefully)
+process.on('SIGTERM', closeGracefully)
