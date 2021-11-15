@@ -105,6 +105,6 @@ gulp.task('watch', (cb) => {
 });
 
 gulp.task('build', (cb) => {
-    gulp.series('sass', 'html', 'ts', 'assets')();
+    gulp.series('ts', 'sass', 'html', 'assets')();
     cb();
 });
