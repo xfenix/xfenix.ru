@@ -37,8 +37,11 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    env:
+      DESTINATION_DIR: /srv/www/xfenix-v2.ru
     steps:
       - uses: actions/checkout@master
+
       - name: Upload docker compose
         uses: appleboy/scp-action@master
         with:
@@ -47,7 +50,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.XFENIXRU_PORT }}
           source: "docker-compose.yml"
-          target: "./"
+          target: ${{ DESTINATION_DIR }}
+
       - name: Run some docker deployment commands
         uses: appleboy/ssh-action@master
         with:
@@ -56,4 +60,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.XFENIXRU_PORT }}
           script: |
-            docker ps
+            docker-compose -f ${{ DESTINATION_DIR }}/docker-compose.yml ps

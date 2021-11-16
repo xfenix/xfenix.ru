@@ -1,17 +1,12 @@
 version: "3"
 services:
   front-v2:
-    image: xfenix/xfenix-ru-front-v2: latest
+    image: xfenix/xfenix-ru-front-v2:latest
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt
   back:
-    image: xfenix/xfenix-ru-back: latest
+    image: xfenix/xfenix-ru-back:latest
+    env_file: .env
