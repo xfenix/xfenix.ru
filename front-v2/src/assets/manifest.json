@@ -3,12 +3,12 @@
     "name": "Xfenix site",
     "icons": [
       {
-        "src": "/assets/newlogo--symmetric.png",
+        "src": "./newlogo--symmetric.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/assets/newlogo--symmetric.png",
+        "src": "./newlogo--symmetric.png",
         "type": "image/png",
         "sizes": "512x512"
       }
