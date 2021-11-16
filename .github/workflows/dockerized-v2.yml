@@ -52,5 +52,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.XFENIXRU_PORT }}
           script: |
-            whoami
-            ls -al
+            docker ps
