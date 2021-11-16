@@ -7,6 +7,8 @@ services:
       - 443:443
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
+    links:
+      - back
   back:
     image: xfenix/xfenix-ru-back:latest
     env_file: .env

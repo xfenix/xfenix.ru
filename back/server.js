@@ -54,7 +54,7 @@ fastify.get('/api/githubrepos/', async (_, serverReply) => {
     await serverReply;
 })
 
-fastify.listen(APP_PORT, (err, address) => {
+fastify.listen(APP_PORT, '0.0.0.0', (err, address) => {
     if (err) throw err;
     fastify.log.info(`server listening on ${address}`);
 })
