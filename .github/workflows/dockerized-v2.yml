@@ -50,7 +50,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.XFENIXRU_PORT }}
           source: "docker-compose.yml"
-          target: ${{ DESTINATION_DIR }}
+          target: ${{ env.DESTINATION_DIR }}
 
       - name: Run some docker deployment commands
         uses: appleboy/ssh-action@master
@@ -60,4 +60,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.XFENIXRU_PORT }}
           script: |
-            docker-compose -f ${{ DESTINATION_DIR }}/docker-compose.yml ps
+            docker-compose -f ${{ env.DESTINATION_DIR }}/docker-compose.yml ps
