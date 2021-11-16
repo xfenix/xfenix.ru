@@ -19,6 +19,7 @@
     "gulp-babel-minify": "^0.5.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-minify-inline": "^1.1.0",
+    "gulp-minify-inline-json": "^1.4.5",
     "gulp-postcss": "^9.0.1",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",

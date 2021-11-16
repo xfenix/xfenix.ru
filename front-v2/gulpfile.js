@@ -7,6 +7,7 @@ const postcss = require("gulp-postcss");
 const cssMinify = require('cssnano');
 const htmlmin = require('gulp-htmlmin');
 const minifyInline = require('gulp-minify-inline');
+const minifyInlineJSON = require('gulp-minify-inline-json');
 const uncache = require('gulp-uncache');
 const typograf = require('gulp-typograf');
 const autoprefixer = require('gulp-autoprefixer');
@@ -89,6 +90,7 @@ gulp.task('html', () => {
             distDir: DEST_DIR
         }))
         .pipe(minifyInline())
+        .pipe(minifyInlineJSON())
         .pipe(gulp.dest(DEST_DIR));
 });
 
