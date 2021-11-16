@@ -8,7 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DESTINATION_DIR: /srv/www/xfenix-v2.ru
     steps:
+      # build steps
       - name: Check Out Repo
         uses: actions/checkout@v2
 
@@ -35,13 +38,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/xfenix-ru-back:latest
 
-  deploy:
-    runs-on: ubuntu-latest
-    env:
-      DESTINATION_DIR: /srv/www/xfenix-v2.ru
-    steps:
-      - uses: actions/checkout@master
-
+      # deployment steps
       - name: Upload docker compose
         uses: appleboy/scp-action@master
         with:
