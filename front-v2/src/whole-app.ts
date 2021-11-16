@@ -19,11 +19,11 @@ $('.top-head__menulink').on('click', function () {
 });
 
 // skills tabs
-for (const oneGroup of ['.skills-switch__tab', '.skills-group']) {
+['.skills-switch__tab', '.skills-group'].map((oneGroup: string) => {
     $(oneGroup).each(function (index: number) {
         $(this).attr('data-index', String(index));
     });
-}
+});
 
 $('.skills-switch__tab').on('click', function(eventObj: Event) {
     eventObj.preventDefault();
