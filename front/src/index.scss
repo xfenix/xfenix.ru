@@ -783,6 +783,7 @@ $burger-height: $burger-one-height * $burger-koef;
 
   .burger {
     display: block;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .top-head__aside {
