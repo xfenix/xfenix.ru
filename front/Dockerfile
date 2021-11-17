@@ -9,5 +9,5 @@ FROM nginx:1.21.3-alpine as runtime
 WORKDIR /srv/www
 COPY nginx.conf /etc/nginx
 COPY --chown=nginx:nginx --from=builder /tmp/src/build ./
-RUN mkdir -p /etc/letsencrypt && chown nginx:nginx -R /etc/letsencrypt
+RUN mkdir -p /etc/letsencrypt/live/xfenix.ru/ && chown nginx:nginx -R /etc/letsencrypt/
 USER nginx
