@@ -26,10 +26,10 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           context: ./front
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/xfenix-ru-front-v2:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/xfenix-ru-front-v2:latest
       - run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
@@ -52,6 +52,8 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           context: ./back
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/xfenix-ru-back:latest
       - run: |
