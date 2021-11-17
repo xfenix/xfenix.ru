@@ -300,7 +300,13 @@ $burger-height: $burger-one-height * $burger-koef;
 
 .contacts {
   display: flex;
+  flex-wrap: wrap;
   margin-left: -12px;
+}
+
+.contacts__wrapgroup {
+  white-space: nowrap;
+  display: flex;
 }
 
 .contacts__link {
