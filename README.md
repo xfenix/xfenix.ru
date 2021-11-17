@@ -4,10 +4,9 @@ xfenix.ru
 
 My small site and some developers shitty things.  
 It consists of:
-* `back` — written in fastify. Basically it's a small github adapter api with cache.
-* `front` — frontend page, served from `public` directory, assets lives in `assets`. Manifest.json lives in `public`, because im kinda lazy
-* `nginx.conf` — includes in main nginx config. Its simplier to store it in repository for many reasons. And i dont want to use docker for such small site
-* `fabfile.py` — deployment script
+* `back` — written in fastify. Basically it's a small github adapter api with cache. Dockerized
+* `front` — frontend page, dockerized inside alpine nginx
+    * `nginx.conf` — all-in-one nginx config, router for back and front, http2 support, etc
 * Github Actions — my small continious depoyment variant
 
 ## Developer flow
