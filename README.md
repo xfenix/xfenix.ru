@@ -1,6 +1,6 @@
 xfenix.ru
 ==
-[![My single and only CI/CD pipe](https://github.com/xfenix/xfenix.ru/actions/workflows/dockerized-v2.yml/badge.svg)](https://github.com/xfenix/xfenix.ru/actions/workflows/dockerized-v2.yml)s  
+[![My single and only CI/CD pipe](https://github.com/xfenix/xfenix.ru/actions/workflows/dockerized-v2.yml/badge.svg)](https://github.com/xfenix/xfenix.ru/actions/workflows/dockerized-v2.yml)  
 
 My small site and some developers shitty things.  
 It consists of:
