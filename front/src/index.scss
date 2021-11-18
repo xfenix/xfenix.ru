@@ -756,21 +756,16 @@ $burger-height: $burger-one-height * $burger-koef;
   }
 
   .skills-switch__menu {
-    margin-right: 0;
-    margin-bottom: 20px;
     display: flex;
-    align-items: top;
+    align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 10px;
+    margin: -10px 0 20px -10px;
   }
 
   .skills-switch__tab {
     padding: 10px;
-
-    & + & {
-      margin-top: 0;
-    }
+    margin: 10px 0 0 10px;
 
     & > i {
       display: none;

@@ -1,5 +1,6 @@
 import $ from "cash-dom";
 import LazyLoad from "vanilla-lazyload";
+import { scrollTo } from 'scroll-js';
 
 // burger animation + on click improvements
 const $burger = $('.burger');
@@ -36,7 +37,7 @@ $('.skills-switch__tab').on('click', function(eventObj: Event) {
 $('.top-head__menulink, .top-head__logolink').on('click', function (eventObj: Event) {
     eventObj.preventDefault();
     const originalHref: string = $(this).attr('href');
-    window.scrollTo({
+    scrollTo(window, {
         top: originalHref.replace('#', '') ? $(originalHref).offset().top - $('.top-head').height() : 0,
         behavior: 'smooth'
     });
