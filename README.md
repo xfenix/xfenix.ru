@@ -10,12 +10,20 @@ It consists of:
 * Github Actions — my small continious depoyment variant
 
 ## Developer flow
-1. Run `DEBUG=1 node back/server.js`
-1. Open `front/index.html` in browser
-1. Set:
-    * `xfenix-apiaddr` with value `http://[::1]:8080/api/githubrepos/`
-    * `xfenix-bypasscache` with value `1`
-1. Run frontend watcher `cd front && npx gulp watch`
+1. Run in console
+    ```bash
+    DEBUG=1 node back/server.js
+    ```
+1. Open [./front/src/build/index.html](./front/src/build/index.html)
+1. Paste it in browser console and hit enter:
+    ```javascript
+    localStorage.setItem('xfenix-apiaddr', 'http://0.0.0.0:8080/api/githubrepos/')
+    localStorage.setItem('xfenix-bypasscache', '1')
+    ```
+1. Run frontend watcher 
+    ```bash
+    cd front && npx gulp watch
+    ```
 
 ## Developer fixes
 For `node-sass` trouble this helps: `CXXFLAGS="--std=c++14" npm i`
