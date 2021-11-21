@@ -1,5 +1,6 @@
 FROM node:17.0.1 as builder
 WORKDIR /tmp/
+RUN mkdir -p /tmp/src/build/.well-known/
 COPY . .
 RUN npm i
 RUN npx gulp build
