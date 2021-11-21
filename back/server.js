@@ -1,5 +1,4 @@
 #!/usr/bin/env nodejs
-require('dotenv').config();
 // dont need to place it in env file - it will be bad decision for me
 const IS_DEBUG = process.env.DEBUG ? true : false;
 const CACHE_TIME = 3600 * 12;
