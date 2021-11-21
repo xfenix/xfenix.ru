@@ -10,20 +10,21 @@ It consists of:
 * Github Actions — my small continious depoyment variant
 
 ## Developer flow
-1. Run in console
+1. Run backend:
     ```bash
     DEBUG=1 node back/server.js
     ```
-1. Open [./front/src/build/index.html](./front/src/build/index.html)
-1. Paste it in browser console and hit enter:
+1. Open [./front/src/build/index.html](./front/src/build/index.html) (build frontend at least once, then open markdon in code editor, press cmd/ctrl, focus on this link, then click)
+1. Paste this code in browser console and run:
     ```javascript
     localStorage.setItem('xfenix-apiaddr', 'http://0.0.0.0:8080/api/githubrepos/')
     localStorage.setItem('xfenix-bypasscache', '1')
     ```
-1. Run frontend watcher 
+1. Run frontend watch reload:
     ```bash
     cd front && npx gulp watch
     ```
+1. Develop.
 
 ## Developer fixes
 For `node-sass` trouble this helps: `CXXFLAGS="--std=c++14" npm i`
