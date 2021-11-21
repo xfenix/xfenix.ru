@@ -10,6 +10,16 @@ services:
       - /srv/www/xfenix-v2.ru/.well-known:/srv/www/.well-known
     links:
       - back
+    restart_policy:
+      condition: on-failure
+      delay: 5s
+      max_attempts: 5
+      window: 60s
   back:
     image: xfenix/xfenix-ru-back:latest
     env_file: .env
+    restart_policy:
+      condition: on-failure
+      delay: 5s
+      max_attempts: 5
+      window: 60s
