@@ -13,6 +13,6 @@
     "fastify": "^3.24.0",
     "js-yaml": "^4.1.0",
     "node-cache": "^5.1.2",
-    "octonode": "^0.7.5"
+    "octonode": "^0.10.2"
   }
 }
