@@ -8,8 +8,6 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /srv/www/xfenix-v2.ru/.well-known:/srv/www/.well-known
-    links:
-      - back
     deploy:
       restart_policy:
         condition: on-failure
