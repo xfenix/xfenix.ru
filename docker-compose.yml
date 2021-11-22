@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   front-v2:
     image: xfenix/xfenix-ru-front-v2:latest
