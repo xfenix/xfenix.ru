@@ -7,11 +7,18 @@ services:
       - 443:443
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
-      - /srv/www/xfenix-v2.ru/.well-known:/srv/www/.well-known
+      - challenge_mount:/var/www/certbot
     deploy:
       restart_policy:
         condition: on-failure
         max_attempts: 5
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot:v1.20.0
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - challenge_mount:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   back:
     image: xfenix/xfenix-ru-back:latest
     env_file: .env
@@ -19,3 +26,5 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 5
+volumes:
+  challenge_mount:
