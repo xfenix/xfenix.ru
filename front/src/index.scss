@@ -323,6 +323,7 @@ $burger-height: $burger-one-height * $burger-koef;
   transition: background-color $standart-duration linear,
     color $standart-duration linear;
   margin-right: 10px;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background-color: $color-light;
