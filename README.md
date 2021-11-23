@@ -14,7 +14,7 @@ It consists of:
     ```bash
     DEBUG=1 node back/server.js
     ```
-1. Open [./front/src/build/index.html](./front/src/build/index.html) (build frontend at least once, then open markdon in code editor, press cmd/ctrl, focus on this link, then click)
+1. Open [./front/src/build/index.html](./front/src/build/index.html) (build frontend at least once, then open markdown in code editor, press cmd/ctrl, focus on this link, then click)
 1. Paste this code in browser console and run:
     ```javascript
     localStorage.setItem('xfenix-apiaddr', 'http://0.0.0.0:8080/api/githubrepos/')
