@@ -11,7 +11,7 @@ ENV WORKDIR=/srv/www
 WORKDIR $WORKDIR
 COPY nginx.conf /etc/nginx
 COPY --chown=nginx:nginx --from=builder /tmp/src/build ./
-RUN mkdir -p /etc/letsencrypt/live/xfenix.ru && chown -R nginx:nginx /etc/letsencrypt/ &&\
+RUN mkdir -p /etc/letsencrypt && chown -R nginx:nginx /etc/letsencrypt &&\
     chown -R nginx:nginx $WORKDIR && chmod -R 755 $WORKDIR && \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /etc/nginx/
