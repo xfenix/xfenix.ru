@@ -14,5 +14,5 @@ COPY --chown=nginx:nginx --from=builder /tmp/src/build ./
 RUN mkdir -p /etc/letsencrypt && chown -R nginx:nginx /etc/letsencrypt &&\
     chown -R nginx:nginx $WORKDIR && chmod -R 755 $WORKDIR && \
     chown -R nginx:nginx /var/cache/nginx && \
-    chown -R nginx:nginx /etc/nginx/
+    chown -R nginx:nginx /etc/
 USER nginx
