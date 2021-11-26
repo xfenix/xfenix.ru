@@ -154,7 +154,6 @@ body::before {
 
 .top-head {
   z-index: 100;
-  backdrop-filter: blur(15px);
   top: 0;
   right: 0;
   left: 0;
@@ -163,6 +162,41 @@ body::before {
   font-size: 14px;
   font-family: $font-secondary;
   height: 55px;
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .top-head {
+    backdrop-filter: blur(15px);
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  body::before {
+    background-image: linear-gradient(
+      130deg,
+      rgba($color-acc1, 0.8) 0,
+      #fff 35%,
+      #fff 70%,
+      rgba($color-acc2, 0.8) 100%
+    );
+  }
+
+  body::after {
+    position: fixed;
+    z-index: 0;
+    display: block;
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 55px;
+    background: linear-gradient(
+      180deg,
+      rgba($color-basic, 0) 0%,
+      rgba($color-inverted, 1) 50%
+    );
+    z-index: 1;
+  }
 }
 
 .top-head__wrapper {
