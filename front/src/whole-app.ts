@@ -1,5 +1,10 @@
 import $ from "cash-dom";
 import LazyLoad from "vanilla-lazyload";
+import smoothscroll from 'smoothscroll-polyfill';
+
+// initial things
+smoothscroll.polyfill();
+(new LazyLoad()).update();
 
 // burger animation + on click improvements
 const $burger = $('.burger');
@@ -11,7 +16,8 @@ $burger.on('click', function (eventObj: Event) {
     $topHeadMenu.toggleClass('active');
 });
 
-$('.top-head__menulink').on('click', function () {
+$('.top-head__menulink').on('click', function (eventObj: Event) {
+    eventObj.preventDefault();
     if ($burger.hasClass('active')) {
         $burger.removeClass('active');
         $topHeadMenu.removeClass('active');
@@ -58,9 +64,6 @@ $('.contacts__link_email').one('click', function () {
 if (/Trident\/|MSIE/.test(window.navigator.userAgent)) {
     $('body').addClass('outdated');
 }
-
-// lazy load implementation
-(new LazyLoad()).update();
 
 // github repos rendering with cache
 const CACHE_KEY = 'xfenix-github-cache';
