@@ -10,17 +10,12 @@ It consists of:
 * Github Actions — my small continious depoyment variant
 
 ## Developer flow
-1. Run backend:
-    ```bash
-    DEBUG=1 node back/server.js
-    ```
-1. Open [./front/src/build/index.html](./front/src/build/index.html) (build frontend at least once, then open markdown in code editor, press cmd/ctrl, focus on this link, then click)
-1. Paste this code in browser console and run:
+1. Do once. Paste this code in browser console and run:
     ```javascript
-    localStorage.setItem('xfenix-apiaddr', 'http://0.0.0.0:8080/api/githubrepos/')
-    localStorage.setItem('xfenix-bypasscache', '1')
+    localStorage.setItem('xfenix-apiaddr', 'http://0.0.0.0:8080/api/githubrepos/');
+    localStorage.setItem('xfenix-bypasscache', '1');
     ```
-1. Run frontend watch reload:
+1. Run complete dev server (watch all resources, backend api, browsersync):
     ```bash
     cd front && npx gulp watch
     ```

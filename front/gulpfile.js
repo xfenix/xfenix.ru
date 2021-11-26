@@ -19,6 +19,9 @@ const vinylSource = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
 const uglify = require("gulp-uglify-es").default;
 const sourcemaps = require("gulp-sourcemaps");
+// and something other
+const browserSync = require('browser-sync').create();
+const spawnProc = require('child_process').spawn;
 // configs
 const DIR_PREFIX = __dirname + '/src';
 const DEST_DIR = DIR_PREFIX + "/build";
@@ -99,6 +102,12 @@ gulp.task('assets', () => {
 });
 
 gulp.task('watch', (cb) => {
+    browserSync.init({
+        server: {
+            baseDir: DEST_DIR
+        }
+    });
+    spawnProc("node", ["../back/server.js"], { stdio: "inherit", env: {...process.env, ...{DEBUG: 1}}});
     gulp.watch(PATTERNS.sass, gulp.series('sass', 'html'));
     gulp.watch(PATTERNS.html, gulp.series('html'));
     gulp.watch(PATTERNS.ts, gulp.series('ts'));
