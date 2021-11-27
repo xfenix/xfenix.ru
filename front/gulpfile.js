@@ -12,6 +12,8 @@ const uncache = require('gulp-uncache');
 const typograf = require('gulp-typograf');
 const autoprefixer = require('gulp-autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
+const jsonminify = require('gulp-jsonminify');
+const svgminify = require('gulp-svgmin');
 // typescript things
 const browserify = require("browserify");
 const tsify = require("tsify");
@@ -23,17 +25,17 @@ const sourcemaps = require("gulp-sourcemaps");
 const browserSync = require('browser-sync').create();
 const spawnProc = require('child_process').spawn;
 // configs
-const DIR_PREFIX = __dirname + '/src';
-const DEST_DIR = DIR_PREFIX + "/build";
+const ROOT_DIR = `${__dirname}/src`;
+const DESTINATION_DIR =  `${ROOT_DIR}/build`;
 const PATTERNS = {
-    html: `${DIR_PREFIX}/*.html`,
-    sass: `${DIR_PREFIX}/*.scss`,
-    js: `${DIR_PREFIX}/*.js`,
-    ts: `${DIR_PREFIX}/*.ts`,
-    assets: DIR_PREFIX + '/assets/**',
+    html: `${ROOT_DIR}/*.html`,
+    sass: `${ROOT_DIR}/*.scss`,
+    js: `${ROOT_DIR}/*.js`,
+    ts: `${ROOT_DIR}/*.ts`,
+    assets: `${ROOT_DIR}/assets/**`,
 };
 
-gulp.task('sass', () => {
+gulp.task('process-styles', () => {
     return gulp.src(PATTERNS.sass)
         .pipe(sass().on("error", sass.logError))
         .pipe(autoprefixer())
@@ -47,10 +49,10 @@ gulp.task('sass', () => {
                 }),
             ])
         )
-        .pipe(gulp.dest(DEST_DIR));
+        .pipe(gulp.dest(DESTINATION_DIR));
 });
 
-gulp.task('ts', function () {
+gulp.task('process-ts', function () {
     return browserify({
             basedir: ".",
             debug: false,
@@ -71,10 +73,10 @@ gulp.task('ts', function () {
         .pipe(uglify())
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write("./"))
-        .pipe(gulp.dest(DEST_DIR));
+        .pipe(gulp.dest(DESTINATION_DIR));
 });
 
-gulp.task('html', () => {
+gulp.task('process-html', () => {
     return gulp.src(PATTERNS.html)
         .pipe(htmlmin({
             collapseWhitespace: true,
@@ -89,33 +91,57 @@ gulp.task('html', () => {
         }))
         .pipe(uncache({
             append: 'hash',
-            srcDir: DEST_DIR,
-            distDir: DEST_DIR
+            srcDir: DESTINATION_DIR,
+            distDir: DESTINATION_DIR
         }))
         .pipe(minifyInline())
         .pipe(minifyInlineJSON())
-        .pipe(gulp.dest(DEST_DIR));
+        .pipe(gulp.dest(DESTINATION_DIR));
 });
 
-gulp.task('assets', () => {
-    return gulp.src(PATTERNS.assets).pipe(gulp.dest(DEST_DIR));
+gulp.task('copy-assets', () => {
+    return gulp.src(PATTERNS.assets)
+        .pipe(gulp.dest(DESTINATION_DIR));
 });
+
+gulp.task('minify-json-assets', () => {
+    return gulp.src(DESTINATION_DIR + '/*.json')
+        .pipe(jsonminify())
+        .pipe(gulp.dest(DESTINATION_DIR));
+});
+
+gulp.task('minify-svg-assets', () => {
+    return gulp.src(DESTINATION_DIR + '/*.svg')
+        .pipe(svgminify())
+        .pipe(gulp.dest(DESTINATION_DIR));
+});
+
+gulp.task('process-assets', gulp.series(
+    'copy-assets',
+    gulp.parallel(
+        'minify-json-assets',
+        'minify-svg-assets'
+    )
+));
+
+// Tasks for users starts here
+gulp.task('build', gulp.parallel(
+    'process-ts',
+    'process-styles',
+    'process-html',
+    'process-assets'
+));
 
 gulp.task('watch', (cb) => {
     browserSync.init({
         server: {
-            baseDir: DEST_DIR
+            baseDir: DESTINATION_DIR
         }
     });
     spawnProc("node", ["../back/server.js"], { stdio: "inherit", env: {...process.env, ...{DEBUG: 1}}});
-    gulp.watch(PATTERNS.sass, gulp.series('sass', 'html'));
-    gulp.watch(PATTERNS.html, gulp.series('html'));
-    gulp.watch(PATTERNS.ts, gulp.series('ts'));
-    gulp.watch(PATTERNS.assets, gulp.series('assets'));
-    cb();
-});
-
-gulp.task('build', (cb) => {
-    gulp.series('ts', 'sass', 'html', 'assets')();
+    gulp.watch(PATTERNS.sass, gulp.series('process-styles', 'process-html'));
+    gulp.watch(PATTERNS.html, gulp.series('process-html'));
+    gulp.watch(PATTERNS.ts, gulp.series('process-ts'));
+    gulp.watch(PATTERNS.assets, gulp.series('process-assets'));
     cb();
 });
