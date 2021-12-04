@@ -94,13 +94,13 @@ gulp.task('process-html', () => {
             locale: ['ru', 'en-US'],
             htmlEntity: { type: 'name' }
         }))
+        .pipe(minifyInline())
+        .pipe(minifyInlineJSON())
         .pipe(uncache({
             append: 'hash',
             srcDir: DESTINATION_DIR,
             distDir: DESTINATION_DIR
         }))
-        .pipe(minifyInline())
-        .pipe(minifyInlineJSON())
         .pipe(gulp.dest(DESTINATION_DIR));
 });
 
