@@ -15,6 +15,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
 const jsonminify = require('gulp-jsonminify');
 const svgminify = require('gulp-svgmin');
+const pleaseReplace = require('gulp-replace');
 // typescript things
 const browserify = require("browserify");
 const tsify = require("tsify");
@@ -95,6 +96,8 @@ gulp.task('process-html', () => {
         }))
         .pipe(minifyInline())
         .pipe(minifyInlineJSON())
+        .pipe(pleaseReplace("</li>", ""))
+        .pipe(pleaseReplace("</p>", ""))
         .pipe(gulp.dest(DESTINATION_DIR));
 });
 
