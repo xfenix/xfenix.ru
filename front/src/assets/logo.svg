@@ -26,8 +26,8 @@
       }
     </style>
     <linearGradient id="linear-gradient" x1="721.814" y1="996.875" x2="721.814" y2="3.125" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ac23f3"/>
-      <stop offset="1" stop-color="#02923d"/>
+      <stop offset="0" stop-color="#7000d1"/>
+      <stop offset="1" stop-color="#007a33"/>
     </linearGradient>
   </defs>
   <path id="basic_x" data-name="basic x" class="cls-1" d="M437.462,3.125L731.187,382.812,1023.35,3.125h187.48L824.929,487.5,1231.14,996.875H1034.29L723.375,589.062,404.653,996.875H212.482L626.509,487.5,239.042,3.125h198.42Z"/>
