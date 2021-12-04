@@ -78,8 +78,11 @@ gulp.task('process-ts', function () {
 });
 
 gulp.task('process-html', () => {
-    return gulp.src(PATTERNS.html)
-        .pipe(htmlValidator())
+    let basicStream = gulp.src(PATTERNS.html);
+    if (process.env.DEVEL) {
+        basicStream = basicStream.pipe(htmlValidator());
+    }
+    return basicStream
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeOptionalTags: true,
@@ -135,6 +138,7 @@ gulp.task('build', gulp.parallel(
 ));
 
 gulp.task('watch', (cb) => {
+    process.env.DEVEL = true;
     browserSync.init({
         server: {
             baseDir: DESTINATION_DIR
