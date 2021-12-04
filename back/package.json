@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^3.24.0",
+    "fastify": "^3.24.1",
     "js-yaml": "^4.1.0",
     "node-cache": "^5.1.2",
     "octonode": "^0.10.2"
