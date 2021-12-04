@@ -6,6 +6,7 @@ const sass = require('gulp-sass')(require('sass'));
 const postcss = require("gulp-postcss");
 const cssMinify = require('cssnano');
 const htmlmin = require('gulp-htmlmin');
+const htmlValidator = require('gulp-html');
 const minifyInline = require('gulp-minify-inline');
 const minifyInlineJSON = require('gulp-minify-inline-json');
 const uncache = require('gulp-uncache');
@@ -78,6 +79,7 @@ gulp.task('process-ts', function () {
 
 gulp.task('process-html', () => {
     return gulp.src(PATTERNS.html)
+        .pipe(htmlValidator())
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeOptionalTags: true,

@@ -18,6 +18,7 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel-minify": "^0.5.1",
+    "gulp-html": "^3.5.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-jsonminify": "^1.1.0",
     "gulp-minify-inline": "^1.1.0",
