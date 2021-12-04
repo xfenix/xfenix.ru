@@ -96,6 +96,11 @@ gulp.task('process-html', () => {
         }))
         .pipe(minifyInline())
         .pipe(minifyInlineJSON())
+        .pipe(gulp.dest(DESTINATION_DIR));
+});
+
+gulp.task('process-uncache', () => {
+    return gulp.src(DESTINATION_DIR + '/*.html')
         .pipe(uncache({
             append: 'hash',
             srcDir: DESTINATION_DIR,
@@ -130,11 +135,14 @@ gulp.task('process-assets', gulp.series(
 ));
 
 // Tasks for users starts here
-gulp.task('build', gulp.parallel(
-    'process-ts',
-    'process-styles',
-    'process-html',
-    'process-assets'
+gulp.task('build', gulp.series(
+    gulp.parallel(
+        'process-ts',
+        'process-styles',
+        'process-html',
+        'process-assets'
+    ),
+    'process-uncache'
 ));
 
 gulp.task('watch', (cb) => {
@@ -145,9 +153,9 @@ gulp.task('watch', (cb) => {
         }
     });
     spawnProc("node", ["../back/server.js"], { stdio: "inherit", env: {...process.env, ...{DEBUG: 1}}});
-    gulp.watch(PATTERNS.sass, gulp.series('process-styles', 'process-html'));
-    gulp.watch(PATTERNS.html, gulp.series('process-html'));
-    gulp.watch(PATTERNS.ts, gulp.series('process-ts'));
+    gulp.watch(PATTERNS.sass, gulp.series('process-styles', 'process-html', 'process-uncache'));
+    gulp.watch(PATTERNS.html, gulp.series('process-html', 'process-uncache'));
+    gulp.watch(PATTERNS.ts, gulp.series('process-ts', 'process-uncache'));
     gulp.watch(PATTERNS.assets, gulp.series('process-assets'));
     cb();
 });
