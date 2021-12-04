@@ -86,6 +86,8 @@ gulp.task('process-html', () => {
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeOptionalTags: true,
+            removeEmptyAttributes: true,
+            removeEmptyElements: true,
             removeRedundantAttributes: true,
             sortAttributes: true,
             sortClassName: true,
