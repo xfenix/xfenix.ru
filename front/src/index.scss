@@ -402,7 +402,7 @@ $burger-height: $burger-one-height * $burger-koef;
 .skills-switch__tab {
   display: block;
   border: 1px solid $color-light;
-  border-radius: $border-radius;
+  border-radius: 6px;
   padding: 20px 10px 20px 20px;
   color: $color-basic;
   text-decoration: none;
