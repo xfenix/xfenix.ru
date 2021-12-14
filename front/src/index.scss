@@ -79,6 +79,10 @@ button {
   p + table {
     margin-top: 15px;
   }
+
+  p + .fancy-list {
+    margin-bottom: 20px;
+  }
 }
 
 .link {
@@ -101,6 +105,28 @@ button {
   &:hover {
     background-color: $color-light;
   }
+}
+
+.fancy-list {
+  margin-top: 10px;
+}
+
+.fancy-list li {
+  list-style-type: none;
+  position: relative;
+  padding-left: 25px;
+}
+
+.fancy-list li:before {
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  content: "💈";
+}
+
+.fancy-list > li + li {
+  margin-top: 10px;
 }
 
 /*
@@ -675,28 +701,6 @@ $burger-height: $burger-one-height * $burger-koef;
 */
 .projects-list {
   padding-top: 20px;
-}
-
-.projects-links {
-  margin-top: 20px;
-}
-
-.projects-links li {
-  list-style-type: none;
-  position: relative;
-  padding-left: 25px;
-}
-
-.projects-links li:before {
-  display: inline-block;
-  left: 0;
-  position: absolute;
-  top: 0;
-  content: "💈";
-}
-
-.projects-links > li + li {
-  margin-top: 15px;
 }
 
 /*
