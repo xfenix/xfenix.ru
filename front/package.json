@@ -39,6 +39,8 @@
     "typescript": "^4.5.4",
     "vanilla-lazyload": "^17.5.0",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "vinyl-source-stream": "^2.0.0",
+
+    "nth-check": ">=2.0.1"
   }
 }
