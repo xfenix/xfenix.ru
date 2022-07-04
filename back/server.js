@@ -2,7 +2,7 @@
 // dont need to place it in env file - it will be bad decision for me
 const IS_DEBUG = process.env.DEBUG ? true : false;
 const CACHE_TIME = 3600 * 12;
-const HOW_MANY_REPOS = 20;
+const HOW_MANY_REPOS = 100;
 const APP_PORT = process.env.APP_PORT ? process.env.APP_PORT : 8080;
 const PAYLOAD_CACHE_KEY = 'githubpayload';
 const NECESSARY_FIELDS = ['name', 'html_url', 'description', 'language', 'forks_count', 'stargazers_count']
