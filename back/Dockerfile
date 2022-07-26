@@ -1,4 +1,4 @@
-FROM node:17.9.0-alpine3.15
+FROM node:18.6.0-alpine3.16
 
 WORKDIR /srv/www
 COPY . .
