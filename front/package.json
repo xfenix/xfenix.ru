@@ -9,12 +9,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-env": "^7.18.9",
     "babelify": "^10.0.0",
-    "browser-sync": "^2.27.9",
+    "browser-sync": "^2.27.10",
     "browserify": "^17.0.0",
     "cash-dom": "^8.1.1",
-    "cssnano": "^5.1.7",
+    "cssnano": "^5.1.12",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel-minify": "^0.5.2",
@@ -32,15 +32,15 @@
     "gulp-typograf": "^4.0.3",
     "gulp-uglify-es": "^3.0.0",
     "gulp-uncache": "^0.4.0-beta1",
-    "postcss-preset-env": "^7.5.0",
-    "sass": "^1.51.0",
+    "postcss-preset-env": "^7.7.2",
+    "sass": "^1.54.0",
     "smoothscroll-polyfill": "^0.4.4",
     "tsify": "^5.0.4",
-    "typescript": "^4.6.4",
-    "vanilla-lazyload": "^17.8.1",
+    "typescript": "^4.7.4",
+    "vanilla-lazyload": "^17.8.3",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
 
-    "nth-check": ">=2.0.1"
+    "nth-check": ">=2.1.1"
   }
 }
