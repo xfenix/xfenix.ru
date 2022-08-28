@@ -142,18 +142,26 @@ const renderOneRepo = (oneRepoPayload: {
   const languageNode: HTMLElement = newNode.querySelector(
     ".github-wannabe__language"
   );
+
   titleNode.textContent = oneRepoPayload.name;
   titleNode.href = oneRepoPayload.html_url;
+
   newNode.querySelector(".github-wannabe__descr").textContent =
     oneRepoPayload.description;
+
   starsNode.textContent = String(oneRepoPayload.stargazers_count);
   (
     starsNode.parentNode as HTMLAnchorElement
   ).href = `${oneRepoPayload.html_url}/stargazers`;
-  forkNode.textContent = String(oneRepoPayload.forks_count);
-  (
-    forkNode.parentNode as HTMLAnchorElement
-  ).href = `${oneRepoPayload.html_url}/network/members`;
+
+  const forkParent = forkNode.parentNode as HTMLAnchorElement;
+  if (oneRepoPayload.forks_count > 0) {
+    forkNode.textContent = String(oneRepoPayload.forks_count);
+    forkParent.href = `${oneRepoPayload.html_url}/network/members`;
+  } else {
+    forkParent.remove();
+  }
+
   languageNode
     .querySelector(".github-repo-color")
     .classList.add(
@@ -168,6 +176,7 @@ const renderOneRepo = (oneRepoPayload: {
       oneRepoPayload.language ? oneRepoPayload.language : "No language"
     )
   );
+
   return newNode;
 };
 const renderMultipleRepo = (multiplePayload) => {
