@@ -1,4 +1,4 @@
-FROM node:18.6.0 as builder
+FROM node:18.10.0 as builder
 WORKDIR /tmp/
 RUN mkdir -p /tmp/src/build/.well-known/
 COPY . .
