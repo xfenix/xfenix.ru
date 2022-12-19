@@ -78,7 +78,7 @@ $(".contacts__link_email").one("click", function () {
 });
 
 // github repos rendering with cache
-const CACHE_KEY = "xfenix-github-cache";
+const CACHE_KEY = "xfenix-github-cache-v2";
 const API_KEY = "xfenix-apiaddr";
 const BYPASS_KEY = "xfenix-bypasscache";
 const GITHUB_CACHE_SECONDS = 12 * 3600;
