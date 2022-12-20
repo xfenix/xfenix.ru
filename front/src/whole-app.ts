@@ -170,7 +170,7 @@ const renderOneRepo = (oneRepoPayload: {
     }
   }
 
-  if (starsNode && starsNode.textContent && starsNode.parentNode) {
+  if (starsNode && starsNode.parentNode) {
     starsNode.textContent = String(oneRepoPayload.stargazers_count);
     (
       starsNode.parentNode as HTMLAnchorElement
