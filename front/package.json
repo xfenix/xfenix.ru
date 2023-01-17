@@ -22,7 +22,7 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-jsonminify": "^1.1.0",
     "gulp-minify-inline": "^1.1.0",
-    "gulp-minify-inline-json": "^1.4.10",
+    "gulp-minify-inline-json": "^1.4.11",
     "gulp-postcss": "^9.0.1",
     "gulp-replace": "^1.1.4",
     "gulp-sass": "^5.1.0",
