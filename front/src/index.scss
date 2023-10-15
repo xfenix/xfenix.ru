@@ -157,6 +157,41 @@ button {
   color: $color-inverted;
 }
 
+@keyframes details-show {
+  from {
+    opacity:0;
+    transform: var(--details-translate, translateY(-0.5em));
+  }
+}
+
+.details[open] > .details__content {
+  animation: details-show 150ms ease-in-out;
+}
+
+.details__summary {
+  margin: 10px auto;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  color: $color-acc2;
+  width: $wide-width;
+  list-style: none;
+  border-radius: 6px;
+  padding: 5px 0;
+}
+
+.details__inneraccent {
+  border-bottom: 1px solid $color-acc2 dashed;
+}
+
+.details__summary:hover {
+  color: $color-acc1;
+}
+
+.details__summary:hover > .details__inneraccent {
+  border-bottom-color: $color-acc1;
+}
+
 /*
     Header
 */
