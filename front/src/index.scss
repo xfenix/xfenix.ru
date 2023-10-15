@@ -174,7 +174,8 @@ button {
   cursor: pointer;
   border-radius: 4px;
   color: $color-acc2;
-  width: $wide-width;
+  width: 100%;
+  max-width: $wide-width;
   list-style: none;
   border-radius: 6px;
   padding: 5px 0;
