@@ -5,3 +5,4 @@ report.*
 store.json
 .env
 build
+back/*.lmdb*

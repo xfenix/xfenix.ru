@@ -2,16 +2,25 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "tsc -p tsconfig.json && cp *.ttf build/",
+    "build-prod": "npm run build && cp package.json build/",
+    "start": "node build/index.js",
+    "dev": "npm run build && DEBUG=1 npm run start"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@octokit/rest": "^19.0.11",
     "fastify": "^4.17.0",
-    "node-cache": "^5.1.2",
-    "octonode": "^0.10.2"
+    "lru-cache": "^9.1.2",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "typescript": "^5.1.3"
   }
 }

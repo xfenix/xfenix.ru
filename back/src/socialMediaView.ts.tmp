@@ -1,0 +1,97 @@
+import { FastifyReply, FastifyRequest } from "fastify";
+import { createCanvas, registerFont } from "canvas";
+import { LRUCache } from "lru-cache";
+import * as config from "./config.js";
+
+const COMMON_FONT_NAME = "MyCustomFont";
+const imageCache = new LRUCache({ max: config.LRU_SIZE });
+
+registerFont(config.FONT_FILE, { family: COMMON_FONT_NAME });
+
+export default async function makeSocialMediaImage(
+  request: FastifyRequest<{
+    Querystring: { articleTitle: string };
+  }>,
+  reply: FastifyReply
+) {
+  const articleTitle =
+    request.query.articleTitle.substring(0, config.MAX_TEXT_LENGTH) +
+    (request.query.articleTitle.length > config.MAX_TEXT_LENGTH ? "..." : "");
+
+  // Check if the image is already in the cache
+  if (imageCache.has(articleTitle)) {
+    const cachedImage = imageCache.get(articleTitle);
+    reply.header("Content-Type", config.IMAGE_MIME);
+    reply.send(cachedImage);
+    return;
+  }
+
+  const canvasApi = createCanvas(config.CANVAS_WIDTH, config.CANVAS_HEIGHT);
+  const canvasContext = canvasApi.getContext("2d");
+
+  // Fill background with gradient
+  const readyGradient = canvasContext.createLinearGradient(
+    0,
+    0,
+    0,
+    config.CANVAS_HEIGHT
+  );
+  readyGradient.addColorStop(0, config.BACKGROUND_COLOR1);
+  readyGradient.addColorStop(1, config.BACKGROUND_COLOR2);
+  canvasContext.fillStyle = readyGradient;
+  canvasContext.fillRect(0, 0, config.CANVAS_WIDTH, config.CANVAS_HEIGHT);
+
+  // Draw site name
+  canvasContext.fillStyle = config.TEXT_COLOR;
+  canvasContext.font = `${config.SITE_NAME_FONT_SIZE}px ${COMMON_FONT_NAME}`;
+  canvasContext.textBaseline = "top";
+  canvasContext.fillText(
+    config.SITE_NAME,
+    config.MEDIA_PADDING,
+    config.MEDIA_PADDING
+  );
+
+  // Draw article title
+  canvasContext.fillStyle = config.TEXT_COLOR;
+  canvasContext.font = `${config.FONT_SIZE}px ${COMMON_FONT_NAME}`;
+  canvasContext.textBaseline = "bottom";
+
+  // Wrap text into multiple lines
+  const maxTextWidth = config.CANVAS_WIDTH - 2 * config.MEDIA_PADDING;
+  const lines = [];
+  let currentLine = "";
+  articleTitle.split(" ").forEach((word: string) => {
+    const testLine = currentLine + word + " ";
+    const testWidth = canvasContext.measureText(testLine).width;
+    if (testWidth > maxTextWidth) {
+      lines.push(currentLine);
+      currentLine = word + " ";
+    } else {
+      currentLine = testLine;
+    }
+  });
+  lines.push(currentLine);
+
+  // Calculate the vertical position for the text
+  const textY =
+    config.CANVAS_HEIGHT -
+    config.MEDIA_PADDING -
+    lines.length * config.FONT_SIZE * config.LINE_HEIGHT;
+
+  // Draw each line of the text
+  lines.forEach((line, index) =>
+    canvasContext.fillText(
+      line,
+      config.MEDIA_PADDING,
+      textY + index * config.FONT_SIZE * config.LINE_HEIGHT
+    )
+  );
+
+  // Convert canvas to PNG buffer
+  const buffer = canvasApi.toBuffer(config.IMAGE_MIME);
+
+  imageCache.set(articleTitle, buffer);
+
+  reply.header("Content-Type", config.IMAGE_MIME);
+  reply.send(buffer);
+}

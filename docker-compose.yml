@@ -22,7 +22,10 @@ services:
   back:
     image: xfenix/xfenix-ru-back:latest
     env_file: .env
+    volumes:
+      - /srv/www/xfenix-v2.ru/:/var/lib/xfenix.ru
     deploy:
+      replicas: 2
       restart_policy:
         condition: on-failure
         max_attempts: 5
