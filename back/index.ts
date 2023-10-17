@@ -20,13 +20,13 @@ myFastifyApp.get("/api/githubrepos/", fetchGitlabRepos);
 myFastifyApp.get("/rpc/redirect/", redirectSomewhere);
 
 // and other tech things
-myFastifyApp.listen(
-  { port: config.APP_PORT, address: "0.0.0.0" } as any,
-  (err, address) => {
-    if (err) throw err;
-    myFastifyApp.log.info(`server listening on ${address}`);
-  }
-);
+myFastifyApp
+  .listen({ port: config.APP_PORT, host: "0.0.0.0" } as any)
+  .then((address) => console.log(`server listening on ${address}`))
+  .catch((err) => {
+    console.log("Error starting server:", err);
+    process.exit(1);
+  });
 
 process.on("SIGINT", closeGracefully);
 process.on("SIGTERM", closeGracefully);
