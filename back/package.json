@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p tsconfig.json && cp *.ttf build/",
-    "build-prod": "npm run build && cp package.json build/",
-    "start": "node build/index.js",
+    "build": "tsc -p tsconfig.json",
+    "build-prod": "npm run build && cp package*.json build/",
+    "start-dev": "node build/index.js",
+    "start": "node index.js",
     "dev": "npm run build && DEBUG=1 npm run start"
   },
   "author": "",

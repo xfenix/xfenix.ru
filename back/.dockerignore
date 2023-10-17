@@ -1,4 +1,6 @@
 node_modules/
+build/
+src/_tmp
 .env
 .DS_Store
 *.lmdb*
