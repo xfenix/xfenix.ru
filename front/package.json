@@ -33,11 +33,11 @@
     "gulp-uglify-es": "^3.0.0",
     "gulp-uncache": "^0.4.0-beta1",
     "postcss-preset-env": "^9.2.0",
-    "sass": "^1.69.3",
+    "sass": "^1.69.5",
     "smoothscroll-polyfill": "^0.4.4",
     "tsify": "^5.0.4",
     "typescript": "^5.2.2",
-    "vanilla-lazyload": "^17.8.4",
+    "vanilla-lazyload": "^17.8.5",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
 

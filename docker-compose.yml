@@ -14,7 +14,7 @@ services:
         max_attempts: 5
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
-    image: certbot/certbot:v1.31.0
+    image: certbot/certbot:v2.7.0
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - challenge_mount:/var/www/certbot
