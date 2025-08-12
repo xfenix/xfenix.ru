@@ -8,7 +8,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - challenge_mount:/var/www/certbot
-      - /srv/www/xfenix-v2.ru/presentations:/srv/www/presentations:ro
+      - /srv/www/xfenix-v2.ru/presentations:/srv/presentations:ro
     deploy:
       restart_policy:
         condition: on-failure
