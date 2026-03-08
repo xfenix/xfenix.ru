@@ -160,7 +160,7 @@ gulp.task(
   )
 );
 
-gulp.task("watch", (cb) => {
+gulp.task("watch", gulp.series("build", (cb) => {
   process.env.DEVEL = true;
   browserSync.init({
     server: {
@@ -179,4 +179,4 @@ gulp.task("watch", (cb) => {
   gulp.watch(PATTERNS.ts, gulp.series("process-ts", "process-uncache"));
   gulp.watch(PATTERNS.assets, gulp.series("process-assets"));
   cb();
-});
+}));
