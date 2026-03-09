@@ -382,7 +382,48 @@ $burger-height: $burger-one-height * $burger-koef;
 */
 .hero-unit {
   padding-top: 30px;
-  padding-bottom: 25px;
+  padding-bottom: 0;
+}
+
+@keyframes wave-left {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes wave-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.hero-unit__waves {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.hero-unit__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+
+  & path {
+    fill: $color-light;
+  }
+}
+
+.hero-unit__wave_back {
+  animation: wave-right 40s linear infinite;
+
+  & path {
+    fill: $color-heavy;
+  }
+}
+
+.hero-unit__wave_front {
+  animation: wave-left 25s linear infinite;
 }
 
 .hero-unit__name {
@@ -803,6 +844,11 @@ $burger-height: $burger-one-height * $burger-koef;
     box-sizing: border-box;
     padding-right: 20px;
     padding-left: 20px;
+  }
+
+  .hero-unit__waves {
+    margin-left: -20px;
+    margin-right: -20px;
   }
 
   .github-section__wrapper {

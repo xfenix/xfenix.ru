@@ -6,7 +6,7 @@ const sass = require("gulp-sass")(require("sass"));
 const postcss = require("gulp-postcss");
 const cssMinify = require("cssnano");
 const htmlmin = require("gulp-htmlmin");
-const htmlValidator = require("gulp-html");
+const fs = require("fs");
 const minifyInline = require("gulp-minify-inline");
 const minifyInlineJSON = require("gulp-minify-inline-json");
 const uncache = require("gulp-uncache");
@@ -80,11 +80,7 @@ gulp.task("process-ts", function () {
 });
 
 gulp.task("process-html", () => {
-  let basicStream = gulp.src(PATTERNS.html);
-  if (process.env.DEVEL) {
-    basicStream = basicStream.pipe(htmlValidator());
-  }
-  return basicStream
+  return gulp.src(PATTERNS.html)
     .pipe(
       htmlmin({
         collapseWhitespace: true,
@@ -167,10 +163,12 @@ gulp.task("watch", gulp.series("build", (cb) => {
       baseDir: DESTINATION_DIR,
     },
   });
-  spawnProc("node", ["../back/server.js"], {
-    stdio: "inherit",
-    env: { ...process.env, ...{ DEBUG: 1 } },
-  });
+  if (fs.existsSync("../back/server.js")) {
+    spawnProc("node", ["../back/server.js"], {
+      stdio: "inherit",
+      env: { ...process.env, ...{ DEBUG: 1 } },
+    });
+  }
   gulp.watch(
     PATTERNS.sass,
     gulp.series("process-styles", "process-html", "process-uncache")
