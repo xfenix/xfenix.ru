@@ -88,6 +88,7 @@ gulp.task("process-html", () => {
         sortAttributes: true,
         sortClassName: true,
         removeComments: true,
+        ignoreCustomComments: [/^\s*(un)?cache\s*/],
       })
     )
     .pipe(
