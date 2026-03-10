@@ -26,6 +26,7 @@ import revReplace from "gulp-rev-replace";
 import browserSync from "browser-sync";
 import { spawn as spawnProc } from "child_process";
 import { existsSync } from "fs";
+import { rm } from "fs/promises";
 
 const sassCompiler = gulpSass(sassEngine);
 const syncServer = browserSync.create();
@@ -38,6 +39,10 @@ const PATTERNS = {
   ts: `${ROOT_DIR}/*.ts`,
   assets: `${ROOT_DIR}/assets/**`,
 };
+
+gulp.task("clean", () =>
+  rm(DESTINATION_DIR, { recursive: true, force: true }),
+);
 
 gulp.task("process-styles", () => {
   return gulp
@@ -172,6 +177,7 @@ gulp.task(
 gulp.task(
   "build",
   gulp.series(
+    "clean",
     "validate-html",
     gulp.parallel(
       "process-ts",
