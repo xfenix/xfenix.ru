@@ -144,7 +144,7 @@ gulp.task("process-rev-replace", () => {
 });
 
 gulp.task("copy-assets", () => {
-  return gulp.src(PATTERNS.assets).pipe(gulp.dest(DESTINATION_DIR));
+  return gulp.src(PATTERNS.assets, { encoding: false }).pipe(gulp.dest(DESTINATION_DIR, { encoding: false }));
 });
 
 gulp.task("minify-json-assets", () => {
