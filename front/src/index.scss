@@ -89,7 +89,8 @@ button {
   color: $color-acc2;
   text-decoration: none;
   border-bottom: 1px solid rgba($color-acc2, 0.2);
-  transition: color $standart-duration linear,
+  transition:
+    color $standart-duration linear,
     border-bottom $standart-duration linear;
 
   &:hover {
@@ -159,7 +160,7 @@ button {
 
 @keyframes details-show {
   from {
-    opacity:0;
+    opacity: 0;
     transform: var(--details-translate, translateY(-0.5em));
   }
 }
@@ -386,19 +387,24 @@ $burger-height: $burger-one-height * $burger-koef;
 }
 
 @keyframes wave-left {
-  to { transform: translateX(-50%); }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes wave-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .hero-unit__waves {
   position: relative;
   height: 100px;
   overflow: hidden;
-  margin-top: 25px;
 }
 
 .hero-unit__wave {
@@ -460,7 +466,8 @@ $burger-height: $burger-one-height * $burger-koef;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color $standart-duration linear,
+  transition:
+    background-color $standart-duration linear,
     color $standart-duration linear;
   margin-right: 10px;
   -webkit-tap-highlight-color: transparent;
@@ -762,7 +769,8 @@ $burger-height: $burger-one-height * $burger-koef;
   align-items: center;
   box-sizing: border-box;
   padding: 30px;
-  transition: background-color $standart-duration linear,
+  transition:
+    background-color $standart-duration linear,
     border $standart-duration linear;
   border: 4px dashed $color-light;
   -webkit-tap-highlight-color: transparent;

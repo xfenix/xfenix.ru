@@ -7,6 +7,8 @@ const postcss = require("gulp-postcss");
 const cssMinify = require("cssnano");
 const htmlmin = require("gulp-htmlmin");
 const fs = require("fs");
+const { HtmlValidate } = require("html-validate");
+const through = require("through2");
 const minifyInline = require("gulp-minify-inline");
 const minifyInlineJSON = require("gulp-minify-inline-json");
 const uncache = require("gulp-uncache");
@@ -50,7 +52,7 @@ gulp.task("process-styles", () => {
             removeAll: true,
           },
         }),
-      ])
+      ]),
     )
     .pipe(gulp.dest(DESTINATION_DIR));
 });
@@ -79,8 +81,34 @@ gulp.task("process-ts", function () {
     .pipe(gulp.dest(DESTINATION_DIR));
 });
 
+gulp.task("validate-html", () => {
+  const htmlvalidate = new HtmlValidate();
+  return gulp.src(PATTERNS.html).pipe(
+    through.obj(function (file, encoding, callback) {
+      if (file.isNull()) {
+        callback(null, file);
+        return;
+      }
+      const result = htmlvalidate.validateStringSync(
+        file.contents.toString(),
+        file.path,
+      );
+      if (!result.valid) {
+        const errors = result.results
+          .flatMap((r) => r.messages)
+          .map((m) => `${m.ruleId}: ${m.message} (line ${m.line}, col ${m.column})`)
+          .join("\n");
+        callback(new Error(`HTML validation failed in ${file.relative}:\n${errors}`));
+        return;
+      }
+      callback(null, file);
+    }),
+  );
+});
+
 gulp.task("process-html", () => {
-  return gulp.src(PATTERNS.html)
+  return gulp
+    .src(PATTERNS.html)
     .pipe(
       htmlmin({
         collapseWhitespace: true,
@@ -89,13 +117,13 @@ gulp.task("process-html", () => {
         sortClassName: true,
         removeComments: true,
         ignoreCustomComments: [/^\s*(end)?uncache\s*/],
-      })
+      }),
     )
     .pipe(
       typograf({
         locale: ["ru", "en-US"],
         htmlEntity: { type: "name" },
-      })
+      }),
     )
     .pipe(minifyInline())
     .pipe(minifyInlineJSON())
@@ -112,7 +140,7 @@ gulp.task("process-uncache", () => {
         append: "hash",
         srcDir: DESTINATION_DIR,
         distDir: DESTINATION_DIR,
-      })
+      }),
     )
     .pipe(gulp.dest(DESTINATION_DIR));
 });
@@ -139,43 +167,47 @@ gulp.task(
   "process-assets",
   gulp.series(
     "copy-assets",
-    gulp.parallel("minify-json-assets", "minify-svg-assets")
-  )
+    gulp.parallel("minify-json-assets", "minify-svg-assets"),
+  ),
 );
 
 // Tasks for users starts here
 gulp.task(
   "build",
   gulp.series(
+    "validate-html",
     gulp.parallel(
       "process-ts",
       "process-styles",
       "process-html",
-      "process-assets"
+      "process-assets",
     ),
-    "process-uncache"
-  )
+    "process-uncache",
+  ),
 );
 
-gulp.task("watch", gulp.series("build", (cb) => {
-  process.env.DEVEL = true;
-  browserSync.init({
-    server: {
-      baseDir: DESTINATION_DIR,
-    },
-  });
-  if (fs.existsSync("../back/server.js")) {
-    spawnProc("node", ["../back/server.js"], {
-      stdio: "inherit",
-      env: { ...process.env, ...{ DEBUG: 1 } },
+gulp.task(
+  "watch",
+  gulp.series("build", (cb) => {
+    process.env.DEVEL = true;
+    browserSync.init({
+      server: {
+        baseDir: DESTINATION_DIR,
+      },
     });
-  }
-  gulp.watch(
-    PATTERNS.sass,
-    gulp.series("process-styles", "process-html", "process-uncache")
-  );
-  gulp.watch(PATTERNS.html, gulp.series("process-html", "process-uncache"));
-  gulp.watch(PATTERNS.ts, gulp.series("process-ts", "process-uncache"));
-  gulp.watch(PATTERNS.assets, gulp.series("process-assets"));
-  cb();
-}));
+    if (fs.existsSync("../back/server.js")) {
+      spawnProc("node", ["../back/server.js"], {
+        stdio: "inherit",
+        env: { ...process.env, ...{ DEBUG: 1 } },
+      });
+    }
+    gulp.watch(
+      PATTERNS.sass,
+      gulp.series("process-styles", "process-html", "process-uncache"),
+    );
+    gulp.watch(PATTERNS.html, gulp.series("validate-html", "process-html", "process-uncache"));
+    gulp.watch(PATTERNS.ts, gulp.series("process-ts", "process-uncache"));
+    gulp.watch(PATTERNS.assets, gulp.series("process-assets"));
+    cb();
+  }),
+);
