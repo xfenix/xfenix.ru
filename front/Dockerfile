@@ -1,4 +1,4 @@
-FROM node:20.10.0 as builder
+FROM node:22-alpine AS builder
 WORKDIR /tmp/
 RUN mkdir -p /tmp/src/build/.well-known/
 COPY . .
@@ -6,7 +6,7 @@ RUN npm i
 RUN npx gulp build
 
 
-FROM nginx:1.29.0-alpine as runtime
+FROM nginx:1.29.5-alpine AS runtime
 ENV WORKDIR=/srv/www
 WORKDIR $WORKDIR
 COPY nginx.conf /etc/nginx
