@@ -195,19 +195,20 @@ gulp.task(
         env: { ...process.env, DEBUG: 1 },
       });
     }
+    const reloadBrowser = (done) => { syncServer.reload(); done(); };
     gulp.watch(
       PATTERNS.sass,
-      gulp.series("process-styles", "process-html", "process-rev", "process-rev-replace"),
+      gulp.series("process-styles", "process-html", "process-rev", "process-rev-replace", reloadBrowser),
     );
     gulp.watch(
       PATTERNS.html,
-      gulp.series("validate-html", "process-html", "process-rev", "process-rev-replace"),
+      gulp.series("validate-html", "process-html", "process-rev", "process-rev-replace", reloadBrowser),
     );
     gulp.watch(
       PATTERNS.ts,
-      gulp.series("process-ts", "process-rev", "process-rev-replace"),
+      gulp.series("process-ts", "process-rev", "process-rev-replace", reloadBrowser),
     );
-    gulp.watch(PATTERNS.assets, gulp.series("process-assets"));
+    gulp.watch(PATTERNS.assets, gulp.series("process-assets", reloadBrowser));
     doneCallback();
   }),
 );
