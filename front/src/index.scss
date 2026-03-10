@@ -2,6 +2,7 @@
 // please dont blame me on that to hard, please.
 // Also i really love pixels. Now you can hate me at full scale.
 @use "sass:math";
+@use "sass:color";
 
 $color-acc1: #7000d1;
 $color-acc2: #007a33;
@@ -472,6 +473,93 @@ $burger-height: $burger-one-height * $burger-koef;
 
 .hero-unit__wave_front {
   animation: wave-left 25s linear infinite;
+}
+
+@keyframes boat-sail {
+  from {
+    left: 110%;
+  }
+  to {
+    left: -12%;
+  }
+}
+
+@keyframes boat-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
+.hero-unit__boat {
+  position: absolute;
+  bottom: 10px;
+  animation: boat-sail 70s linear infinite;
+  z-index: 1;
+
+  &-inner {
+    animation: boat-bob 2.5s ease-in-out infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-deck {
+    display: flex;
+    align-items: flex-end;
+    width: 36px;
+  }
+
+  &-mast {
+    flex-shrink: 0;
+    width: 2px;
+    height: 22px;
+    background: $color-heavy;
+    margin-left: 2px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 16px;
+      height: 20px;
+      background: rgba($color-acc1, 0.8);
+      clip-path: path(
+        "M 0,2 Q 0,0 2,0 L 14,9 Q 16,10 14,11 L 2,20 Q 0,20 0,18 Z"
+      );
+    }
+  }
+
+  &-clown {
+    font-size: 14px;
+    line-height: 1;
+    margin-left: 16px;
+    margin-bottom: 2px;
+  }
+
+  &-hull {
+    width: 36px;
+    height: 9px;
+    background: $color-heavy;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -2px;
+      right: -2px;
+      height: 5px;
+      background: color.mix($color-heavy, $color-light, 70%);
+      border-radius: 4px 4px 0 0;
+    }
+  }
 }
 
 .hero-unit__name {
@@ -959,6 +1047,10 @@ $burger-height: $burger-one-height * $burger-koef;
 }
 
 @media (max-width: 750px) {
+  .hero-unit__boat {
+    animation-duration: 40s;
+  }
+
   .skills-switch {
     display: block;
   }
@@ -1019,6 +1111,10 @@ $burger-height: $burger-one-height * $burger-koef;
 }
 
 @media (max-width: 540px) {
+  .hero-unit__boat {
+    animation-duration: 25s;
+  }
+
   .github-wannabe {
     grid-template-columns: 1fr;
   }
