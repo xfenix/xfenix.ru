@@ -152,6 +152,14 @@ gulp.task("copy-assets", () => {
   return gulp.src(PATTERNS.assets, { encoding: false }).pipe(gulp.dest(DESTINATION_DIR, { encoding: false }));
 });
 
+gulp.task("process-sitemap", () => {
+  const now = new Date().toISOString().replace(/\.\d{3}Z$/, "+00:00");
+  return gulp
+    .src(`${DESTINATION_DIR}/sitemap.xml`)
+    .pipe(pleaseReplace(/<lastmod>[^<]+<\/lastmod>/, `<lastmod>${now}</lastmod>`))
+    .pipe(gulp.dest(DESTINATION_DIR));
+});
+
 gulp.task("minify-json-assets", () => {
   return gulp
     .src(`${DESTINATION_DIR}/*.json`)
@@ -170,7 +178,7 @@ gulp.task(
   "process-assets",
   gulp.series(
     "copy-assets",
-    gulp.parallel("minify-json-assets", "minify-svg-assets"),
+    gulp.parallel("minify-json-assets", "minify-svg-assets", "process-sitemap"),
   ),
 );
 
