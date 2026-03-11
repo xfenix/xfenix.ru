@@ -153,10 +153,10 @@ gulp.task("copy-assets", () => {
 });
 
 gulp.task("process-sitemap", () => {
-  const now = new Date().toISOString().replace(/\.\d{3}Z$/, "+00:00");
+  const currentDatetime = new Date(Date.now() + 3 * 3600 * 1000).toISOString().replace(/\.\d{3}Z$/, "+03:00");
   return gulp
     .src(`${DESTINATION_DIR}/sitemap.xml`)
-    .pipe(pleaseReplace(/<lastmod>[^<]+<\/lastmod>/, `<lastmod>${now}</lastmod>`))
+    .pipe(pleaseReplace(/<lastmod>[^<]+<\/lastmod>/, `<lastmod>${currentDatetime}</lastmod>`))
     .pipe(gulp.dest(DESTINATION_DIR));
 });
 
