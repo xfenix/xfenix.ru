@@ -210,19 +210,20 @@ gulp.task(
       });
     }
     const reloadBrowser = (done) => { syncServer.reload(); done(); };
+    const rebuildRev = gulp.series("clean", gulp.parallel("process-ts", "process-styles", "process-html", "process-assets"), "process-rev", "process-rev-replace");
     gulp.watch(
       PATTERNS.sass,
-      gulp.series("process-styles", "process-html", "process-rev", "process-rev-replace", reloadBrowser),
+      gulp.series(rebuildRev, reloadBrowser),
     );
     gulp.watch(
       PATTERNS.html,
-      gulp.series("validate-html", "process-html", "process-rev", "process-rev-replace", reloadBrowser),
+      gulp.series("validate-html", rebuildRev, reloadBrowser),
     );
     gulp.watch(
       PATTERNS.ts,
-      gulp.series("process-ts", "process-rev", "process-rev-replace", reloadBrowser),
+      gulp.series(rebuildRev, reloadBrowser),
     );
-    gulp.watch(PATTERNS.assets, gulp.series("process-assets", reloadBrowser));
+    gulp.watch(PATTERNS.assets, gulp.series(rebuildRev, reloadBrowser));
     doneCallback();
   }),
 );

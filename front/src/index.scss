@@ -103,10 +103,17 @@ button {
 
 .button {
   border-radius: $border-radius;
-  transition: background-color $standart-duration linear;
+  transition:
+    background-color $standart-duration linear,
+    transform 150ms cubic-bezier(0.2, 0, 0.2, 1),
+    box-shadow 150ms cubic-bezier(0.2, 0, 0.2, 1);
 
   &:hover {
     background-color: $color-light;
+  }
+
+  &:active {
+    transform: scale(0.96);
   }
 }
 
@@ -223,6 +230,14 @@ button {
   max-width: $wide-width;
   border-radius: 6px;
   padding: 5px 0;
+  transition:
+    transform 150ms cubic-bezier(0.2, 0, 0.2, 1),
+    background-color 200ms cubic-bezier(0.2, 0, 0.2, 1);
+
+  &:active {
+    transform: scale(0.97);
+    transition-duration: 50ms;
+  }
 }
 
 .details__inneraccent {
@@ -347,10 +362,17 @@ body::before {
   height: 25px;
   line-height: 25px;
   -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     color: $color-inverted;
     background-color: $color-heavy;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition-duration: 50ms;
   }
 }
 
@@ -598,14 +620,24 @@ $burger-height: $burger-one-height * $burger-koef;
   justify-content: center;
   align-items: center;
   transition:
-    background-color $standart-duration linear,
-    color $standart-duration linear;
+    background-color 200ms cubic-bezier(0.2, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.2, 0, 0.2, 1),
+    transform 150ms cubic-bezier(0.2, 0, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.2, 0, 0.2, 1);
   margin-right: 10px;
   -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background-color: $color-light;
     color: $color-acc1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($color-basic, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.92);
+    box-shadow: none;
+    transition-duration: 50ms;
   }
 
   & > i {
@@ -659,23 +691,41 @@ $burger-height: $burger-one-height * $burger-koef;
   text-decoration: none;
   display: flex;
   align-items: flex-start;
-  transition: background-color $standart-duration;
+  transition:
+    background-color 200ms cubic-bezier(0.2, 0, 0.2, 1),
+    transform 150ms cubic-bezier(0.2, 0, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.2, 0, 0.2, 1);
   -webkit-tap-highlight-color: transparent;
 
   & > i {
     font-size: 24px;
     margin-right: 20px;
     color: #acb8ca;
-    transition: color $standart-duration;
+    transition: color 200ms cubic-bezier(0.2, 0, 0.2, 1);
   }
 
-  &:hover,
+  &:hover {
+    background-color: $color-light;
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba($color-basic, 0.08);
+
+    & > i {
+      color: $color-heavy;
+    }
+  }
+
   &.active {
     background-color: $color-light;
 
     & > i {
       color: $color-heavy;
     }
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: none;
+    transition-duration: 50ms;
   }
 
   & + & {
@@ -790,6 +840,20 @@ $burger-height: $burger-one-height * $burger-koef;
   box-sizing: border-box;
   flex-direction: column;
   display: flex;
+  transition:
+    transform 200ms cubic-bezier(0.2, 0, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.2, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($color-basic, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 6px rgba($color-basic, 0.1);
+    transition-duration: 50ms;
+  }
 }
 
 .github-wannabe__title {
@@ -970,6 +1034,32 @@ $burger-height: $burger-one-height * $burger-koef;
 
 .bottom-foot__feedback > a {
   @extend .link;
+}
+
+/*
+    Ripple effect
+*/
+@keyframes ripple-expand {
+  to {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple__circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba($color-basic, 0.08);
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple-expand 500ms cubic-bezier(0.2, 0, 0.2, 1) forwards;
 }
 
 /*

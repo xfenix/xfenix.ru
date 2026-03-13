@@ -1,6 +1,6 @@
 import $, { Cash } from "cash-dom";
-import LazyLoad from "vanilla-lazyload";
 import smoothscroll from "smoothscroll-polyfill";
+import LazyLoad from "vanilla-lazyload";
 
 // warn about old ie (before all other things)
 if (/Trident\/|MSIE/.test(window.navigator.userAgent)) {
@@ -50,17 +50,19 @@ $(".top-head__menulink, .top-head__logolink").on(
     eventObj.preventDefault();
     const originalHref: string | null = $(this).attr("href");
     if (originalHref !== null) {
-      const possibleOffset = $(originalHref).offset();
-      if (possibleOffset !== undefined) {
-        window.scrollTo({
-          top: originalHref.replace("#", "")
-            ? possibleOffset.top - $(".top-head").height()
-            : 0,
-          behavior: "smooth",
-        });
+      if (originalHref.replace("#", "").length === 0) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const possibleOffset = $(originalHref).offset();
+        if (possibleOffset !== undefined) {
+          window.scrollTo({
+            top: possibleOffset.top - $(".top-head").height(),
+            behavior: "smooth",
+          });
+        }
       }
     }
-  }
+  },
 );
 
 // email obfuscation (hard-coded as hell)
@@ -71,16 +73,36 @@ $(".contacts__link_email").one("click", function () {
       (char: string) =>
         "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"[
           "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".indexOf(char)
-        ]
+        ],
     );
   };
   $(this).attr(
     "href",
     rot13New("znvygb:") +
       rot13New("nq") +
-      rot13New("--ksravk-eh").replace("--", "@").replace("-", ".")
+      rot13New("--ksravk-eh").replace("--", "@").replace("-", "."),
   );
 });
+
+// ripple effect on interactive elements
+$(document).on(
+  "pointerdown",
+  ".top-head__menulink, .contacts__link, .skills-switch__tab, .details__summary",
+  function (event: PointerEvent) {
+    const $rippleTarget = $(this);
+    $rippleTarget.addClass("ripple");
+
+    const boundingRect = (this as HTMLElement).getBoundingClientRect();
+    const $rippleCircle = $('<span class="ripple__circle"></span>');
+    $rippleCircle.css({
+      left: `${event.clientX - boundingRect.left}px`,
+      top: `${event.clientY - boundingRect.top}px`,
+    });
+
+    $rippleTarget.append($rippleCircle);
+    $rippleCircle.on("animationend", () => $rippleCircle.remove());
+  },
+);
 
 // github repos rendering with cache
 const CACHE_KEY = "xfenix-github-cache-v2";
@@ -91,7 +113,7 @@ const SHOW_REPOS = 6;
 const API_DESTINATION = String(
   localStorage.getItem(API_KEY)
     ? localStorage.getItem(API_KEY)
-    : "/api/githubrepos/"
+    : "/api/githubrepos/",
 );
 const localStorageWithExpiration = {
   set: (cacheKey: string, inputValue: Object, ttlSeconds: number): void => {
@@ -100,7 +122,7 @@ const localStorageWithExpiration = {
       JSON.stringify({
         value: inputValue,
         expires_at: new Date().getTime() + (ttlSeconds * 1000) / 1,
-      })
+      }),
     );
   },
   get: (cacheKey: string): Object | null => {
@@ -130,7 +152,7 @@ const localStorageWithExpiration = {
 const cachedPayload = localStorageWithExpiration.get(CACHE_KEY);
 const destinationNode = document.querySelector(".github-wannabe");
 const templateElement: HTMLTemplateElement | null = document.querySelector(
-  "#github-wannabe-tpl"
+  "#github-wannabe-tpl",
 );
 const renderOneRepo = (oneRepoPayload: {
   name: string;
@@ -141,19 +163,19 @@ const renderOneRepo = (oneRepoPayload: {
   language: string;
 }) => {
   const newNode: HTMLElement = templateElement?.content.cloneNode(
-    true
+    true,
   ) as HTMLElement;
   const titleNode: HTMLAnchorElement | null = newNode.querySelector(
-    ".github-wannabe__title > a"
+    ".github-wannabe__title > a",
   );
   const starsNode: HTMLElement | null = newNode.querySelector(
-    ".github-wannabe__stars"
+    ".github-wannabe__stars",
   );
   const forkNode: HTMLElement | null = newNode.querySelector(
-    ".github-wannabe__fork"
+    ".github-wannabe__fork",
   );
   const languageNode: HTMLElement | null = newNode.querySelector(
-    ".github-wannabe__language"
+    ".github-wannabe__language",
   );
 
   if (titleNode) {
@@ -163,7 +185,7 @@ const renderOneRepo = (oneRepoPayload: {
 
   if (newNode) {
     const innerNode: HTMLElement | null = newNode.querySelector(
-      ".github-wannabe__descr"
+      ".github-wannabe__descr",
     );
     if (innerNode) {
       innerNode.textContent = oneRepoPayload.description;
@@ -172,9 +194,8 @@ const renderOneRepo = (oneRepoPayload: {
 
   if (starsNode && starsNode.parentNode) {
     starsNode.textContent = String(oneRepoPayload.stargazers_count);
-    (
-      starsNode.parentNode as HTMLAnchorElement
-    ).href = `${oneRepoPayload.html_url}/stargazers`;
+    (starsNode.parentNode as HTMLAnchorElement).href =
+      `${oneRepoPayload.html_url}/stargazers`;
   }
 
   if (forkNode) {
@@ -196,13 +217,13 @@ const renderOneRepo = (oneRepoPayload: {
           (oneRepoPayload.language
             ? oneRepoPayload.language
             : "nolanguage"
-          ).toLowerCase()
+          ).toLowerCase(),
       );
     }
     languageNode.appendChild(
       document.createTextNode(
-        oneRepoPayload.language ? oneRepoPayload.language : "No language"
-      )
+        oneRepoPayload.language ? oneRepoPayload.language : "No language",
+      ),
     );
   }
 
