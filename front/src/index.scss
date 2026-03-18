@@ -791,6 +791,8 @@ $burger-height: $burger-one-height * $burger-koef;
   );
   padding-top: 40px + $diagonal;
   padding-bottom: 40px + $diagonal;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .github-section__wrapper {
