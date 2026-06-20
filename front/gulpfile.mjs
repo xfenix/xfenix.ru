@@ -32,13 +32,20 @@ const sassCompiler = gulpSass(sassEngine);
 const syncServer = browserSync.create();
 
 const ROOT_DIR = new URL("src", import.meta.url).pathname;
+const NODE_MODULES = new URL("node_modules", import.meta.url).pathname;
 const DESTINATION_DIR = `${ROOT_DIR}/build`;
+const VENDOR_DEST = `${DESTINATION_DIR}/vendor`;
 const PATTERNS = {
   html: `${ROOT_DIR}/*.html`,
   sass: `${ROOT_DIR}/*.scss`,
   ts: `${ROOT_DIR}/*.ts`,
   assets: `${ROOT_DIR}/assets/**`,
 };
+
+// Self-hosted third-party static (fonts, Font Awesome), sourced from npm.
+// Versions are managed via package.json; run `npm update` to refresh.
+const FONT_FILES = `${NODE_MODULES}/@fontsource/{inter,nunito}/files/{inter-{cyrillic,latin}-{400,700},nunito-{cyrillic,latin}-400}-normal.woff2`;
+const FA_DIR = `${NODE_MODULES}/@fortawesome/fontawesome-free`;
 
 gulp.task("clean", () =>
   rm(DESTINATION_DIR, { recursive: true, force: true }),
@@ -152,6 +159,32 @@ gulp.task("copy-assets", () => {
   return gulp.src(PATTERNS.assets, { encoding: false }).pipe(gulp.dest(DESTINATION_DIR, { encoding: false }));
 });
 
+gulp.task("copy-vendor-fonts", () => {
+  return gulp
+    .src(FONT_FILES, { encoding: false })
+    .pipe(
+      through2Stream.obj((vinylFile, encoding, callback) => {
+        vinylFile.dirname = vinylFile.base;
+        callback(null, vinylFile);
+      }),
+    )
+    .pipe(gulp.dest(`${VENDOR_DEST}/fonts`, { encoding: false }));
+});
+
+gulp.task("copy-vendor-fontawesome", () => {
+  return gulp
+    .src([`${FA_DIR}/css/all.min.css`, `${FA_DIR}/webfonts/**`], {
+      encoding: false,
+      base: FA_DIR,
+    })
+    .pipe(gulp.dest(`${VENDOR_DEST}/fontawesome`, { encoding: false }));
+});
+
+gulp.task(
+  "copy-vendor",
+  gulp.parallel("copy-vendor-fonts", "copy-vendor-fontawesome"),
+);
+
 gulp.task("process-sitemap", () => {
   const currentDatetime = new Date(Date.now() + 3 * 3600 * 1000).toISOString().replace(/\.\d{3}Z$/, "+03:00");
   return gulp
@@ -192,6 +225,7 @@ gulp.task(
       "process-styles",
       "process-html",
       "process-assets",
+      "copy-vendor",
     ),
     "process-rev",
     "process-rev-replace",
@@ -210,7 +244,7 @@ gulp.task(
       });
     }
     const reloadBrowser = (done) => { syncServer.reload(); done(); };
-    const rebuildRev = gulp.series("clean", gulp.parallel("process-ts", "process-styles", "process-html", "process-assets"), "process-rev", "process-rev-replace");
+    const rebuildRev = gulp.series("clean", gulp.parallel("process-ts", "process-styles", "process-html", "process-assets", "copy-vendor"), "process-rev", "process-rev-replace");
     gulp.watch(
       PATTERNS.sass,
       gulp.series(rebuildRev, reloadBrowser),
