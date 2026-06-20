@@ -14,8 +14,8 @@
     "@fortawesome/fontawesome-free": "^7.2.0",
     "browser-sync": "^3.0.4",
     "cash-dom": "^8.1.5",
-    "cssnano": "^7.1.3",
-    "esbuild": "^0.27.3",
+    "cssnano": "^7.1.9",
+    "esbuild": "^0.27.7",
     "gulp": "^5.0.1",
     "gulp-autoprefixer": "^10.0.0",
     "gulp-esbuild": "^0.14.1",
@@ -33,11 +33,11 @@
     "gulp-typograf": "^4.1.0",
     "html-validate": "^9.7.1",
     "nth-check": ">=2.1.1",
-    "postcss-preset-env": "^11.2.0",
-    "sass": "^1.69.5",
+    "postcss-preset-env": "^11.3.1",
+    "sass": "^1.101.0",
     "smoothscroll-polyfill": "^0.4.4",
     "through2": "^4.0.2",
-    "typescript": "^5.3.3",
-    "vanilla-lazyload": "^17.8.5"
+    "typescript": "^5.9.3",
+    "vanilla-lazyload": "^17.9.0"
   }
 }

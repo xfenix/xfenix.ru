@@ -15,13 +15,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@octokit/rest": "^20.0.2",
-    "fastify": "^4.26.0",
-    "lru-cache": "^10.2.0",
+    "@octokit/rest": "^20.1.2",
+    "fastify": "^4.29.1",
+    "lru-cache": "^10.4.3",
     "node-cache": "^5.1.2"
   },
   "devDependencies": {
-    "@types/node": "^20.11.14",
-    "typescript": "^5.3.3"
+    "@types/node": "^20.19.43",
+    "typescript": "^5.9.3"
   }
 }

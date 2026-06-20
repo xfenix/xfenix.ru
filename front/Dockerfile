@@ -6,7 +6,7 @@ RUN npm i
 RUN npx gulp build
 
 
-FROM nginx:1.29.5-alpine AS runtime
+FROM nginx:1.29.8-alpine AS runtime
 ENV WORKDIR=/srv/www
 WORKDIR $WORKDIR
 COPY nginx.conf /etc/nginx
