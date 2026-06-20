@@ -85,26 +85,18 @@ const resolveIconFromClasses = (classAttribute) => {
   return { iconPrefix, iconName, symbolIdentifier: `${iconPrefix}-${iconName}` };
 };
 
-const assertIconExists = (resolvedIcon) => {
-  if (!findIconDefinition({ prefix: resolvedIcon.iconPrefix, iconName: resolvedIcon.iconName })) {
-    throw new Error(
-      `FontAwesome icon not found: ${resolvedIcon.iconPrefix} ${resolvedIcon.iconName}`,
-    );
-  }
-};
-
-const renderIconReference = (resolvedIcon) =>
-  `<i><svg width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false">` +
-  `<use href="/${ICON_SPRITE_FILENAME}#${resolvedIcon.symbolIdentifier}"></use></svg></i>`;
-
 const inlineFaIconsInHtml = (htmlContent) =>
   htmlContent.replace(buildIconTagMatcher(), (originalTag, classAttribute) => {
     const resolvedIcon = resolveIconFromClasses(classAttribute);
     if (!resolvedIcon) {
       return originalTag;
     }
-    assertIconExists(resolvedIcon);
-    return renderIconReference(resolvedIcon);
+    if (!findIconDefinition({ prefix: resolvedIcon.iconPrefix, iconName: resolvedIcon.iconName })) {
+      throw new Error(
+        `FontAwesome icon not found: ${resolvedIcon.iconPrefix} ${resolvedIcon.iconName}`,
+      );
+    }
+    return `<i><svg width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><use href="/${ICON_SPRITE_FILENAME}#${resolvedIcon.symbolIdentifier}"></use></svg></i>`;
   });
 
 const collectUsedIcons = async () => {
@@ -267,11 +259,15 @@ gulp.task("build-icons", async () => {
     svg: { namespaceClassnames: false },
   });
   for (const usedIcon of usedIcons) {
-    assertIconExists(usedIcon);
     const iconDefinition = findIconDefinition({
       prefix: usedIcon.iconPrefix,
       iconName: usedIcon.iconName,
     });
+    if (!iconDefinition) {
+      throw new Error(
+        `FontAwesome icon not found: ${usedIcon.iconPrefix} ${usedIcon.iconName}`,
+      );
+    }
     spriteCompiler.add(
       `${usedIcon.symbolIdentifier}.svg`,
       null,
