@@ -6,7 +6,12 @@ RUN npm i
 RUN npx gulp build
 
 
-FROM nginx:1.29.8-alpine AS runtime
+# macbre/nginx-http3 ships nginx with HTTP/3, brotli and zstd compiled in
+# (statically -- no load_module needed). Saves us compiling ngx_brotli ourselves.
+FROM macbre/nginx-http3:latest AS runtime
+# macbre sets USER nginx; revert to root so the master can bind :443 (TCP+UDP).
+# Workers still drop to the unprivileged user via `user nginx;` in nginx.conf.
+USER root
 ENV WORKDIR=/srv/www
 WORKDIR $WORKDIR
 COPY nginx.conf /etc/nginx
