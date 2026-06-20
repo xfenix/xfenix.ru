@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/rest": "^20.1.2",
-    "fastify": "^4.29.1",
+    "fastify": "^5.8.5",
     "lru-cache": "^10.4.3",
     "node-cache": "^5.1.2"
   },

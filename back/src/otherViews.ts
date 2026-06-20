@@ -10,7 +10,7 @@ export async function redirectSomewhere(
 ) {
   const preparedWhere = request.query.where?.trim();
   if (preparedWhere) {
-    serverReply.code(301).redirect(preparedWhere);
+    serverReply.redirect(preparedWhere, 301);
   } else {
     serverReply.code(400).send("Not provided place where to redirect");
   }
