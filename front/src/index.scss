@@ -257,6 +257,8 @@ button {
   line-height: 36px;
   margin-bottom: 20px;
   font-family: $font-secondary;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .spec-title__accent {
@@ -1234,6 +1236,7 @@ $burger-height: $burger-one-height * $burger-koef;
 
 .bottom-foot__links {
   display: flex;
+  align-items: flex-start;
   gap: 20px;
 }
 
@@ -1417,6 +1420,12 @@ $burger-height: $burger-one-height * $burger-koef;
 }
 
 @media (max-width: 500px) {
+  // long accent words (e.g. "конфиденциальности") must wrap+hyphenate on
+  // narrow screens; nowrap is only needed for short accents on desktop
+  .spec-title__accent {
+    white-space: normal;
+  }
+
   .bottom-foot__wrapper {
     display: block;
   }
