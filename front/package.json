@@ -11,7 +11,9 @@
   "devDependencies": {
     "@fontsource/inter": "^5.2.8",
     "@fontsource/nunito": "^5.2.7",
-    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-brands-svg-icons": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "browser-sync": "^3.0.4",
     "cash-dom": "^8.1.5",
     "cssnano": "^7.1.9",
@@ -36,6 +38,7 @@
     "postcss-preset-env": "^11.3.1",
     "sass": "^1.101.0",
     "smoothscroll-polyfill": "^0.4.4",
+    "svg-sprite": "^2.0.4",
     "through2": "^4.0.2",
     "typescript": "^5.9.3",
     "vanilla-lazyload": "^17.9.0"
