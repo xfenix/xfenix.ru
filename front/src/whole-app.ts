@@ -1,5 +1,4 @@
 import $, { Cash } from "cash-dom";
-import smoothscroll from "smoothscroll-polyfill";
 import LazyLoad from "vanilla-lazyload";
 
 // warn about old ie (before all other things)
@@ -7,8 +6,8 @@ if (/Trident\/|MSIE/.test(window.navigator.userAgent)) {
   $("body").addClass("outdated");
 }
 
-// initial things
-smoothscroll.polyfill();
+// initial things — scrollTo({ behavior: "smooth" }) is native in every browser we
+// support (IE gets the "outdated" banner above), so no smooth-scroll polyfill.
 new LazyLoad().update();
 
 // burger animation + on click improvements
