@@ -7,8 +7,7 @@ import cssMinify from "cssnano";
 import autoprefixer from "gulp-autoprefixer";
 import postcssPresetEnv from "postcss-preset-env";
 // HTML
-import htmlMinifier from "gulp-htmlmin";
-import minifyInline from "gulp-minify-inline";
+import { minify as minifyHtml } from "html-minifier-terser";
 import minifyInlineJSON from "gulp-minify-inline-json";
 import typograf from "gulp-typograf";
 import pleaseReplace from "gulp-replace";
@@ -197,16 +196,25 @@ gulp.task("process-html", () => {
       }),
     )
     .pipe(
-      htmlMinifier({
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        sortAttributes: true,
-        sortClassName: true,
-        removeComments: true,
+      through2Stream.obj(async (vinylFile, encoding, streamCallback) => {
+        if (vinylFile.isBuffer()) {
+          // html-minifier-terser replaces the unmaintained gulp-htmlmin and
+          // gulp-minify-inline: minifyJS/minifyCSS handle inline <script>/<style>.
+          const minifiedHtml = await minifyHtml(vinylFile.contents.toString(), {
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            sortAttributes: true,
+            sortClassName: true,
+            removeComments: true,
+            minifyJS: true,
+            minifyCSS: true,
+          });
+          vinylFile.contents = Buffer.from(minifiedHtml);
+        }
+        streamCallback(null, vinylFile);
       }),
     )
     .pipe(typograf({ locale: ["ru", "en-US"], htmlEntity: { type: "name" } }))
-    .pipe(minifyInline())
     .pipe(minifyInlineJSON())
     .pipe(pleaseReplace("</li>", ""))
     .pipe(pleaseReplace("</p>", ""))
