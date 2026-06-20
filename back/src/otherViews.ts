@@ -8,7 +8,7 @@ export async function redirectSomewhere(
   request: RedirectRequest,
   serverReply: FastifyReply
 ) {
-  const preparedWhere = request.query.where.trim();
+  const preparedWhere = request.query.where?.trim();
   if (preparedWhere) {
     serverReply.code(301).redirect(preparedWhere);
   } else {
