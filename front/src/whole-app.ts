@@ -104,6 +104,59 @@ $(document).on(
   },
 );
 
+// cookie consent + yandex.metrika (loads only after explicit consent)
+const METRIKA_ID = 24364567;
+const CONSENT_KEY = "xfenix-consent-v1";
+
+const loadMetrika = (): void => {
+  (function (m: any, e: Document, t: string, r: string, i: string) {
+    m[i] =
+      m[i] ||
+      function () {
+        (m[i].a = m[i].a || []).push(arguments);
+      };
+    m[i].l = 1 * (new Date() as unknown as number);
+    for (let j = 0; j < e.scripts.length; j++) {
+      if (e.scripts[j].src === r) {
+        return;
+      }
+    }
+    const k = e.createElement(t) as HTMLScriptElement;
+    const a = e.getElementsByTagName(t)[0];
+    k.async = true;
+    k.src = r;
+    a.parentNode?.insertBefore(k, a);
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  (window as any).ym(METRIKA_ID, "init", {
+    webvisor: true,
+    clickmap: true,
+    referrer: document.referrer,
+    url: location.href,
+    accurateTrackBounce: true,
+    trackLinks: true,
+  });
+};
+
+const $cookieConsent: Cash = $(".cookie-consent");
+const consentChoice: string | null = localStorage.getItem(CONSENT_KEY);
+
+if (consentChoice === "accepted") {
+  loadMetrika();
+} else if (consentChoice !== "declined") {
+  $cookieConsent.addClass("cookie-consent_visible");
+}
+
+$(".cookie-consent__accept").on("click", function () {
+  localStorage.setItem(CONSENT_KEY, "accepted");
+  $cookieConsent.removeClass("cookie-consent_visible");
+  loadMetrika();
+});
+
+$(".cookie-consent__decline").on("click", function () {
+  localStorage.setItem(CONSENT_KEY, "declined");
+  $cookieConsent.removeClass("cookie-consent_visible");
+});
+
 // github repos rendering with cache
 const CACHE_KEY = "xfenix-github-cache-v2";
 const API_KEY = "xfenix-apiaddr";

@@ -32,7 +32,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://mc.yandex.ru">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Nunito&display=swap"
@@ -866,7 +865,8 @@
     <footer class="bottom-foot">
         <div class="narrow-wrapper bottom-foot__wrapper">
             <div class="bottom-foot__copy">&copy; Денис Аникин</div>
-            <div class="bottom-foot__feedback">
+            <div class="bottom-foot__links">
+                <a href="/privacy.html">Политика конфиденциальности</a>
                 <a href="/rpc/redirect/?where=https://form.jotform.com/xxxfenixru/hate-love-or-fix-me" target="_blank"
                     rel="noopener">
                     Форма анонимной обратной связи
@@ -880,13 +880,18 @@
             Вы&nbsp;можете обновиться, взять другой браузер или просто использовать как есть. Решать вам
         </div>
     </div>
+    <div class="cookie-consent">
+        <div class="cookie-consent__text">
+            Сайт использует <a href="/privacy.html">Яндекс.Метрику</a>: собираются cookie, IP-адрес и
+            данные о действиях для анализа посещаемости. Нажимая «Принять», вы соглашаетесь с
+            <a href="/privacy.html">политикой конфиденциальности</a>.
+        </div>
+        <div class="cookie-consent__actions">
+            <button type="button" class="cookie-consent__btn cookie-consent__decline">Отклонить</button>
+            <button type="button" class="cookie-consent__btn cookie-consent__accept">Принять</button>
+        </div>
+    </div>
     <script src="./whole-app.js" async></script>
-    <!-- Yandex.Metrika counter -->
-    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function () { try { w.yaCounter24364567 = new Ya.Metrika({ id: 24364567, trackLinks: true, accurateTrackBounce: true }); } catch (e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
-    <noscript>
-        <div><img src="//mc.yandex.ru/watch/24364567" class="ya-metrika-pixel" alt=""></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
 </body>
 
 </html>
