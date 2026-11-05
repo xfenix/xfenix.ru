@@ -45,7 +45,7 @@ services:
     image: coturn/coturn:4.6.2
     network_mode: host
     volumes:
-      - ./turn/coturn.conf:/etc/coturn/turnserver.conf:ro
+      - ./coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
     deploy:
       restart_policy:
         condition: on-failure
