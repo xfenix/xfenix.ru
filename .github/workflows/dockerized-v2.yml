@@ -64,6 +64,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Пароль TURN живет в секрете репозитория, CI подставляет его в конфиг перед отправкой на сервер.
+      - name: Put the TURN credential into the coturn config
+        env:
+          turnCredential: ${{ secrets.SLIDEMACHINA_TURN_CREDENTIAL }}
+        run: |
+          if [ -z "$turnCredential" ]; then
+            echo "The SLIDEMACHINA_TURN_CREDENTIAL secret is not set" >&2
+            exit 1
+          fi
+          sed -i "s/__SLIDEMACHINA_TURN_CREDENTIAL__/$turnCredential/g" coturn/turnserver.conf
+
       - uses: appleboy/scp-action@v0.1.7
         with:
           host: xfenix.ru
