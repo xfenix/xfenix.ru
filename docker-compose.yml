@@ -39,5 +39,16 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 5
+  # TURN-ретранслятор пульта slidemachina. Хостовая сеть обязательна: UDP 3478 и
+  # ретрансляционные UDP-порты 49152-65535 не должны проходить через NAT compose-сети.
+  turn-relay:
+    image: coturn/coturn:4.6.2
+    network_mode: host
+    volumes:
+      - ./turn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
 volumes:
   challenge_mount:
