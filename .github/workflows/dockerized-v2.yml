@@ -70,7 +70,7 @@ jobs:
           username: ${{ secrets.XFENIXRU_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.XFENIXRU_PORT }}
-          source: "docker-compose.yml"
+          source: "docker-compose.yml,turn/turnserver.conf"
           target: ${{ env.DESTINATION_DIR }}
 
   deploy-site:
