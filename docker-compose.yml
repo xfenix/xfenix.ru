@@ -30,5 +30,14 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 5
+  remote-broker:
+    image: peerjs/peerjs-server:latest
+    # ENTRYPOINT образа — node peerjs.js, аргументы подставляются к нему.
+    # --proxied: nginx терминирует TLS, серверу нужны реальные IP клиентов для лимитов.
+    command: "--port 9000 --path / --key peerjs --proxied"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
 volumes:
   challenge_mount:
