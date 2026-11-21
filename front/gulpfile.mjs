@@ -35,6 +35,12 @@ import browserSync from "browser-sync";
 import { spawn as spawnProc } from "child_process";
 import { existsSync } from "fs";
 import { rm, readdir, readFile, writeFile, mkdir } from "fs/promises";
+import {
+  brotliCompressSync,
+  constants as zlibConstants,
+  gzipSync,
+  zstdCompressSync,
+} from "node:zlib";
 
 const sassCompiler = gulpSass(sassEngine);
 const syncServer = browserSync.create();
@@ -263,8 +269,7 @@ gulp.task("build-icons", async () => {
   const usedIcons = await collectUsedIcons();
   const spriteCompiler = new SVGSpriter({
     mode: { symbol: true },
-    shape: { id: { generator: "%s" } },
-    svg: { namespaceClassnames: false },
+    shape: { id: { generator: "%s" }, svg: { namespaceClassnames: false } },
   });
   for (const usedIcon of usedIcons) {
     const iconDefinition = findIconDefinition({
@@ -333,6 +338,39 @@ gulp.task(
   ),
 );
 
+gulp.task("precompress-static", async () => {
+  const filenames = await readdir(DESTINATION_DIR, { recursive: true });
+  const compressibleFiles = filenames.filter((filename) =>
+    /\.(?:html|css|js|json|svg|xml|txt|webmanifest)$/.test(filename),
+  );
+
+  await Promise.all(
+    compressibleFiles.map(async (filename) => {
+      const filePath = `${DESTINATION_DIR}/${filename}`;
+      const contents = await readFile(filePath);
+      if (contents.length < 1000) {
+        return;
+      }
+
+      await Promise.all([
+        writeFile(
+          `${filePath}.gz`,
+          gzipSync(contents, { level: 6 }),
+        ),
+        writeFile(
+          `${filePath}.br`,
+          brotliCompressSync(contents, {
+            params: {
+              [zlibConstants.BROTLI_PARAM_QUALITY]: 6,
+            },
+          }),
+        ),
+        writeFile(`${filePath}.zst`, zstdCompressSync(contents, 9)),
+      ]);
+    }),
+  );
+});
+
 gulp.task(
   "build",
   gulp.series(
@@ -348,6 +386,7 @@ gulp.task(
     ),
     "process-rev",
     "process-rev-replace",
+    "precompress-static",
   ),
 );
 
