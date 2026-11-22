@@ -1,4 +1,5 @@
-FROM node:22-alpine AS builder
+# Node 24 provides built-in Zstd for precompression; this stage is build-only.
+FROM node:24-alpine AS builder
 WORKDIR /tmp/
 RUN mkdir -p /tmp/src/build/.well-known/
 COPY . .
