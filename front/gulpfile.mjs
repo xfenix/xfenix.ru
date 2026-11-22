@@ -355,17 +355,17 @@ gulp.task("precompress-static", async () => {
       await Promise.all([
         writeFile(
           `${filePath}.gz`,
-          gzipSync(contents, { level: 6 }),
+          gzipSync(contents, { level: 9 }),
         ),
         writeFile(
           `${filePath}.br`,
           brotliCompressSync(contents, {
             params: {
-              [zlibConstants.BROTLI_PARAM_QUALITY]: 6,
+              [zlibConstants.BROTLI_PARAM_QUALITY]: 11,
             },
           }),
         ),
-        writeFile(`${filePath}.zst`, zstdCompressSync(contents, 9)),
+        writeFile(`${filePath}.zst`, zstdCompressSync(contents, 19)),
       ]);
     }),
   );
